@@ -60,7 +60,7 @@ export const getProductsByCategoryAndFilters = async (req, res) => {
         filters.set(filterName, [...filterValue.split(",")]);
       });
     }
-    console.log("🚀 ~ filters:", filters);
+    // console.log("🚀 ~ filters:", filters);
 
     const categoryPath = untransliterate(unslugify(slugCategoryPath));
     const activeCategory = await category.findOne({

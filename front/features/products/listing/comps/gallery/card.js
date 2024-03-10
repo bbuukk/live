@@ -15,8 +15,8 @@ import { v4 as uuidv4 } from "uuid";
 //todo make link dry
 
 const ProductCard = ({ product, category, like, isLiked }) => {
-  console.log(product);
-  console.log(product.brand);
+  // console.log(product);
+  // console.log(product.brand);
   const productUrl = (activeTab) =>
     `/product/${slugify(transliterate(product.name))}/${
       product._id
