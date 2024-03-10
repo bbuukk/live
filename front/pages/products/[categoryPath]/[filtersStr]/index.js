@@ -19,9 +19,16 @@ import ProductsPagination from "features/products/listing/comps/gallery/paginati
 
 const Listing = ({ data: { category, subcategories, products, numPages } }) => {
   const router = useRouter();
-  const { pageId } = router.query;
+  const { filtersStr } = router.query;
+
+  let page = 1;
+  const match = filtersStr.match(/page=(\d+)/);
+  if (match) {
+    page = filtersStr.match(/page=(\d+)/)[1];
+  }
 
   const [isLoading, setIsLoading] = useState(false);
+
   // const [activeProducts, setActiveProducts] = useState(products);
   // const [activeCategory, setActiveCategory] = useState(category);
   // const [activeSubcategories, setActiveSubcategories] = useState(subcategories);
@@ -53,7 +60,7 @@ const Listing = ({ data: { category, subcategories, products, numPages } }) => {
                 activeProducts={products}
                 activeCategory={category}
               />
-              <ProductsPagination numPages={numPages} activePageId={pageId} />
+              <ProductsPagination numPages={numPages} activePageId={page} />
             </div>
           </div>
         </div>
@@ -78,21 +85,18 @@ async function getNumOfPages(slugCategoryPath) {
 export async function getServerSideProps(context) {
   const { params } = context;
   const slugCategoryPath = params.categoryPath;
-  const filtersStr = params.filters;
+  const filtersStr = params.filtersStr;
+  console.log("🚀 ~ filtersStr:", filtersStr);
 
-  // const filters = params.filters.split(";").map((filterString) => {
-  //   const [filterName, filterValue] = filterString.split("=");
-  //   return { filterName, filterValue };
-  // });
-
+  //todo filter validation
+  console.log(`/products/${slugCategoryPath}/${filtersStr}`);
   const res = await axios.get(`/products/${slugCategoryPath}/${filtersStr}`);
   const data = res.data;
 
   const filterStrWithNoPage = filtersStr.replace(/page=\d+;/, "");
-
   const numPages = await getNumOfPages(slugCategoryPath, filterStrWithNoPage);
-  //todo make it a minutes for production
 
+  //todo make it a minutes for production
   const HALF_AN_HOUR_IN_SECONDS = 1800;
   return {
     props: { data: { ...data, numPages }, revalidate: HALF_AN_HOUR_IN_SECONDS },

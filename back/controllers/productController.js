@@ -60,6 +60,7 @@ export const getProductsByCategoryAndFilters = async (req, res) => {
         filters.set(filterName, [...filterValue.split(",")]);
       });
     }
+    console.log("🚀 ~ filters:", filters);
 
     const categoryPath = untransliterate(unslugify(slugCategoryPath));
     const activeCategory = await category.findOne({
@@ -74,7 +75,7 @@ export const getProductsByCategoryAndFilters = async (req, res) => {
 
     const subcategories = await category
       .find({
-        path: new RegExp(categoryPathOriginal, "i"),
+        path: new RegExp(categoryPath, "i"),
       })
       .select("name order path imagePath")
       .exec();
@@ -88,23 +89,27 @@ export const getProductsByCategoryAndFilters = async (req, res) => {
       .sort({ createdAt: -1 })
       .populate("category");
 
-    const PRODUCTS_ON_PAGE = 50;
-    const pageId = filters.get("page");
-    console.log("🚀 ~ pageId:", pageId);
-    if (pageId) {
-      query = query
-        .skip(PRODUCTS_ON_PAGE * (pageId - 1))
-        .limit(PRODUCTS_ON_PAGE);
-    }
-
-    for (let [filterName, filterValues] of filters) {
-      if (filterName === "price") {
-        query = query.where("price").gte(filterValues[0]).lte(filterValues[1]);
-      } else if (filterName === "brand") {
-        query = query.where("brand").in(filterValues);
-      } else if (filterName === "characteristics") {
-        query = query.where("characteristics").in(filterValues);
+    if (filters) {
+      for (let [filterName, filterValues] of filters) {
+        if (filterName === "page") {
+          //todo support for multiple pages
+          const pageId = filterValues[0];
+          const PRODUCTS_ON_PAGE = 50;
+          query = query
+            .skip(PRODUCTS_ON_PAGE * (pageId - 1))
+            .limit(PRODUCTS_ON_PAGE);
+        } else if (filterName === "price") {
+          query = query
+            .where("price")
+            .gte(filterValues[0])
+            .lte(filterValues[1]);
+        }
       }
+      // else if (filterName === "brand") {
+      //   query = query.where("brand").in(filterValues);
+      // } else if (filterName === "characteristics") {
+      //   query = query.where("characteristics").in(filterValues);
+      // }
     }
 
     const products = await query.exec();
