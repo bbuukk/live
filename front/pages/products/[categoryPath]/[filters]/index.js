@@ -65,10 +65,7 @@ const Listing = ({ data: { category, subcategories, products, numPages } }) => {
 export default Listing;
 
 async function getNumOfPages(slugCategoryPath) {
-  const ALL_PAGES = 0;
-  const res = await axios.get(
-    `/products/${slugCategoryPath}/page/${ALL_PAGES}`
-  );
+  const res = await axios.get(`/products/${slugCategoryPath}`);
   const { products } = res.data;
 
   let numPages = Math.ceil(products.length / 50);
@@ -78,43 +75,24 @@ async function getNumOfPages(slugCategoryPath) {
   return numPages;
 }
 
-export async function getStaticPaths() {
-  const fetchedCategories = await axios.get("/categories");
-  const categories = fetchedCategories.data;
-
-  const paths = [];
-
-  for (const category of categories) {
-    const slugCategoryPath = slugify(transliterate(category.path));
-
-    const numPages = await getNumOfPages(slugCategoryPath);
-
-    // Generate paths for each page
-    for (let i = 1; i <= numPages; i++) {
-      paths.push({
-        params: {
-          categoryPath: `${slugCategoryPath}`,
-          pageId: `${i}`,
-          // numPages: numPages,
-        },
-      });
-    }
-  }
-
-  return { paths, fallback: false };
-}
-
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
   const { params } = context;
   const slugCategoryPath = params.categoryPath;
-  const pageId = params.pageId;
+  const filtersStr = params.filters;
 
-  const numPages = await getNumOfPages(slugCategoryPath);
+  // const filters = params.filters.split(";").map((filterString) => {
+  //   const [filterName, filterValue] = filterString.split("=");
+  //   return { filterName, filterValue };
+  // });
 
-  const res = await axios.get(`/products/${slugCategoryPath}/page/${pageId}`);
+  const res = await axios.get(`/products/${slugCategoryPath}/${filtersStr}`);
   const data = res.data;
 
-  //todo make it a minutes
+  const filterStrWithNoPage = filtersStr.replace(/page=\d+;/, "");
+
+  const numPages = await getNumOfPages(slugCategoryPath, filterStrWithNoPage);
+  //todo make it a minutes for production
+
   const HALF_AN_HOUR_IN_SECONDS = 1800;
   return {
     props: { data: { ...data, numPages }, revalidate: HALF_AN_HOUR_IN_SECONDS },

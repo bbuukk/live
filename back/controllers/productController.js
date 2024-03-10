@@ -47,58 +47,84 @@ export const getProducts = async (req, res) => {
   res.status(200).json(products);
 };
 
-export const getProductsByCategoryPath = async (req, res) => {
-  let { categoryPath, pageId } = req.params;
+export const getProductsByCategoryAndFilters = async (req, res) => {
+  let { slugCategoryPath, filtersStr } = req.params;
 
-  const PRODUCTS_ON_PAGE = 50;
+  //? todo research if we store label on category and slug on category we would not need to unslugify
+  try {
+    let filters = null;
+    if (filtersStr) {
+      filters = new Map();
+      filtersStr.split(";").forEach((fs) => {
+        const [filterName, filterValue] = fs.split("=");
+        filters.set(filterName, [...filterValue.split(",")]);
+      });
+    }
 
-  const categoryPathOriginal = untransliterate(unslugify(categoryPath));
+    const categoryPath = untransliterate(unslugify(slugCategoryPath));
+    const activeCategory = await category.findOne({
+      path: new RegExp(`^${categoryPath.toLowerCase()}$`, "i"),
+    });
 
-  const activeCategory = await category.findOne({
-    path: new RegExp(`^${categoryPathOriginal.toLowerCase()}$`, "i"),
-  });
+    if (activeCategory == null) {
+      return res
+        .status(404)
+        .json({ message: "Category with this path is not found" });
+    }
 
-  if (activeCategory == null) {
-    return res
-      .status(404)
-      .json({ message: "Category with this path is not found" });
-  }
+    const subcategories = await category
+      .find({
+        path: new RegExp(categoryPathOriginal, "i"),
+      })
+      .select("name order path imagePath")
+      .exec();
 
-  const categories = await category
-    .find({
-      path: new RegExp(categoryPathOriginal, "i"),
+    const activeCategoryIds = subcategories.map((category) => category._id);
+
+    let query = Product.find({
+      category: { $in: activeCategoryIds },
     })
-    .select("name order path imagePath")
-    .exec();
+      .select("name brand price images characteristics")
+      .sort({ createdAt: -1 })
+      .populate("category");
 
-  const activeCategoryIds = categories.map((category) => category._id);
+    const PRODUCTS_ON_PAGE = 50;
+    const pageId = filters.get("page");
+    console.log("🚀 ~ pageId:", pageId);
+    if (pageId) {
+      query = query
+        .skip(PRODUCTS_ON_PAGE * (pageId - 1))
+        .limit(PRODUCTS_ON_PAGE);
+    }
 
-  let query = Product.find({
-    category: { $in: activeCategoryIds },
-  })
-    .select("name brand price images characteristics") // specify the fields you need
-    .sort({ createdAt: -1 })
-    .populate("category");
+    for (let [filterName, filterValues] of filters) {
+      if (filterName === "price") {
+        query = query.where("price").gte(filterValues[0]).lte(filterValues[1]);
+      } else if (filterName === "brand") {
+        query = query.where("brand").in(filterValues);
+      } else if (filterName === "characteristics") {
+        query = query.where("characteristics").in(filterValues);
+      }
+    }
 
-  if (pageId != 0) {
-    query = query.skip(PRODUCTS_ON_PAGE * (pageId - 1)).limit(PRODUCTS_ON_PAGE);
+    const products = await query.exec();
+
+    const activeCategoryLevel = activeCategory.path.split(",").length;
+
+    res.status(200).json({
+      category: activeCategory,
+      subcategories: subcategories.filter(
+        (c) =>
+          // all subcategories except activeCategory
+          c["name"] !== activeCategory["name"] &&
+          //only one level deeper subcategories
+          c.path.split(",").length == activeCategoryLevel + 1
+      ),
+      products,
+    });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
   }
-
-  const products = await query.exec();
-
-  const activeCategoryLevel = activeCategory.path.split(",").length;
-
-  res.status(200).json({
-    category: activeCategory,
-    subcategories: categories.filter(
-      (c) =>
-        // all subcategories except activeCategory
-        c["name"] !== activeCategory["name"] &&
-        //only one level deeper subcategories
-        c.path.split(",").length == activeCategoryLevel + 1
-    ),
-    products,
-  });
 };
 
 export const createProduct = async (req, res) => {
