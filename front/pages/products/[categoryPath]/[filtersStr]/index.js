@@ -71,30 +71,14 @@ const Listing = ({ data: { category, subcategories, products, numPages } }) => {
 
 export default Listing;
 
-async function getNumOfPages(slugCategoryPath) {
-  const res = await axios.get(`/products/${slugCategoryPath}`);
-  const { products } = res.data;
-
-  let numPages = Math.ceil(products.length / 50);
-  if (numPages == 0) {
-    numPages += 1;
-  }
-  return numPages;
-}
-
 export async function getServerSideProps(context) {
-  const { params } = context;
-  const slugCategoryPath = params.categoryPath;
-  const filtersStr = params.filtersStr;
-  console.log("🚀 ~ filtersStr:", filtersStr);
+  const { categoryPath, filtersStr } = context.params;
 
   //todo filter validation
-  console.log(`/products/${slugCategoryPath}/${filtersStr}`);
-  const res = await axios.get(`/products/${slugCategoryPath}/${filtersStr}`);
+  const res = await axios.get(`/products/${categoryPath}/${filtersStr}`);
   const data = res.data;
 
-  const filterStrWithNoPage = filtersStr.replace(/page=\d+;/, "");
-  const numPages = await getNumOfPages(slugCategoryPath, filterStrWithNoPage);
+  const numPages = Math.max(1, Math.ceil(data.products.length / 50));
 
   //todo make it a minutes for production
   const HALF_AN_HOUR_IN_SECONDS = 1800;

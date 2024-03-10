@@ -92,7 +92,7 @@ export const getProductsByCategoryAndFilters = async (req, res) => {
     if (filters) {
       for (let [filterName, filterValues] of filters) {
         if (filterName === "page") {
-          //todo support for multiple pages
+          // Support for multiple pages
           const pageId = filterValues[0];
           const PRODUCTS_ON_PAGE = 50;
           query = query
@@ -104,12 +104,12 @@ export const getProductsByCategoryAndFilters = async (req, res) => {
             .gte(filterValues[0])
             .lte(filterValues[1]);
         }
+        // else if (filterName === "brand") {
+        //   query = query.where("brand").in(filterValues);
+        // } else if (filterName === "characteristics") {
+        //   query = query.where("characteristics").in(filterValues);
+        // }
       }
-      // else if (filterName === "brand") {
-      //   query = query.where("brand").in(filterValues);
-      // } else if (filterName === "characteristics") {
-      //   query = query.where("characteristics").in(filterValues);
-      // }
     }
 
     const products = await query.exec();
