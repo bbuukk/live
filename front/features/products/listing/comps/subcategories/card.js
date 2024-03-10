@@ -20,7 +20,7 @@ const SubcategoryCard = ({ category }) => {
 
   const categoryPathSlug = `/products/${slugify(
     transliterate(category.path)
-  )}/page/1`;
+  )}/page=1`;
 
   return (
     <Link

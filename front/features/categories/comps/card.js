@@ -9,7 +9,7 @@ import { transliterate } from "@bbuukk/slugtrans/transliterate";
 
 const Card = ({ category, subcategories }) => {
   const categoryPathSlug = (path) => {
-    return `/products/${slugify(transliterate(path))}/page/1`;
+    return `/products/${slugify(transliterate(path))}/page=1`;
   };
 
   return (

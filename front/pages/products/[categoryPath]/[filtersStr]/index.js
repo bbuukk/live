@@ -36,7 +36,7 @@ const Listing = ({ data: { category, subcategories, products, numPages } }) => {
   return (
     <>
       <Head>
-        <title> Живий світ | {category.path}</title>
+        <title>{`Живий світ | ${category.path}`}</title>
         <meta name="description" content={`Живий Світ | ${category.path}`} />
       </Head>
       {!isLoading && (
