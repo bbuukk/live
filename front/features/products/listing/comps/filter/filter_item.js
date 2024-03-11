@@ -8,14 +8,12 @@ import { addFilter } from "store/filtersSlice";
 import { useEffect, useState } from "react";
 import { transliterate } from "@bbuukk/slugtrans/transliterate";
 import { slugify } from "@bbuukk/slugtrans/slugify";
-import { setFilter } from "store/filtersSlice";
+import { setFilter, deleteFilter } from "store/filtersSlice";
 
 const FilterChecks = ({ filterLabel, options, idx }) => {
   const { filters } = useSelector((state) => state.filters);
   const slugFilterLabel = slugify(transliterate(filterLabel));
-  const [activeOptions, setActiveOptions] = useState(
-    filters[slugFilterLabel] || []
-  );
+  const [activeOptions, setActiveOptions] = useState(filters[slugFilterLabel]);
 
   console.log("🚀 ~ filters:", filters);
 
@@ -30,10 +28,14 @@ const FilterChecks = ({ filterLabel, options, idx }) => {
   }
 
   useEffect(() => {
-    if (activeOptions.length > 0) {
-      dispatch(
-        setFilter({ filterName: slugFilterLabel, filterValue: activeOptions })
-      );
+    if (activeOptions != null) {
+      if (activeOptions.length > 0) {
+        dispatch(
+          setFilter({ filterName: slugFilterLabel, filterValue: activeOptions })
+        );
+      } else {
+        dispatch(deleteFilter({ filterName: slugFilterLabel }));
+      }
     }
   }, [activeOptions]);
 
@@ -41,7 +43,11 @@ const FilterChecks = ({ filterLabel, options, idx }) => {
     const slugOption = slugify(transliterate(option));
     console.log("🚀 ~ isChecked:", isChecked);
     if (isChecked) {
-      setActiveOptions([...activeOptions, slugOption]);
+      if (activeOptions != null) {
+        setActiveOptions([...activeOptions, slugOption]);
+      } else {
+        setActiveOptions([slugOption]);
+      }
     } else {
       setActiveOptions(
         activeOptions.filter((activeOption) => activeOption !== slugOption)

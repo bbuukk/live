@@ -103,21 +103,29 @@ export const getProductsByCategoryAndFilters = async (req, res) => {
             .gte(filterValues[0])
             .lte(filterValues[1]);
         } else {
-          const unslugFilterName = untransliterate(unslugify(filterName));
+          let unslugFilterName = untransliterate(unslugify(filterName));
+          unslugFilterName =
+            unslugFilterName.charAt(0).toUpperCase() +
+            unslugFilterName.slice(1);
           const unslugFilterValues = filterValues.map((value) => {
             return untransliterate(unslugify(value));
           });
-          // console.log("🚀 ~ unslugFilterName:", unslugFilterName);
-          // console.log("🚀 ~ unslugFilterValues:", unslugFilterValues);
-          query = query
-            .where("characteristics")
-            .elemMatch({ [unslugFilterName]: { $in: unslugFilterValues } });
+          console.log("🚀 ~ unslugFilterName:", unslugFilterName);
+          console.log("🚀 ~ unslugFilterValues:", unslugFilterValues);
+
+          query = query.where(`characteristics.${unslugFilterName}`, {
+            $in: unslugFilterValues.map(
+              (value) => new RegExp(`^${value}$`, "i")
+            ),
+          });
         }
-        //  else if (filterName === "characteristics") {
-        //   query = query.where("characteristics").in(filterValues);
-        // }
       }
     }
+
+    // query = query.where(`characteristics.Країна реєстрації бренду`, {
+    //   $in: ["Україна"],
+    // });
+
     const products = await query.exec();
 
     const totalDocuments = await Product.find({

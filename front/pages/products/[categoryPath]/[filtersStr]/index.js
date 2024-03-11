@@ -31,17 +31,57 @@ const Listing = ({
   const { getFilterMapFromStr } = useGetFilterMapFromStr();
   const { genFiltersStr } = useGenFilterStr();
 
-  useEffect(() => {
-    const filtersMap = getFilterMapFromStr(filtersStr);
-    dispatch(setFilters(filtersMap));
-  }, [filtersStr, dispatch]);
+  // const isFirstRender = useRef(true);
 
   useEffect(() => {
-    const newFiltersStr = genFiltersStr(filters);
+    // if (isFirstRender.current) {
+    //   console.log("This is the first render");
+    //   isFirstRender.current = false;
+    // } else {
+    //   console.log("This is a subsequent render");
+    // }
+
+    console.log("🚀 ~ filtersStr:", filtersStr);
+    const filtersMap = getFilterMapFromStr(filtersStr);
+    dispatch(setFilters(filtersMap));
+
+    return () => {
+      dispatch(setFilters({}));
+    };
+  }, []);
+
+  //todo fetch filtered products on client side
+  useEffect(() => {
+    let newFiltersStr = genFiltersStr(filters);
+    console.log("🚀 ~ filters:", filters);
+    // console.log("🚀 ~ newFiltersStr:", newFiltersStr);
+    // console.log("🚀 ~ filtersStr:", filtersStr);
+
     if (Object.keys(filters).length != 0 && newFiltersStr != filtersStr) {
-      router.push(`/products/${categoryPath}/${newFiltersStr}`);
+      const filtersStrPageDefault = newFiltersStr.replace(/page=\d+/, "page=1");
+      console.log("🚀 ~ filtersStrPageDefault:", filtersStrPageDefault);
+
+      console.log(
+        isValidURL(
+          `http://localhost:3000/products/${categoryPath}/${filtersStrPageDefault}`
+        )
+      );
+      router
+        .push(`/products/${categoryPath}/${filtersStrPageDefault}`)
+        .catch((error) =>
+          console.error("An error occurred during route transition: ", error)
+        );
     }
   }, [filters]);
+
+  function isValidURL(string) {
+    try {
+      new URL(string);
+      return true;
+    } catch (_) {
+      return false;
+    }
+  }
 
   //todo collect filters only on first render of page
   // const [isLoading, setIsLoading] = useState(false);
@@ -90,7 +130,7 @@ export default Listing;
 export async function getServerSideProps(context) {
   const { categoryPath, filtersStr } = context.params;
 
-  //todo filter validation
+  //todo filterStr validation
   const res = await axios.get(`/products/${categoryPath}/${filtersStr}`);
   const data = res.data;
 

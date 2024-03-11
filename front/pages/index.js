@@ -10,7 +10,7 @@ const Home = ({ flatCategoryMap }) => {
   return (
     <>
       <Head>
-        <title> Живий світ | Про нас </title>
+        <title> Живий світ | Головна сторінка </title>
         <meta
           name="description"
           content="Живий Світ - Магазин найкращих товарів для вашого дому, домашніх улюбленців та рослин"
