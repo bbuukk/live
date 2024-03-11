@@ -4,9 +4,41 @@
 </div>
 <h1 align="center">  Live World</h1>
 
-<h2 align="center">It is is e-commerce web application, a one-stop online store for all pet care and household needs</h2>
+<h2 align="center">E-commerce web application, a one-stop online store for all pet care and household needs</h2>
 
-<h2 align="center">Tech Stack</h2>
+
+<h2 >Overview</h2>
+Functionality of the project by pages: 
+
+- /pay
+  - Options for delivery and paying
+  - Reviewing following order
+- /products
+  - List of products with ability to filter them by price, brand, date etc.
+  - User can add a product to wish list or shopping cart
+- /products/[productId]/about
+  - Write a reveiw on the product
+  - Read detailed description and characteristics of the product
+- /profile
+  - Personal cabinet with profile info, product wish list and past orders list
+- /
+  - Product categories gallery
+  - Discount offers carousel
+  - Shop reviews carousel 
+
+<br>
+
+- Other:
+  - Search on products by user input
+
+
+
+    What your application does,
+    Why you used the technologies you used,
+    Some of the challenges you faced and features you hope to implement in the future.
+
+
+<h2>Tech Stack</h2>
 
 <table align="center">
   <tr>
@@ -36,16 +68,48 @@
   </tr>
 </table>
 
-## 🔷 Overview
+<h2>Front-end design</h2>
+
+Design made in [Figma](figma.com/)<br>
+Here is [link](https://www.figma.com/file/Qb3fKAMJmdfCwmsXd3jcSD/Live-world?type=design&node-id=0%3A1&mode=design&t=qYGwGJ9NwCYA879K-1) to design file of the project 
+
+<table align="center">
+  <tr>
+    <th>Backend</th>
+    <th>Frontend</th>
+    <th>Styling</th>
+  </tr>
+  <tr>
+    <td><a href='https://www.mongodb.com/'><img src='https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white' align='middle'></a></td>
+    <td><a href='https://reactjs.org/'><img src='https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB' align='middle'></a></td>
+    <td><a href='https://getbootstrap.com/'><img src='https://img.shields.io/badge/bootstrap-%238511FA.svg?style=for-the-badge&logo=bootstrap&logoColor=white' align='middle'></a></td>
+  </tr>
+  <tr>
+    <td><a href='https://expressjs.com/'><img src='https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB' align='middle'></a></td>
+    <td><a href='https://nextjs.org/'><img src='https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white' align='middle'></a></td>
+    <td><a href='https://mui.com/'><img src='https://img.shields.io/badge/MUI-%230081CB.svg?style=for-the-badge&logo=mui&logoColor=white' align='middle'></a></td>
+  </tr>
+  <tr>
+    <td><a href='https://nodejs.org/'><img src='https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white' align='middle'></a></td>
+    <td><a href='https://redux.js.org/'><img src='https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white' align='middle'></a></td>
+    <td><a href='https://sass-lang.com/'><img src='https://img.shields.io/badge/SASS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white' align='middle'></a></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><a href='https://www.javascript.com/'><img src='https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E' align='middle'></a></td>
+    <td></td>
+  </tr>
+</table>
+
+## 🔷 How to start application locally?
+🔹 open 2 terminals in following paths: live/front and live/back<br>
+🔹 write `npm i` in every terminal to install dependencies<br>
+🔹 write `npm run dev` in every terminal to start front and back applications<br>
+🔹 write localhost:3000 in browser to display web application locally (or on other port, if 3000 was busy)<br>
 
 
-🔸 Discover a Wide Range of Products: Browse through our extensive catalog of pet care and household items.<br>
-🔸 Efficient Search and Filter Options: Find exactly what you need using our search function or explore products by category. View detailed descriptions, prices, and more.<br>
-🔸 Hassle-Free Shopping Experience: Place orders effortlessly, choose your preferred delivery location, and select from various payment options.<br>
+## 🔷 Helpful links
 
-🔹 This is MERN stack project enhanced with Next.js.<br>
-🔹 For a seamless and visually appealing user experience, I’ve leveraged the capabilities of Bootstrap, Material Design, Sass, and Styled Components libraries.<br>
-🔹 What’s more, every web page you see is a product of my own design, meticulously crafted using Figma.<br>
 
 
 <!--
@@ -75,64 +139,3 @@
 
     Cute looking site, but with functionality of a real shop
 -->
-
-## 🔷 Functionality
-Functionality of the project by pages: 
-
-- /pay
-  - Options for delivery and paying
-  - Reviewing following order
-- /products
-  - List of products with ability to filter them by price, brand, date etc.
-  - User can add a product to wish list or shopping cart
-- /products/[productId]/about
-  - Write a reveiw on the product
-  - Read detailed description and characteristics of the product
-- /profile
-  - Personal cabinet with profile info, product wish list and past orders list
-- /
-  - Product categories gallery
-  - Discount offers carousel
-  - Shop reviews carousel 
-
-<br>
-
-- Other:
-  - Search on products by user input
-
-## 🔷 Tech Stack
-
-🔹 MERN:
-     🔸 [MongoDb](https://www.mongodb.com/)
-     🔸 [Express.js](https://expressjs.com/)
-     🔸 [React.js](https://react.dev/)
-     🔸 [Node.js](https://nodejs.org/en)
-
-🔹 [Next.js](https://nextjs.org/)
-
-
-🔹 Styling: 
-🔸 [Bootstrap](https://getbootstrap.com/)
-🔸 [Material UI](https://mui.com/)
-🔸 [SASS/SCSS](https://sass-lang.com/)
-🔸 [Styled Components](https://styled-components.com/)
-
-<!--
-why mern
-why bootstrap
-whhy mui
-why next js-->
-
-## 🔷 Design
-
-Design made in [Figma](figma.com/)<br>
-Here is [link](https://www.figma.com/file/Qb3fKAMJmdfCwmsXd3jcSD/Live-world?type=design&node-id=0%3A1&mode=design&t=qYGwGJ9NwCYA879K-1) to design file of the project 
-
-## 🔷 How to start application locally?
-🔹 open 2 terminals in following paths: live/front and live/back<br>
-🔹 write `npm i` in every terminal to install dependencies<br>
-🔹 write `npm run dev` in every terminal to start front and back applications<br>
-🔹 write localhost:3000 in browser to display web application locally (or on other port, if 3000 was busy)<br>
-
-
-## 🔷 Helpful links
