@@ -13,6 +13,11 @@ import Footer from "comps/layout/footer/footer";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
+import { enableMapSet } from "immer";
+
+// Call this before using Redux Toolkit or Immer
+enableMapSet();
+
 import { Provider } from "react-redux";
 import { store } from "store/store";
 import { useDispatch } from "react-redux";

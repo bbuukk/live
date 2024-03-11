@@ -1,19 +1,22 @@
 import Slider from "@mui/material/Slider";
 import React, { useState } from "react";
 import s from "./price-slider.module.scss";
-// import { useActiveFiltersContext } from "../../hooks/useActiveFiltersContext";
+import { useDispatch } from "react-redux";
+import { setFilter } from "store/filtersSlice";
 
 const PriceSlider = ({ minPrice, maxPrice }) => {
-  const [value, setValue] = useState([minPrice, maxPrice]);
-  // const { dispatch } = useActiveFiltersContext();
+  const [minMaxPrice, setMinMaxPrice] = useState([minPrice, maxPrice]);
 
   const minDistance = 50; // Define your minimum distance here
 
+  const dispatch = useDispatch();
   function handleConfirm(event, newValue) {
-    // dispatch({
-    //   type: "SET_MIN_MAX_PRICE",
-    //   payload: value,
-    // });
+    dispatch(
+      setFilter({
+        filterName: "price",
+        filterValue: [minMaxPrice[0], minMaxPrice[1]],
+      })
+    );
   }
 
   const handleChange = (event, newValue, activeThumb) => {
@@ -24,34 +27,34 @@ const PriceSlider = ({ minPrice, maxPrice }) => {
       if (activeThumb === 0) {
         const clamped = Math.min(newValue[0], maxPrice - minDistance);
 
-        setValue([clamped, clamped + minDistance]);
+        setMinMaxPrice([clamped, clamped + minDistance]);
       } else {
         const clamped = Math.max(newValue[1], minDistance);
-        setValue([clamped - minDistance, clamped]);
+        setMinMaxPrice([clamped - minDistance, clamped]);
       }
     } else {
-      setValue(newValue);
+      setMinMaxPrice(newValue);
     }
   };
 
   const handleInputChange = (index) => (event) => {
-    const newValues = [...value];
+    const newValues = [...minMaxPrice];
     newValues[index] =
       event.target.value === "" ? 0 : Number(event.target.value);
-    setValue(newValues);
+    setMinMaxPrice(newValues);
   };
 
   return (
     <div className={`${s.price_slider}`}>
       <div className={`${s.header}`}>
         <input
-          value={value[0]}
+          value={minMaxPrice[0]}
           onChange={handleInputChange(0)}
           className={`form-control ${s.input} ${s.left}`}
         />
         <span>—</span>
         <input
-          value={value[1]}
+          value={minMaxPrice[1]}
           onChange={handleInputChange(1)}
           className={`form-control ${s.input} ${s.right}`}
         />
@@ -65,7 +68,7 @@ const PriceSlider = ({ minPrice, maxPrice }) => {
           min={minPrice}
           max={maxPrice}
           step={10}
-          value={value}
+          value={minMaxPrice}
           onChange={handleChange}
           className={s.slider}
           disableSwap

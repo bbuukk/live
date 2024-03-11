@@ -15,6 +15,7 @@ export const getProductsInfo = createAsyncThunk(
   }
 );
 
+//todo delete unneccesary state variables
 const productsSlice = createSlice({
   name: "products",
   initialState: {

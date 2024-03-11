@@ -9,24 +9,6 @@ const CheckBox = ({ id, prop, label, checked }) => {
   function handleChange() {
     const newCheckedState = !isChecked;
     setIsChecked(newCheckedState);
-
-    if (newCheckedState) {
-      // dispatch({
-      //   type: "ADD_FILTER",
-      //   payload: {
-      //     option: label,
-      //     prop: prop,
-      //   },
-      // });
-    } else {
-      // dispatch({
-      //   type: "REMOVE_FILTER",
-      //   payload: {
-      //     option: label,
-      //     prop: prop,
-      //   },
-      // });
-    }
   }
 
   return (

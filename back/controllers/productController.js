@@ -60,7 +60,6 @@ export const getProductsByCategoryAndFilters = async (req, res) => {
         filters.set(filterName, [...filterValue.split(",")]);
       });
     }
-    // console.log("🚀 ~ filters:", filters);
 
     const categoryPath = untransliterate(unslugify(slugCategoryPath));
     const activeCategory = await category.findOne({
@@ -103,10 +102,18 @@ export const getProductsByCategoryAndFilters = async (req, res) => {
             .where("price")
             .gte(filterValues[0])
             .lte(filterValues[1]);
+        } else {
+          const unslugFilterName = untransliterate(unslugify(filterName));
+          const unslugFilterValues = filterValues.map((value) => {
+            return untransliterate(unslugify(value));
+          });
+          // console.log("🚀 ~ unslugFilterName:", unslugFilterName);
+          // console.log("🚀 ~ unslugFilterValues:", unslugFilterValues);
+          query = query
+            .where("characteristics")
+            .elemMatch({ [unslugFilterName]: { $in: unslugFilterValues } });
         }
-        // else if (filterName === "brand") {
-        //   query = query.where("brand").in(filterValues);
-        // } else if (filterName === "characteristics") {
+        //  else if (filterName === "characteristics") {
         //   query = query.where("characteristics").in(filterValues);
         // }
       }
