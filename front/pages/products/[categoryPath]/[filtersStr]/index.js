@@ -24,23 +24,23 @@ const Listing = ({
   data: { category, subcategories, products, numPages, page },
 }) => {
   const router = useRouter();
-  const { categoryPath, filtersStr } = router.query;
-
   const dispatch = useDispatch();
-  const { getFilterMapFromStr } = useGetFilterMapFromStr();
-  const filtersMap = getFilterMapFromStr(filtersStr);
-  dispatch(setFilters(filtersMap));
-
+  const { categoryPath, filtersStr } = router.query;
   const { filters } = useSelector((state) => state.filters);
 
+  const { getFilterMapFromStr } = useGetFilterMapFromStr();
   const { genFiltersStr } = useGenFilterStr();
+
   useEffect(() => {
-    console.log(filters);
-    const filtersString = genFiltersStr(filters);
-    console.log("🚀 ~ filterStr:", filtersString);
-    // router.push(`/products/${categoryPath}/${filterStr}`, undefined, {
-    //   shallow: true,
-    // });
+    const filtersMap = getFilterMapFromStr(filtersStr);
+    dispatch(setFilters(filtersMap));
+  }, [filtersStr, dispatch]);
+
+  useEffect(() => {
+    const newFiltersStr = genFiltersStr(filters);
+    if (Object.keys(filters).length != 0 && newFiltersStr != filtersStr) {
+      router.push(`/products/${categoryPath}/${newFiltersStr}`);
+    }
   }, [filters]);
 
   //todo collect filters only on first render of page

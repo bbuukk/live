@@ -2,8 +2,8 @@ export const useGenFilterStr = () => {
   const genFiltersStr = (filters) => {
     console.log("🚀 ~ filters:", filters);
     let filtersStr = "";
-    for (const [key, value] of filters.entries()) {
-      filtersStr += `${key}=${value.join(",")};`;
+    for (const key in filters) {
+      filtersStr += `${key}=${filters[key].join(",")};`;
     }
 
     //delete last ';'

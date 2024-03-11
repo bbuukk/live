@@ -1,11 +1,10 @@
 export const useGetFilterMapFromStr = () => {
   const getFilterMapFromStr = (filtersStr) => {
-    let filters = null;
+    let filters = {};
     if (filtersStr) {
-      filters = new Map();
       filtersStr.split(";").forEach((fs) => {
         const [filterName, filterValue] = fs.split("=");
-        filters.set(filterName, [...filterValue.split(",")]);
+        filters[filterName] = filterValue.split(",");
       });
     }
     return filters;

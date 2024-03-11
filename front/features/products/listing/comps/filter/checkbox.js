@@ -1,15 +1,7 @@
-import { useDeferredValue, useEffect, useRef, useState } from "react";
-// import { useActiveFiltersContext } from "../../hooks/useActiveFiltersContext";
+import { useState } from "react";
 
-const CheckBox = ({ id, prop, label, checked }) => {
+const CheckBox = ({ id, label, checked, handleChange }) => {
   const [isChecked, setIsChecked] = useState(checked);
-
-  // const { activeFilters, dispatch } = useActiveFiltersContext();
-
-  function handleChange() {
-    const newCheckedState = !isChecked;
-    setIsChecked(newCheckedState);
-  }
 
   return (
     <div className="form-check">
@@ -17,11 +9,14 @@ const CheckBox = ({ id, prop, label, checked }) => {
         className="form-check-input"
         type="checkbox"
         checked={isChecked}
-        onChange={handleChange}
+        onChange={() => {
+          handleChange(!isChecked, label);
+          setIsChecked(!isChecked);
+        }}
         id={id}
         role="button"
       />
-      <label className="form-check-label" htmlFor="flexCheckDefault">
+      <label className="form-check-label" htmlFor={id}>
         {label}
       </label>
     </div>

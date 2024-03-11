@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const filtersSlice = createSlice({
   name: "filters",
   initialState: {
-    filters: new Map(),
+    filters: {},
     status: "idle",
     error: null,
   },
@@ -13,39 +13,36 @@ const filtersSlice = createSlice({
     },
     //for setting filterName to an array
     setFilter: (state, action) => {
-      state.filters.set(action.payload.filterName, action.payload.filterValue);
+      state.filters[action.payload.filterName] = action.payload.filterValue;
     },
     //for adding one single value to an filterValue
     addFilter: (state, action) => {
-      if (state.filters.has(action.payload.filterName)) {
-        map.get(action.payload.filterName).push(action.payload.filterValue);
+      if (state.filters[action.payload.filterName]) {
+        state.filters[action.payload.filterName].push(
+          action.payload.filterValue
+        );
       } else {
-        state.filters.set(action.payload.filterName, [
-          action.payload.filterValue,
-        ]);
+        state.filters[action.payload.filterName] = [action.payload.filterValue];
       }
     },
     //todo refactor to use update or remove?
     removeFilter: (state, action) => {
-      if (state.filters.has(action.payload.filterName)) {
-        const currentFilterValue = state.filters.get(action.payload.filterName);
+      if (state.filters[action.payload.filterName]) {
+        const currentFilterValue = state.filters[action.payload.filterName];
         const newFilterValue = currentFilterValue.filter(
           (v) => v !== action.payload.filterValue
         );
 
         if (newFilterValue.length > 0) {
-          state.filters.set(action.payload.filterName, newFilterValue);
+          state.filters[action.payload.filterName] = newFilterValue;
         } else {
-          state.filters.delete(action.payload.filterName);
+          delete state.filters[action.payload.filterName];
         }
       }
     },
     updateFilter: (state, action) => {
-      if (state.filters.has(action.payload.filterName)) {
-        state.filters.set(
-          action.payload.filterName,
-          action.payload.filterValues
-        );
+      if (state.filters[action.payload.filterName]) {
+        state.filters[action.payload.filterName] = action.payload.filterValues;
       }
     },
   },
