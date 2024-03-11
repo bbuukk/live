@@ -20,7 +20,6 @@ const PriceSlider = ({ minPrice, maxPrice }) => {
     if (!Array.isArray(newValue)) {
       return;
     }
-
     if (newValue[1] - newValue[0] < minDistance) {
       if (activeThumb === 0) {
         const clamped = Math.min(newValue[0], maxPrice - minDistance);

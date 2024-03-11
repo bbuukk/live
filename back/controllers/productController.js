@@ -111,8 +111,12 @@ export const getProductsByCategoryAndFilters = async (req, res) => {
         // }
       }
     }
-
     const products = await query.exec();
+
+    const totalDocuments = await Product.find({
+      category: { $in: activeCategoryIds },
+    }).countDocuments();
+    const numPages = Math.max(1, Math.ceil(totalDocuments / 50));
 
     const activeCategoryLevel = activeCategory.path.split(",").length;
 
@@ -126,6 +130,7 @@ export const getProductsByCategoryAndFilters = async (req, res) => {
           c.path.split(",").length == activeCategoryLevel + 1
       ),
       products,
+      numPages,
     });
   } catch (err) {
     res.status(500).json({ error: err.message });

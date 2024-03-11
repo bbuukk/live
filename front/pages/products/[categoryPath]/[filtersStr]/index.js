@@ -78,11 +78,9 @@ export async function getServerSideProps(context) {
   const res = await axios.get(`/products/${categoryPath}/${filtersStr}`);
   const data = res.data;
 
-  const numPages = Math.max(1, Math.ceil(data.products.length / 50));
-
   //todo make it a minutes for production
   const HALF_AN_HOUR_IN_SECONDS = 1800;
   return {
-    props: { data: { ...data, numPages }, revalidate: HALF_AN_HOUR_IN_SECONDS },
+    props: { data: { ...data }, revalidate: HALF_AN_HOUR_IN_SECONDS },
   };
 }
