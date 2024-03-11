@@ -15,6 +15,18 @@ This is e-commerce platform, a one-stop shop for all your pet care and household
 🔹 For a seamless and visually appealing user experience, I’ve leveraged the capabilities of Bootstrap, Material Design, Sass, and Styled Components libraries.<br>
 🔹 What’s more, every web page you see is a product of my own design, meticulously crafted using Figma.<br>
 
+
+<a href='https://nextjs.org/'><img src='https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white' align='middle'></a>
+<a href='https://reactjs.org/'><img src='https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB' align='middle'></a>
+<a href='https://redux.js.org/'><img src='https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white' align='middle'></a>
+<a href='https://www.mongodb.com/'><img src='https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white' align='middle'></a>
+<a href='https://expressjs.com/'><img src='https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB' align='middle'></a>
+<a href='https://nodejs.org/'><img src='https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white' align='middle'></a>
+<a href='https://www.javascript.com/'><img src='https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E' align='middle'></a>
+<a href='https://getbootstrap.com/'><img src='https://img.shields.io/badge/bootstrap-%238511FA.svg?style=for-the-badge&logo=bootstrap&logoColor=white' align='middle'></a>
+<a href='https://mui.com/'><img src='https://img.shields.io/badge/MUI-%230081CB.svg?style=for-the-badge&logo=mui&logoColor=white' align='middle'></a>
+<a href='https://sass-lang.com/'><img src='https://img.shields.io/badge/SASS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white' align='middle'></a>
+
 <!--
     What was your motivation?
 
