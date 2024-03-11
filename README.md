@@ -1,11 +1,43 @@
-<p align="center">
-  <a href='https://github.com/bbuukk/gra'><img src="front/public/logo.svg" width="100" align="middle"></a>
-</p>
-
 <!--HOW TO WRITE COOL README FILE TUTORIAL https://www.freecodecamp.org/news/how-to-write-a-good-readme-file/-->
-#  🛒 E-commerce website 'Live World🍀'
+<div align="center" style="display: flex; flex-direction: column;">
+  <a href='https://github.com/bbuukk/gra'><img src="front/public/logo.svg" width="100"></a>
+</div>
+<h1 align="center">  Live World</h1>
+
+<h2 align="center">It is is e-commerce web application, a one-stop online store for all pet care and household needs</h2>
+
+<h2 align="center">Tech Stack</h2>
+
+<table align="center">
+  <tr>
+    <th>Backend</th>
+    <th>Frontend</th>
+    <th>Styling</th>
+  </tr>
+  <tr>
+    <td><a href='https://www.mongodb.com/'><img src='https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white' align='middle'></a></td>
+    <td><a href='https://reactjs.org/'><img src='https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB' align='middle'></a></td>
+    <td><a href='https://getbootstrap.com/'><img src='https://img.shields.io/badge/bootstrap-%238511FA.svg?style=for-the-badge&logo=bootstrap&logoColor=white' align='middle'></a></td>
+  </tr>
+  <tr>
+    <td><a href='https://expressjs.com/'><img src='https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB' align='middle'></a></td>
+    <td><a href='https://nextjs.org/'><img src='https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white' align='middle'></a></td>
+    <td><a href='https://mui.com/'><img src='https://img.shields.io/badge/MUI-%230081CB.svg?style=for-the-badge&logo=mui&logoColor=white' align='middle'></a></td>
+  </tr>
+  <tr>
+    <td><a href='https://nodejs.org/'><img src='https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white' align='middle'></a></td>
+    <td><a href='https://redux.js.org/'><img src='https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white' align='middle'></a></td>
+    <td><a href='https://sass-lang.com/'><img src='https://img.shields.io/badge/SASS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white' align='middle'></a></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><a href='https://www.javascript.com/'><img src='https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E' align='middle'></a></td>
+    <td></td>
+  </tr>
+</table>
+
 ## 🔷 Overview
-This is e-commerce platform, a one-stop shop for all your pet care and household needs
+
 
 🔸 Discover a Wide Range of Products: Browse through our extensive catalog of pet care and household items.<br>
 🔸 Efficient Search and Filter Options: Find exactly what you need using our search function or explore products by category. View detailed descriptions, prices, and more.<br>
@@ -15,17 +47,6 @@ This is e-commerce platform, a one-stop shop for all your pet care and household
 🔹 For a seamless and visually appealing user experience, I’ve leveraged the capabilities of Bootstrap, Material Design, Sass, and Styled Components libraries.<br>
 🔹 What’s more, every web page you see is a product of my own design, meticulously crafted using Figma.<br>
 
-
-<a href='https://nextjs.org/'><img src='https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white' align='middle'></a>
-<a href='https://reactjs.org/'><img src='https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB' align='middle'></a>
-<a href='https://redux.js.org/'><img src='https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white' align='middle'></a>
-<a href='https://www.mongodb.com/'><img src='https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white' align='middle'></a>
-<a href='https://expressjs.com/'><img src='https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB' align='middle'></a>
-<a href='https://nodejs.org/'><img src='https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white' align='middle'></a>
-<a href='https://www.javascript.com/'><img src='https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E' align='middle'></a>
-<a href='https://getbootstrap.com/'><img src='https://img.shields.io/badge/bootstrap-%238511FA.svg?style=for-the-badge&logo=bootstrap&logoColor=white' align='middle'></a>
-<a href='https://mui.com/'><img src='https://img.shields.io/badge/MUI-%230081CB.svg?style=for-the-badge&logo=mui&logoColor=white' align='middle'></a>
-<a href='https://sass-lang.com/'><img src='https://img.shields.io/badge/SASS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white' align='middle'></a>
 
 <!--
     What was your motivation?
