@@ -5,42 +5,19 @@
 
 <h1 align="center"> Live World </h1>
 
-<h2 align="center">E-commerce web application, a one-stop online store for all pet care and household needs</h2>
+<h2 align="center">Pet Care and Household Goods E-Commerce Platform</h2>
+<h2>Features</h2>
 
-<h2 >Overview</h2>
+1. **Product Listings**:
+   - Browse a curated list of products.
+   - Filter products by price, brand, and release date.
 
-<h2 >Features</h2>
-
-
-- /pay
-  - Options for delivery and paying
-  - Reviewing following order
-- /products
-  - List of products with ability to filter them by price, brand, date etc.
-  - User can add a product to wish list or shopping cart
-- /products/[productId]/about
-  - Write a reveiw on the product
-  - Read detailed description and characteristics of the product
-- /profile
-  - Personal cabinet with profile info, product wish list and past orders list
-- /
-  - Product categories gallery
-  - Discount offers carousel
-  - Shop reviews carousel 
+2. **User Interaction**:
+   - **Authentication**: Sign in using credentials, Google or other services.
+   - **Wish List**: Like products to add them to your wish list.
+   - **Reviews**: Write reviews for specific products.
 
 <br>
-
-- Other:
-  - Search on products by user input
-
-
-
-    What your application does,
-    Why you used the technologies you used,
-    Some of the challenges you faced and features you hope to implement in the future.
-
-<br>
-
 <h2 >Demo</h2>
 
 ![Live World Welcome GIF](.github/images/live_world_welcome_demo.gif)
@@ -104,6 +81,11 @@
 <!--<h2>Helpful Links</h2>-->
 
 <!--
+
+
+    What your application does,
+    Why you used the technologies you used,
+    Some of the challenges you faced and features you hope to implement in the future.
     What was your motivation?
 
         I am builing it as my PET-project to start my career and also because it's a lot of fun.
