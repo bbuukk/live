@@ -2,12 +2,15 @@
 <div align="center" style="display: flex; flex-direction: column;">
   <a href='https://github.com/bbuukk/gra'><img src="front/public/logo.svg" width="100"></a>
 </div>
-<h1 align="center">Live World</h1>
+
+<h1 align="center"> Live World </h1>
 
 <h2 align="center">E-commerce web application, a one-stop online store for all pet care and household needs</h2>
 
 <h2 >Overview</h2>
-Functionality of the project by pages: 
+
+<h2 >Features</h2>
+
 
 - /pay
   - Options for delivery and paying
@@ -37,6 +40,11 @@ Functionality of the project by pages:
     Some of the challenges you faced and features you hope to implement in the future.
 
 <br>
+
+<h2 >Demo</h2>
+
+![Live World Welcome GIF](.github/images/live_world_welcome_demo.gif)
+
 <h2>Tech Stack</h2>
 
 <table align="center">
