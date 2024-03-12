@@ -28,6 +28,20 @@
 
 ![Live World Welcome GIF](.github/images/live_world_welcome_demo.gif)
 
+<!--
+<br>
+<h2>Upcoming Features</h2>
+
+1. **Product Listings**:
+   - Browse a curated list of products.
+   - Filter products by price, brand, and release date.
+
+2. **User Interaction**:
+   - **Authentication**: Sign in using credentials, Google or other services.
+   - **Wish List**: Like products to add them to your wish list.
+   - **Reviews**: Write reviews for specific products. 
+-->
+
 <h2>Tech Stack</h2>
 
 <table align="center">
