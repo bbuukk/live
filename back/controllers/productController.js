@@ -38,29 +38,29 @@ export const getProductsByIds = async (req, res) => {
 
 export const getProducts = async (req, res) => {
   //todo it works, do it with all products with english brand names
-  const updates = [
-    { old: "Josera", new: "Йозера" },
-    { old: "Gourmet", new: "Гурме" },
-    // { old: "purina-friskies", new: "Purina Friskies" },
-    // { old: "Purina Felix", new: "Purina Friskies" },
-    // { old: "Purina Pro Plan", new: "Purina Friskies" },
-    // { old: "ВісКас", new: "Віскас" },
-    // { old: "Royal Canin", new: "Ройал Канін" },
-    // { old: "Trixie", new: "Тріксі" },
-    // { old: "Carnie", new: "Карні" },
-    // { old: "Golden Cat", new: "Голден Кет" },
-    // { old: "Catessy", new: "Катессі" },
-    // { old: "Pet Daily Cat", new: "Пет Дейлі Кет" },
-    // { old: "pan-kitpan-pes", new: "Пан Кіт-Пан Пес" },
-  ];
-  for (const update of updates) {
-    await Product.updateMany(
-      { "characteristics.Бренд": update.old },
-      { $set: { "characteristics.Бренд": update.new } }
-    );
-  }
+  // const updates = [
+  //   { old: "Josera", new: "Йозера" },
+  //   { old: "Gourmet", new: "Гурме" },
+  //   // { old: "purina-friskies", new: "Purina Friskies" },
+  //   // { old: "Purina Felix", new: "Purina Friskies" },
+  //   // { old: "Purina Pro Plan", new: "Purina Friskies" },
+  //   // { old: "ВісКас", new: "Віскас" },
+  //   // { old: "Royal Canin", new: "Ройал Канін" },
+  //   // { old: "Trixie", new: "Тріксі" },
+  //   // { old: "Carnie", new: "Карні" },
+  //   // { old: "Golden Cat", new: "Голден Кет" },
+  //   // { old: "Catessy", new: "Катессі" },
+  //   // { old: "Pet Daily Cat", new: "Пет Дейлі Кет" },
+  //   // { old: "pan-kitpan-pes", new: "Пан Кіт-Пан Пес" },
+  // ];
+  // for (const update of updates) {
+  //   await Product.updateMany(
+  //     { "characteristics.Бренд": update.old },
+  //     { $set: { "characteristics.Бренд": update.new } }
+  //   );
+  // }
 
-  return res.status(200).json({ message: "done" });
+  // return res.status(200).json({ message: "done" });
   const products = await Product.find({})
     .sort({ createdAt: -1 })
 
@@ -86,6 +86,7 @@ export const getProductsByCategoryAndFilters = async (req, res) => {
     }
 
     const categoryPath = untransliterate(unslugify(slugCategoryPath));
+    console.log("🚀 ~ categoryPath:", categoryPath);
     const activeCategory = await category.findOne({
       path: new RegExp(`^${categoryPath.toLowerCase()}$`, "i"),
     });
@@ -156,18 +157,21 @@ export const getProductsByCategoryAndFilters = async (req, res) => {
     const totalProducts = await query.exec();
     const numPages = Math.max(1, Math.ceil(totalProducts.length / 50));
 
+    const prices = totalProducts.map((p) => Number(p.price));
+    const minPrice = prices.reduce((a, b) => Math.min(a, b), Infinity);
+    const maxPrice = prices.reduce((a, b) => Math.max(a, b), -Infinity);
+
     let products = totalProducts;
 
-    //todo uncomment this for by page fetching
-    // const filterValues = filters.get("page");
-    // if (filterValues) {
-    //   const pageId = filterValues[0];
-    //   const PRODUCTS_ON_PAGE = 50;
-    //   products = products.slice(
-    //     PRODUCTS_ON_PAGE * (pageId - 1),
-    //     PRODUCTS_ON_PAGE * pageId
-    //   );
-    // }
+    const filterValues = filters.get("page");
+    if (filterValues) {
+      const pageId = filterValues[0];
+      const PRODUCTS_ON_PAGE = 50;
+      products = products.slice(
+        PRODUCTS_ON_PAGE * (pageId - 1),
+        PRODUCTS_ON_PAGE * pageId
+      );
+    }
 
     const activeCategoryNestingLevel = activeCategory.path.split(",").length;
 
@@ -182,6 +186,7 @@ export const getProductsByCategoryAndFilters = async (req, res) => {
       ),
       products,
       numPages,
+      minMaxPrice: [minPrice, maxPrice],
     });
   } catch (err) {
     res.status(500).json({ error: err.message });

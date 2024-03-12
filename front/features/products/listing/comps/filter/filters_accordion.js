@@ -8,7 +8,12 @@ import { useEffect, useRef, useState } from "react";
 import { useGetFilters } from "../../hooks/useGetFilters";
 import { useRouter } from "next/router";
 
-const FiltersAccordion = ({ products, category }) => {
+const FiltersAccordion = ({
+  products,
+  category,
+  filters: fil,
+  minMaxPrice: minMax,
+}) => {
   //todo make those filters active that are in url
   //todo filters got to recieve all products from filteration not only 50 first products
   // - hardcore filters for every category and get get minmax price in prop for page on every call
@@ -20,21 +25,15 @@ const FiltersAccordion = ({ products, category }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const { getFilters, getMinMaxPrice } = useGetFilters();
-  const [minMaxPrice, setMinMaxPrice] = useState(getMinMaxPrice(products));
-  const [filters, setFilters] = useState(getFilters(products, category));
+  const [minMaxPrice, setMinMaxPrice] = useState(minMax);
+  // const [filters, setFilters] = useState(getFilters(products, category));
 
   useEffect(() => {
-    // setMinMaxPrice([min, max]);
-    // setFilters(filters);
-    // setIsLoading(false);
-  }, [filters]);
-
-  useEffect(() => {
-    // console.log("filters update");
-    // console.log(categoryPath);
+    console.log("filters update");
+    console.log(categoryPath);
     setIsLoading(true);
-    setMinMaxPrice(getMinMaxPrice(products));
-    setFilters(getFilters(products, category));
+    console.log("🚀 ~ minMax:", minMax);
+    setMinMaxPrice(minMax);
     setIsLoading(false);
   }, [categoryPath]);
 
@@ -63,19 +62,23 @@ const FiltersAccordion = ({ products, category }) => {
                 <PriceSlider
                   minPrice={minMaxPrice[0]}
                   maxPrice={minMaxPrice[1]}
+                  currentMin={minMaxPrice[0]}
+                  currentMax={minMaxPrice[1]}
                 />
               </div>
             </Accordion.Body>
           </Accordion.Item>
-          {Array.from(filters, ([filterLabel, options], idx) => (
-            <div key={filterLabel} className={`${s.filter_checks}`}>
-              <FilterChecks
-                filterLabel={filterLabel}
-                options={options}
-                idx={idx + 1}
-              />
-            </div>
-          ))}
+          {Object.entries(fil).map(([filterLabel, options], idx) => {
+            return (
+              <div key={filterLabel} className={`${s.filter_checks}`}>
+                <FilterChecks
+                  filterLabel={filterLabel}
+                  options={options}
+                  idx={idx + 1}
+                />
+              </div>
+            );
+          })}
         </Accordion>
       )}
     </search>

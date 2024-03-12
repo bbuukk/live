@@ -4,7 +4,7 @@ import s from "./price-slider.module.scss";
 import { useDispatch } from "react-redux";
 import { setFilter } from "store/filtersSlice";
 
-const PriceSlider = ({ minPrice, maxPrice }) => {
+const PriceSlider = ({ minPrice, maxPrice, currentMin, currentMax }) => {
   const [minMaxPrice, setMinMaxPrice] = useState([minPrice, maxPrice]);
 
   const minDistance = 50; // Define your minimum distance here

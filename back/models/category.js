@@ -18,14 +18,10 @@ const categorySchema = new Schema({
     required: true,
   },
   filters: {
-    type: [String],
+    type: Map,
+    of: [String],
     required: false,
   },
-  // filters: {
-  //   type: Map,
-  //   of: [String],
-  //   required: false,
-  // },
 });
 
 export default model("category", categorySchema);

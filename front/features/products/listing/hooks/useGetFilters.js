@@ -10,8 +10,8 @@ export const useGetFilters = () => {
         }
 
         filtersMap.get(key).add(...value);
-        // }
       }
+      // }
     }
 
     console.log("🚀 ~ filtersMap:", filtersMap);

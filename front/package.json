@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@auth/mongodb-adapter": "^2.5.0",
-    "@bbuukk/slugtrans": "^1.0.6",
+    "@bbuukk/slugtrans": "^1.0.9",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@mui/material": "^5.15.0",
