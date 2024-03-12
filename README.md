@@ -3,9 +3,15 @@
   <a href='https://github.com/bbuukk/gra'><img src="front/public/logo.svg" width="100"></a>
 </div>
 
-<h1 align="center"> Live World </h1>
+<h1 align="center">
+  <div >
+<span > Live World </span>
+  </div>
+  <br>
+<span align="center">Pet Care and Household Goods E-Commerce Platform</span>
+</h3>
 
-<h2 align="center">Pet Care and Household Goods E-Commerce Platform</h2>
+<br>
 <h2>Features</h2>
 
 1. **Product Listings**:
