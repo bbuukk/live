@@ -88,9 +88,9 @@ Functionality of the project by pages:
 </table>
 
 <div align="center">
-<h3><pre>~~~~~~~~~~~~~~~~           Click on cat's paw below           ~~~~~~~~~~~~~~~~</pre></h3>
+<h3><pre>~~~    Click on cat's paw below to open figma design project     ~~~</pre></h3>
 <a href='https://www.figma.com/file/Qb3fKAMJmdfCwmsXd3jcSD/Live-world?type=design&node-id=0%3A1&mode=design&t=qYGwGJ9NwCYA879K-1'><img width="10%" src='https://media0.giphy.com/media/Sv9lsehLQ6QLbObc6A/giphy.gif?cid=6c09b952yao356fh0sfkcasxya4l5vpfnpexzybik3ssmewz&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=s'></a>
-<h3><pre>~~~~~~~~~~~~~~~~           to open figma design project           ~~~~~~~~~~~~~~~~</pre></h3>
+<!--<h3><pre>~~~~~~~~~~~~~~~~           to open figma design project           ~~~~~~~~~~~~~~~~</pre></h3>-->
 </div>
 
 <!--<h2>Helpful Links</h2>-->
