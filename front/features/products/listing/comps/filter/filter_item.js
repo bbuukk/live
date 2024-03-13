@@ -12,19 +12,12 @@ import { setFilter, deleteFilter } from "store/filtersSlice";
 
 const FilterChecks = ({ filterLabel, options, idx }) => {
   const { filters } = useSelector((state) => state.filters);
+  console.log("🚀 ~ filters:", filters);
+
   const slugFilterLabel = slugify(transliterate(filterLabel));
   const [activeOptions, setActiveOptions] = useState(filters[slugFilterLabel]);
 
   const dispatch = useDispatch();
-  function handleConfirm(event, newValue) {
-    dispatch(
-      setFilter({
-        filterName: slugify(transliterate(filterLabel)),
-        filterValue: [minMaxPrice[0], minMaxPrice[1]],
-      })
-    );
-  }
-
   useEffect(() => {
     if (activeOptions != null) {
       if (activeOptions.length > 0) {
@@ -66,7 +59,13 @@ const FilterChecks = ({ filterLabel, options, idx }) => {
               <CheckBox
                 id={option}
                 label={option}
-                checked={false}
+                checked={
+                  filters[slugFilterLabel]?.includes(
+                    slugify(transliterate(option))
+                  )
+                    ? true
+                    : false
+                }
                 handleChange={handleChange}
               />
             </div>
