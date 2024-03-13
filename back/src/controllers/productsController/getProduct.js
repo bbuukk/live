@@ -1,4 +1,5 @@
 import Product from "#src/models/product.js";
+import {mongoose} from "mongoose"
 
 export const getProductById = async (req, res) => {
   const { id } = req.params;
