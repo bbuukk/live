@@ -17,9 +17,13 @@ const categorySchema = new Schema({
     type: String,
     required: true,
   },
+  // filters: {
+  //   type: Map,
+  //   of: [String],
+  //   required: false,
+  // },
   filters: {
-    type: Map,
-    of: [String],
+    type: [String],
     required: false,
   },
 });

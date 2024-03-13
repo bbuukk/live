@@ -1,6 +1,6 @@
 import Product from "../models/product.js";
 import category from "../models/category.js";
-import mongoose from "mongoose";
+import mongoose, { get } from "mongoose";
 import { slugify, unslugify } from "@bbuukk/slugtrans/slugify";
 import {
   transliterate,
@@ -71,22 +71,39 @@ export const getProducts = async (req, res) => {
   return res.status(200).json(products);
 };
 
+//todo
+
+// we need to get filters from the products that have such filterValues
+// and have filterbut get all possible values of filterName that was already there(filtered)
+
+//we need to fetch by filterValues and combine those
+//we need to fetch by filterKeys and intersect those with other collections
+
+//we need to find all products that have such filterName and get filters
+
+//todo
+
+function getFilterMapFromStr(filtersStr) {
+  let filters = null;
+  if (filtersStr) {
+    filters = new Map();
+    filtersStr.split(";").forEach((fs) => {
+      const [filterName, filterValue] = fs.split("=");
+      filters.set(filterName, [...filterValue.split(",")]);
+    });
+  }
+  return filters;
+}
+
+//? if categoryPath is not changed from previous time, we can just use
+//? product that we already have and filter them
 export const getProductsByCategoryAndFilters = async (req, res) => {
   let { slugCategoryPath, filtersStr } = req.params;
 
-  //? todo research if we store label on category and slug on category we would not need to unslugify
   try {
-    let filters = null;
-    if (filtersStr) {
-      filters = new Map();
-      filtersStr.split(";").forEach((fs) => {
-        const [filterName, filterValue] = fs.split("=");
-        filters.set(filterName, [...filterValue.split(",")]);
-      });
-    }
+    let filters = getFilterMapFromStr(filtersStr);
 
     const categoryPath = untransliterate(unslugify(slugCategoryPath));
-    console.log("🚀 ~ categoryPath:", categoryPath);
     const activeCategory = await category.findOne({
       path: new RegExp(`^${categoryPath.toLowerCase()}$`, "i"),
     });
@@ -109,40 +126,77 @@ export const getProductsByCategoryAndFilters = async (req, res) => {
     let query = Product.find({
       category: { $in: activeCategoryIds },
     })
-      .select("name price images characteristics") // if we fetch all products from category
+      .select("name price images characteristics")
       .sort({ createdAt: -1 });
 
-    //? todo do we need to populate(category) here?
-
+    const mapsToIntersect = [];
     if (filters) {
       for (let [filterName, filterValues] of filters) {
         if (filterName === "page") {
-          //   // if we fetch  products from category by page
           continue;
-          //   query = query
-          //     .select("name price images characteristics")
-          //     .populate("category");
+        }
 
-          //   const pageId = filterValues[0];
-          //   const PRODUCTS_ON_PAGE = 50;
-          //   query = query
-          //     .skip(PRODUCTS_ON_PAGE * (pageId - 1))
-          //     .limit(PRODUCTS_ON_PAGE);
-        } else if (filterName === "price") {
+        let unslugFilterName = untransliterate(unslugify(filterName));
+        unslugFilterName =
+          unslugFilterName.charAt(0).toUpperCase() + unslugFilterName.slice(1);
+
+        const unslugFilterValues = filterValues.map((value) => {
+          return untransliterate(unslugify(value));
+        });
+
+        if (filterName === "price") {
+          //for filters
+          let productsCharacteristics = await Product.find({
+            category: { $in: activeCategoryIds },
+          })
+            .select("characteristics")
+            .sort({ createdAt: -1 })
+            .where("price")
+            .gte(filterValues[0])
+            .lte(filterValues[1])
+            .exec();
+
+          const filters = getFiltersMap(
+            productsCharacteristics,
+            activeCategory
+          );
+
+          mapsToIntersect.push(filters);
+          //for filters
+
           query = query
             .where("price")
             .gte(filterValues[0])
             .lte(filterValues[1]);
         } else {
-          let unslugFilterName = untransliterate(unslugify(filterName));
+          // for filters
+          let productsCharacteristics = await Product.find({
+            category: { $in: activeCategoryIds },
+          })
+            .select("characteristics")
+            .sort({ createdAt: -1 })
+            .where(`characteristics.${unslugFilterName}`, {
+              $in: unslugFilterValues.map(
+                (value) => new RegExp(`^${value}$`, "i")
+              ),
+            })
+            .exec();
 
-          //todo we can't use unslugify here with values being in english, cause it will cause loop
-          unslugFilterName =
-            unslugFilterName.charAt(0).toUpperCase() +
-            unslugFilterName.slice(1);
-          const unslugFilterValues = filterValues.map((value) => {
-            return untransliterate(unslugify(value));
-          });
+          const filters = getFiltersMap(
+            productsCharacteristics,
+            activeCategory
+          );
+
+          let allFilterValues = await Product.distinct(
+            `characteristics.${unslugFilterName}`,
+            {
+              category: { $in: activeCategoryIds },
+            }
+          );
+
+          filters.set(unslugFilterName, allFilterValues);
+
+          mapsToIntersect.push(filters);
 
           query = query.where(`characteristics.${unslugFilterName}`, {
             $in: unslugFilterValues.map(
@@ -153,9 +207,22 @@ export const getProductsByCategoryAndFilters = async (req, res) => {
       }
     }
 
-    //if categoryPath is not changed from previous time, we can just use
+    let intersectedFilterMap = intersectMaps(...mapsToIntersect);
+
     const totalProducts = await query.exec();
     const numPages = Math.max(1, Math.ceil(totalProducts.length / 50));
+
+    let allCategoryProducts = await Product.find({
+      category: { $in: activeCategoryIds },
+    })
+      .select("name price images characteristics")
+      .sort({ createdAt: -1 })
+      .exec();
+
+    if (intersectedFilterMap.size == 0) {
+      let filtersMap = getFiltersMap(allCategoryProducts, activeCategory);
+      intersectedFilterMap = filtersMap;
+    }
 
     const prices = totalProducts.map((p) => Number(p.price));
     const minPrice = prices.reduce((a, b) => Math.min(a, b), Infinity);
@@ -187,11 +254,72 @@ export const getProductsByCategoryAndFilters = async (req, res) => {
       products,
       numPages,
       minMaxPrice: [minPrice, maxPrice],
+      // filtersMap: Array.from(filtersMap.entries()),
+      filtersMap: Array.from(intersectedFilterMap.entries()),
     });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 };
+
+function getFiltersMap(products, activeCategory) {
+  let filtersMap = new Map();
+  for (const pd of products) {
+    for (const [key, value] of pd.characteristics) {
+      if (activeCategory.filters.includes(key)) {
+        if (!filtersMap.has(key)) {
+          filtersMap.set(key, new Set());
+        }
+
+        filtersMap.get(key).add(...value);
+      }
+    }
+  }
+
+  for (const [key, value] of filtersMap) {
+    filtersMap.set(key, Array.from(value));
+  }
+
+  return filtersMap;
+}
+
+function intersectArrays(...arrays) {
+  const elementFrequency = {};
+
+  for (const arr of arrays) {
+    for (const element of arr) {
+      elementFrequency[element] = (elementFrequency[element] || 0) + 1;
+    }
+  }
+
+  const intersection = Object.keys(elementFrequency).filter(
+    (element) => elementFrequency[element] === arrays.length
+  );
+
+  return intersection;
+}
+
+function intersectMaps(...maps) {
+  const allKeys = Array.from(
+    new Set(maps.flatMap((map) => Array.from(map.keys())))
+  );
+
+  const intersectedMap = new Map();
+
+  allKeys.forEach((filterName) => {
+    const filtersValues = maps
+      .map((map) => map.get(filterName))
+      .filter((value) => value !== undefined);
+
+    const intersectedValues = intersectArrays(...filtersValues);
+
+    if (intersectedValues.length > 0) {
+      intersectedMap.set(filterName, intersectedValues);
+    }
+  });
+
+  return intersectedMap;
+}
 
 export const createProduct = async (req, res) => {
   const {

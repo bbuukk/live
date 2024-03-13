@@ -11,14 +11,15 @@ import { useRouter } from "next/router";
 const FiltersAccordion = ({
   products,
   category,
-  filters: fil,
+  filters,
   minMaxPrice: minMax,
 }) => {
   //todo make those filters active that are in url
   //todo filters got to recieve all products from filteration not only 50 first products
-  // - hardcore filters for every category and get get minmax price in prop for page on every call
+  //! - hardcore filters for every category and get get minmax price in prop for page on every call
   //! todo make filters options only cyrylic
   //todo fix breadcrumps and pagination components navigations
+  //todo when came back fron landing product page active filters are now shown in filters accordion
 
   const router = useRouter();
   const { categoryPath } = router.query;
@@ -29,10 +30,10 @@ const FiltersAccordion = ({
   // const [filters, setFilters] = useState(getFilters(products, category));
 
   useEffect(() => {
-    console.log("filters update");
-    console.log(categoryPath);
+    // console.log("filters update");
+    // console.log(categoryPath);
     setIsLoading(true);
-    console.log("🚀 ~ minMax:", minMax);
+    // console.log("🚀 ~ minMax:", minMax);
     setMinMaxPrice(minMax);
     setIsLoading(false);
   }, [categoryPath]);
@@ -68,7 +69,7 @@ const FiltersAccordion = ({
               </div>
             </Accordion.Body>
           </Accordion.Item>
-          {Object.entries(fil).map(([filterLabel, options], idx) => {
+          {filters.map(([filterLabel, options], idx) => {
             return (
               <div key={filterLabel} className={`${s.filter_checks}`}>
                 <FilterChecks

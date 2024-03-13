@@ -21,7 +21,15 @@ import { setFilters } from "store/filtersSlice";
 import { useGetFilterMapFromStr } from "hooks/useGetFilterMapFromStr";
 
 const Listing = ({
-  data: { category, subcategories, products, numPages, minMaxPrice, page },
+  data: {
+    category,
+    subcategories,
+    products,
+    numPages,
+    filtersMap,
+    minMaxPrice,
+    page,
+  },
 }) => {
   //todo indefinite products tscrooling
   const router = useRouter();
@@ -86,7 +94,7 @@ const Listing = ({
           <FiltersAccordion
             products={products}
             category={category}
-            filters={category.filters}
+            filters={filtersMap}
             minMaxPrice={minMaxPrice}
           />
 
@@ -112,7 +120,6 @@ export async function getServerSideProps(context) {
   //todo filterStr validation
   const res = await axios.get(`/products/${categoryPath}/${filtersStr}`);
   const data = res.data;
-  console.log("🚀 ~ data:", data);
 
   let page = 1;
   const match = filtersStr.match(/page=(\d+)/);
