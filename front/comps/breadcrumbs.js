@@ -10,6 +10,7 @@ const Breadcrumbs = ({ category }) => {
   const { categories: allCategories } = useSelector(
     (state) => state.categories
   );
+  //todo fix using categories from redux, it should not be fetched on start of application
 
   const { findCategoryByPath } = useFindCategoryByPath();
 
@@ -45,14 +46,14 @@ const Breadcrumbs = ({ category }) => {
                   <Link
                     className="link"
                     href={{
-                      pathname: `/products/${categoryPathSlug}/page/1`,
+                      pathname: `/products/${categoryPathSlug}/page=1`,
                       query: {
                         category: JSON.stringify(
                           findCategoryByPath(clickedCategoryPath, allCategories)
                         ),
                       },
                     }}
-                    as={`/products/${categoryPathSlug}/page/1`}
+                    as={`/products/${categoryPathSlug}/page=1`}
                   >
                     {pathPart}
                   </Link>

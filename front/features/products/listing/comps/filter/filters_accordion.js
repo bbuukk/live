@@ -13,12 +13,9 @@ const FiltersAccordion = ({
   minMaxPrice: minMax,
   currentMinMaxPrice: currentMinMax,
 }) => {
-  //todo make those filters active that are in url
-  //todo filters got to recieve all products from filteration not only 50 first products
-  //! - hardcore filters for every category and get get minmax price in prop for page on every call
-  //! todo make filters options only cyrylic
-  //todo fix breadcrumps and pagination components navigations
-  //todo when came back fron landing product page active filters are now shown in filters accordion
+  //todo sometimes it changes filterValues when another one is chosen
+  //todo fix all remaining english options in filters
+  //todo why filters render in wrong order, brand got to be first
 
   const router = useRouter();
   const { categoryPath } = router.query;

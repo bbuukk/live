@@ -22,12 +22,12 @@ function ProductsPagination({ numPages, activePageId }) {
         }`}
       >
         <Pagination.First
-          href={`/products/${categoryPath}/page/1`}
+          href={`/products/${categoryPath}/page=1`}
           className={`${s.item}`}
         />
 
         <Pagination.Prev
-          href={`/products/${categoryPath}/page/${Math.max(
+          href={`/products/${categoryPath}/page=${Math.max(
             1,
             Number(activePageId) - 1
           )}`}
@@ -42,7 +42,7 @@ function ProductsPagination({ numPages, activePageId }) {
               className={pageId == activePageId ? s.itemActive : s.item}
               active={pageId == activePageId}
               key={pageId}
-              href={`/products/${categoryPath}/page/${pageId}`}
+              href={`/products/${categoryPath}/page=${pageId}`}
               // linkClassName="product_page_item"
             >
               {pageId}
@@ -58,14 +58,14 @@ function ProductsPagination({ numPages, activePageId }) {
       >
         <Pagination.Next
           className={`${s.item}`}
-          href={`/products/${categoryPath}/page/${Math.max(
+          href={`/products/${categoryPath}/page=${Math.max(
             1,
             Number(activePageId) + 1
           )}`}
         />
         <Pagination.Last
           className={`${s.item}`}
-          href={`/products/${categoryPath}/page/${numPages}`}
+          href={`/products/${categoryPath}/page=${numPages}`}
         />
       </div>
     </Pagination>
