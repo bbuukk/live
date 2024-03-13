@@ -37,30 +37,6 @@ export const getProductsByIds = async (req, res) => {
 };
 
 export const getProducts = async (req, res) => {
-  //todo it works, do it with all products with english brand names
-  // const updates = [
-  //   { old: "Josera", new: "Йозера" },
-  //   { old: "Gourmet", new: "Гурме" },
-  //   // { old: "purina-friskies", new: "Purina Friskies" },
-  //   // { old: "Purina Felix", new: "Purina Friskies" },
-  //   // { old: "Purina Pro Plan", new: "Purina Friskies" },
-  //   // { old: "ВісКас", new: "Віскас" },
-  //   // { old: "Royal Canin", new: "Ройал Канін" },
-  //   // { old: "Trixie", new: "Тріксі" },
-  //   // { old: "Carnie", new: "Карні" },
-  //   // { old: "Golden Cat", new: "Голден Кет" },
-  //   // { old: "Catessy", new: "Катессі" },
-  //   // { old: "Pet Daily Cat", new: "Пет Дейлі Кет" },
-  //   // { old: "pan-kitpan-pes", new: "Пан Кіт-Пан Пес" },
-  // ];
-  // for (const update of updates) {
-  //   await Product.updateMany(
-  //     { "characteristics.Бренд": update.old },
-  //     { $set: { "characteristics.Бренд": update.new } }
-  //   );
-  // }
-
-  // return res.status(200).json({ message: "done" });
   const products = await Product.find({})
     .sort({ createdAt: -1 })
 
@@ -70,18 +46,6 @@ export const getProducts = async (req, res) => {
 
   return res.status(200).json(products);
 };
-
-//todo
-
-// we need to get filters from the products that have such filterValues
-// and have filterbut get all possible values of filterName that was already there(filtered)
-
-//we need to fetch by filterValues and combine those
-//we need to fetch by filterKeys and intersect those with other collections
-
-//we need to find all products that have such filterName and get filters
-
-//todo
 
 function getFilterMapFromStr(filtersStr) {
   let filters = null;
@@ -97,139 +61,173 @@ function getFilterMapFromStr(filtersStr) {
 
 //? if categoryPath is not changed from previous time, we can just use
 //? product that we already have and filter them
+
+async function getActiveCategoryAndAllSubcategories(categoryPath) {
+  const activeCategory = await category.findOne({
+    path: new RegExp(`^${categoryPath.toLowerCase()}$`, "i"),
+  });
+
+  if (activeCategory == null) {
+    return res
+      .status(404)
+      .json({ message: "Category with this path is not found" });
+  }
+
+  const allSubcategories = await category
+    .find({
+      path: new RegExp(categoryPath, "i"),
+    })
+    .select("name order path imagePath")
+    .exec();
+
+  return { activeCategory, allSubcategories };
+}
+
+function isOneLevelDeeper(category, activeCategory) {
+  const ONE_LEVEL_DEEPER = 1;
+  const activeCategoryNestingLevel = activeCategory.path.split(",").length;
+  const categoryNestingLevel = category.path.split(",").length;
+  return categoryNestingLevel === activeCategoryNestingLevel + ONE_LEVEL_DEEPER;
+}
+
+function getOriginalFilterNameAndValues(filterName, filterValues) {
+  let originalFilterName = untransliterate(unslugify(filterName));
+  originalFilterName =
+    originalFilterName.charAt(0).toUpperCase() + originalFilterName.slice(1);
+
+  const originalFilterValues = filterValues.map((value) => {
+    return untransliterate(unslugify(value));
+  });
+
+  return { originalFilterName, originalFilterValues };
+}
+
 export const getProductsByCategoryAndFilters = async (req, res) => {
   let { slugCategoryPath, filtersStr } = req.params;
+  const result = {};
 
   try {
-    let filters = getFilterMapFromStr(filtersStr);
-
     const categoryPath = untransliterate(unslugify(slugCategoryPath));
-    const activeCategory = await category.findOne({
-      path: new RegExp(`^${categoryPath.toLowerCase()}$`, "i"),
-    });
 
-    if (activeCategory == null) {
-      return res
-        .status(404)
-        .json({ message: "Category with this path is not found" });
+    /*Subcategories is necessary, because products have the most specific category,
+    so product in "for cats,food and treats" category will not have category as "for cats", only most specific one|s*/
+    const { activeCategory, allSubcategories } =
+      await getActiveCategoryAndAllSubcategories(categoryPath);
+
+    result.activeCategory = activeCategory;
+    result.subcategories = allSubcategories.filter(
+      (category) =>
+        category.name !== activeCategory.name &&
+        isOneLevelDeeper(category, activeCategory)
+    );
+
+    const activeCategoriesIds = allSubcategories.map((c) => c._id);
+
+    const allFilterMaps = [];
+
+    /*Creating filters based on filters that applied user */
+    let filters = getFilterMapFromStr(filtersStr);
+    for (let [filterName, filterValues] of filters) {
+      if (filterName === "page") {
+        continue;
+      }
+
+      const { originalFilterName, originalFilterValues } =
+        getOriginalFilterNameAndValues(filterName, filterValues);
+
+      let characteristicsQuery = Product.find({
+        category: { $in: activeCategoriesIds },
+      }).select("characteristics");
+
+      let filteredCharacterstics = [];
+      if (filterName === "price") {
+        filteredCharacterstics = await characteristicsQuery
+          .where("price")
+          .gte(filterValues[0])
+          .lte(filterValues[1])
+          .exec();
+      } else {
+        filteredCharacterstics = await characteristicsQuery
+          .where(`characteristics.${originalFilterName}`, {
+            $in: originalFilterValues.map(
+              (value) => new RegExp(`^${value}$`, "i")
+            ),
+          })
+          .exec();
+      }
+
+      /*
+      FilterMap parsed from characteristics of products that are filtered by current filter item
+      */
+      const filterMap = getFiltersMap(filteredCharacterstics, activeCategory);
+
+      if (filterName != "price") {
+        let allFilterValues = await Product.distinct(
+          `characteristics.${originalFilterName}`,
+          {
+            category: { $in: activeCategoriesIds },
+          }
+        );
+
+        filterMap.set(originalFilterName, allFilterValues);
+      }
+
+      allFilterMaps.push(filterMap);
     }
 
-    const subcategories = await category
-      .find({
-        path: new RegExp(categoryPath, "i"),
+    let intersectedFilterMap = intersectMaps(...allFilterMaps);
+    /*Getting default category filters if product were not filtered by user*/
+    if (intersectedFilterMap.size == 0) {
+      let allCategoryProducts = await Product.find({
+        category: { $in: activeCategoriesIds },
       })
-      .select("name order path imagePath")
-      .exec();
+        .select("characteristics")
+        .sort({ createdAt: -1 })
+        .exec();
 
-    const activeCategoryIds = subcategories.map((category) => category._id);
+      intersectedFilterMap = getFiltersMap(allCategoryProducts, activeCategory);
+    }
+    result.filtersMap = Array.from(intersectedFilterMap.entries());
 
+    /*Creating query for resulted products*/
     let query = Product.find({
-      category: { $in: activeCategoryIds },
+      category: { $in: activeCategoriesIds },
     })
       .select("name price images characteristics")
       .sort({ createdAt: -1 });
 
-    const mapsToIntersect = [];
-    if (filters) {
-      for (let [filterName, filterValues] of filters) {
-        if (filterName === "page") {
-          continue;
-        }
+    /*Applying filters to resulted products query*/
+    for (let [filterName, filterValues] of filters) {
+      if (filterName === "page") {
+        continue;
+      }
 
-        let unslugFilterName = untransliterate(unslugify(filterName));
-        unslugFilterName =
-          unslugFilterName.charAt(0).toUpperCase() + unslugFilterName.slice(1);
+      const { originalFilterName, originalFilterValues } =
+        getOriginalFilterNameAndValues(filterName, filterValues);
 
-        const unslugFilterValues = filterValues.map((value) => {
-          return untransliterate(unslugify(value));
+      if (filterName === "price") {
+        query = query.where("price").gte(filterValues[0]).lte(filterValues[1]);
+      } else {
+        query = query.where(`characteristics.${originalFilterName}`, {
+          $in: originalFilterValues.map(
+            (value) => new RegExp(`^${value}$`, "i")
+          ),
         });
-
-        if (filterName === "price") {
-          //for filters
-          let productsCharacteristics = await Product.find({
-            category: { $in: activeCategoryIds },
-          })
-            .select("characteristics")
-            .sort({ createdAt: -1 })
-            .where("price")
-            .gte(filterValues[0])
-            .lte(filterValues[1])
-            .exec();
-
-          const filters = getFiltersMap(
-            productsCharacteristics,
-            activeCategory
-          );
-
-          mapsToIntersect.push(filters);
-          //for filters
-
-          query = query
-            .where("price")
-            .gte(filterValues[0])
-            .lte(filterValues[1]);
-        } else {
-          // for filters
-          let productsCharacteristics = await Product.find({
-            category: { $in: activeCategoryIds },
-          })
-            .select("characteristics")
-            .sort({ createdAt: -1 })
-            .where(`characteristics.${unslugFilterName}`, {
-              $in: unslugFilterValues.map(
-                (value) => new RegExp(`^${value}$`, "i")
-              ),
-            })
-            .exec();
-
-          const filters = getFiltersMap(
-            productsCharacteristics,
-            activeCategory
-          );
-
-          let allFilterValues = await Product.distinct(
-            `characteristics.${unslugFilterName}`,
-            {
-              category: { $in: activeCategoryIds },
-            }
-          );
-
-          filters.set(unslugFilterName, allFilterValues);
-
-          mapsToIntersect.push(filters);
-
-          query = query.where(`characteristics.${unslugFilterName}`, {
-            $in: unslugFilterValues.map(
-              (value) => new RegExp(`^${value}$`, "i")
-            ),
-          });
-        }
       }
     }
 
-    let intersectedFilterMap = intersectMaps(...mapsToIntersect);
+    const allProducts = await query.exec();
+    /*Counting number of pages for all filtered products*/
+    result.numPages = Math.max(1, Math.ceil(allProducts.length / 50));
 
-    const totalProducts = await query.exec();
-    const numPages = Math.max(1, Math.ceil(totalProducts.length / 50));
-
-    let allCategoryProducts = await Product.find({
-      category: { $in: activeCategoryIds },
-    })
-      .select("name price images characteristics")
-      .sort({ createdAt: -1 })
-      .exec();
-
-    if (intersectedFilterMap.size == 0) {
-      let filtersMap = getFiltersMap(allCategoryProducts, activeCategory);
-      intersectedFilterMap = filtersMap;
-    }
-
-    const prices = totalProducts.map((p) => Number(p.price));
+    /*Counting max and min price of all filtered products*/
+    const prices = allProducts.map((p) => Number(p.price));
     const minPrice = prices.reduce((a, b) => Math.min(a, b), Infinity);
     const maxPrice = prices.reduce((a, b) => Math.max(a, b), -Infinity);
+    result.minMaxPrice = [minPrice, maxPrice];
 
-    let products = totalProducts;
-
+    /*Filtering products by page*/
+    let products = allProducts;
     const filterValues = filters.get("page");
     if (filterValues) {
       const pageId = filterValues[0];
@@ -239,24 +237,9 @@ export const getProductsByCategoryAndFilters = async (req, res) => {
         PRODUCTS_ON_PAGE * pageId
       );
     }
+    result.products = products;
 
-    const activeCategoryNestingLevel = activeCategory.path.split(",").length;
-
-    res.status(200).json({
-      category: activeCategory,
-      subcategories: subcategories.filter(
-        (c) =>
-          // all subcategories except activeCategory
-          c["name"] !== activeCategory["name"] &&
-          //only one level deeper subcategories
-          c.path.split(",").length == activeCategoryNestingLevel + 1
-      ),
-      products,
-      numPages,
-      minMaxPrice: [minPrice, maxPrice],
-      // filtersMap: Array.from(filtersMap.entries()),
-      filtersMap: Array.from(intersectedFilterMap.entries()),
-    });
+    res.status(200).json(result);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

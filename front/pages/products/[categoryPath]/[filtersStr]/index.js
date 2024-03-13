@@ -22,7 +22,7 @@ import { useGetFilterMapFromStr } from "hooks/useGetFilterMapFromStr";
 
 const Listing = ({
   data: {
-    category,
+    activeCategory: category,
     subcategories,
     products,
     numPages,
