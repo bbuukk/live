@@ -13,8 +13,10 @@ import { intersectMaps } from "./utils/intersect.js";
 //? if categoryPath is not changed from previous time, we can just use
 //? product that we already have and filter them
 
+//can we just query all products and then filter them
 export const getProductsByCategoryAndFilters = async (req, res) => {
   let { slugCategoryPath, filtersStr } = req.params;
+
   const result = {};
 
   try {
@@ -51,7 +53,7 @@ export const getProductsByCategoryAndFilters = async (req, res) => {
       }).select("characteristics");
 
       let filteredCharacterstics = [];
-      if (filterName === "price") {
+      if (filterName === "tsina") {
         filteredCharacterstics = await characteristicsQuery
           .where("price")
           .gte(filterValues[0])
@@ -72,7 +74,7 @@ export const getProductsByCategoryAndFilters = async (req, res) => {
         */
       const filterMap = getFiltersMap(filteredCharacterstics, activeCategory);
 
-      if (filterName != "price") {
+      if (filterName != "tsina") {
         let allFilterValues = await Product.distinct(
           `characteristics.${originalFilterName}`,
           {
@@ -87,6 +89,7 @@ export const getProductsByCategoryAndFilters = async (req, res) => {
     }
 
     let intersectedFilterMap = intersectMaps(...allFilterMaps);
+
     /*Getting default category filters if product were not filtered by user*/
     if (intersectedFilterMap.size == 0) {
       let allCategoryProducts = await Product.find({
@@ -113,12 +116,11 @@ export const getProductsByCategoryAndFilters = async (req, res) => {
         continue;
       }
 
-      const { originalFilterName, originalFilterValues } =
-        getOriginalFilterNameAndValues(filterName, filterValues);
-
-      if (filterName === "price") {
+      if (filterName === "tsina") {
         query = query.where("price").gte(filterValues[0]).lte(filterValues[1]);
       } else {
+        const { originalFilterName, originalFilterValues } =
+          getOriginalFilterNameAndValues(filterName, filterValues);
         query = query.where(`characteristics.${originalFilterName}`, {
           $in: originalFilterValues.map(
             (value) => new RegExp(`^${value}$`, "i")
@@ -131,11 +133,29 @@ export const getProductsByCategoryAndFilters = async (req, res) => {
     /*Counting number of pages for all filtered products*/
     result.numPages = Math.max(1, Math.ceil(allProducts.length / 50));
 
-    /*Counting max and min price of all filtered products*/
-    const prices = allProducts.map((p) => Number(p.price));
-    const minPrice = prices.reduce((a, b) => Math.min(a, b), Infinity);
-    const maxPrice = prices.reduce((a, b) => Math.max(a, b), -Infinity);
+    /*Counting max and min price of all category and filtered products*/
+    let allCategoryProducts = await Product.find({
+      category: { $in: activeCategoriesIds },
+    })
+      .select("name price")
+      .sort({ createdAt: -1 })
+      .exec();
+
+    const categoryPrices = allCategoryProducts.map((p) => Number(p.price));
+    const minPrice = categoryPrices.reduce((a, b) => Math.min(a, b), Infinity);
+    const maxPrice = categoryPrices.reduce((a, b) => Math.max(a, b), -Infinity);
     result.minMaxPrice = [minPrice, maxPrice];
+
+    const currentPrices = allProducts.map((p) => Number(p.price));
+    const minCurrentPrice = currentPrices.reduce(
+      (a, b) => Math.min(a, b),
+      Infinity
+    );
+    const maxCurrentPrice = currentPrices.reduce(
+      (a, b) => Math.max(a, b),
+      -Infinity
+    );
+    result.currentMinMaxPrice = [minCurrentPrice, maxCurrentPrice];
 
     /*Filtering products by page*/
     let products = allProducts;

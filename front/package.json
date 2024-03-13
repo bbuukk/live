@@ -6,8 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "test": "je st",
-    "lint": "next lint"
+    "test": "jest",
+    "lint": "next lint",
+    "lint:watch": "esw -w ."
   },
   "dependencies": {
     "@auth/mongodb-adapter": "^2.5.0",
@@ -54,9 +55,14 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@types/uuid": "^9.0.7",
+    "babel-eslint": "^10.1.0",
     "babel-jest": "^29.7.0",
-    "eslint": "^8",
+    "eslint": "^8.57.0",
     "eslint-config-next": "14.0.4",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-react": "^7.34.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-watch": "^8.0.0",
     "jest": "^29.7.0",
     "jest-css-modules-transform": "^4.4.2",
     "jest-environment-jsdom": "^29.7.0",

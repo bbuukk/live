@@ -4,8 +4,13 @@ import s from "./price-slider.module.scss";
 import { useDispatch } from "react-redux";
 import { setFilter } from "store/filtersSlice";
 
-const PriceSlider = ({ minPrice, maxPrice, currentMin, currentMax }) => {
-  const [minMaxPrice, setMinMaxPrice] = useState([minPrice, maxPrice]);
+const PriceSlider = ({ minMax, currentMinMax }) => {
+  console.log("🚀 ~ minMax:", minMax);
+  console.log("🚀 ~ currentMinMax:", currentMinMax);
+  const [minMaxPrice, setMinMaxPrice] = useState([
+    currentMinMax[0],
+    currentMinMax[1],
+  ]);
 
   const minDistance = 50; // Define your minimum distance here
 
@@ -13,7 +18,7 @@ const PriceSlider = ({ minPrice, maxPrice, currentMin, currentMax }) => {
   function handleConfirm(event, newValue) {
     dispatch(
       setFilter({
-        filterName: "price",
+        filterName: "tsina",
         filterValue: [minMaxPrice[0], minMaxPrice[1]],
       })
     );
@@ -25,7 +30,7 @@ const PriceSlider = ({ minPrice, maxPrice, currentMin, currentMax }) => {
     }
     if (newValue[1] - newValue[0] < minDistance) {
       if (activeThumb === 0) {
-        const clamped = Math.min(newValue[0], maxPrice - minDistance);
+        const clamped = Math.min(newValue[0], minMax[1] - minDistance);
 
         setMinMaxPrice([clamped, clamped + minDistance]);
       } else {
@@ -65,8 +70,8 @@ const PriceSlider = ({ minPrice, maxPrice, currentMin, currentMax }) => {
       <div className={`${s.body}`}>
         <Slider
           range="true"
-          min={minPrice}
-          max={maxPrice}
+          min={minMax[0]}
+          max={minMax[1]}
           step={10}
           value={minMaxPrice}
           onChange={handleChange}

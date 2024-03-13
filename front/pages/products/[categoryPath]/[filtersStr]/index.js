@@ -28,6 +28,7 @@ const Listing = ({
     numPages,
     filtersMap,
     minMaxPrice,
+    currentMinMaxPrice,
     page,
   },
 }) => {
@@ -92,10 +93,9 @@ const Listing = ({
 
         <div className="d-flex me-5">
           <FiltersAccordion
-            products={products}
-            category={category}
             filters={filtersMap}
             minMaxPrice={minMaxPrice}
+            currentMinMaxPrice={currentMinMaxPrice}
           />
 
           <div>

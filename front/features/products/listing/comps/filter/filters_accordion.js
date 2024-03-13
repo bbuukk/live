@@ -5,14 +5,13 @@ import PriceSlider from "./price-slider";
 import FilterChecks from "./filter_item";
 import s from "./filters_accordion.module.scss";
 import { useEffect, useRef, useState } from "react";
-import { useGetFilters } from "../../hooks/useGetFilters";
+
 import { useRouter } from "next/router";
 
 const FiltersAccordion = ({
-  products,
-  category,
   filters,
   minMaxPrice: minMax,
+  currentMinMaxPrice: currentMinMax,
 }) => {
   //todo make those filters active that are in url
   //todo filters got to recieve all products from filteration not only 50 first products
@@ -25,15 +24,10 @@ const FiltersAccordion = ({
   const { categoryPath } = router.query;
   const [isLoading, setIsLoading] = useState(false);
 
-  const { getFilters, getMinMaxPrice } = useGetFilters();
   const [minMaxPrice, setMinMaxPrice] = useState(minMax);
-  // const [filters, setFilters] = useState(getFilters(products, category));
 
   useEffect(() => {
-    // console.log("filters update");
-    // console.log(categoryPath);
     setIsLoading(true);
-    // console.log("🚀 ~ minMax:", minMax);
     setMinMaxPrice(minMax);
     setIsLoading(false);
   }, [categoryPath]);
@@ -60,12 +54,7 @@ const FiltersAccordion = ({
             <Accordion.Header>Ціна</Accordion.Header>
             <Accordion.Body>
               <div className={`${s.price_slider}`}>
-                <PriceSlider
-                  minPrice={minMaxPrice[0]}
-                  maxPrice={minMaxPrice[1]}
-                  currentMin={minMaxPrice[0]}
-                  currentMax={minMaxPrice[1]}
-                />
+                <PriceSlider minMax={minMax} currentMinMax={currentMinMax} />
               </div>
             </Accordion.Body>
           </Accordion.Item>
