@@ -16,6 +16,7 @@ const FiltersAccordion = ({
   //todo sometimes it changes filterValues when another one is chosen
   //todo fix all remaining english options in filters
   //todo why filters render in wrong order, brand got to be first
+  //todo price does not refresh on categoryPath change
 
   const router = useRouter();
   const { categoryPath } = router.query;

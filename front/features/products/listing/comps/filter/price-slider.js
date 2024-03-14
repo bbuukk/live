@@ -1,16 +1,21 @@
 import Slider from "@mui/material/Slider";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import s from "./price-slider.module.scss";
 import { useDispatch } from "react-redux";
 import { setFilter } from "store/filtersSlice";
+import { useRouter } from "next/router";
 
 const PriceSlider = ({ minMax, currentMinMax }) => {
-  console.log("🚀 ~ minMax:", minMax);
-  console.log("🚀 ~ currentMinMax:", currentMinMax);
+  const router = useRouter();
+  const { categoryPath } = router.query;
   const [minMaxPrice, setMinMaxPrice] = useState([
     currentMinMax[0],
     currentMinMax[1],
   ]);
+
+  useEffect(() => {
+    setMinMaxPrice([minMax[0], minMax[1]]);
+  }, [categoryPath]);
 
   const minDistance = 50; // Define your minimum distance here
 
