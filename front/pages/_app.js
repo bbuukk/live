@@ -2,7 +2,8 @@ import "styles/globals.scss";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import axios from "axios";
-axios.defaults.baseURL = "http://localhost:4000";
+axios.defaults.baseURL =
+  "https://live-jv9liryzd-bohdan-buchoks-projects.vercel.app/";
 
 import { SessionProvider, useSession } from "next-auth/react";
 
