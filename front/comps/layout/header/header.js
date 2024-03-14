@@ -10,6 +10,7 @@ import Link from "next/link";
 import { CustomTooltip } from "comps/tooltip";
 import { useSession, signIn, signOut } from "next-auth/react";
 import Image from "next/image";
+import { pacifico } from "pages/_app";
 
 //todo add shopping cart, when user is not auth
 //todo make it responsive
@@ -25,7 +26,10 @@ const Header = () => {
   return (
     <>
       <nav className={`navbar navbar-expand-sm ${s.header}`}>
-        <Link className={`${s.logo} navbar-brand`} href="/">
+        <Link
+          className={`${s.logo} navbar-brand ${pacifico.className}`}
+          href="/"
+        >
           Живий світ
         </Link>
         <SearchBar />

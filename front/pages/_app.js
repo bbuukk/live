@@ -2,6 +2,8 @@ import "styles/globals.scss";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import axios from "axios";
+
+//put it env
 axios.defaults.baseURL =
   "https://live-jv9liryzd-bohdan-buchoks-projects.vercel.app/";
 
@@ -25,6 +27,19 @@ import { useDispatch } from "react-redux";
 
 import { getProductsInfo } from "store/productsSlice";
 import { getCategoriesInfo } from "store/categoriesSlice";
+
+import { Balsamiq_Sans } from "next/font/google";
+import { Caveat } from "next/font/google";
+import { Overpass } from "next/font/google";
+import { Pacifico } from "next/font/google";
+import { Space_Mono } from "next/font/google";
+
+const balsamiqSans = Balsamiq_Sans({ weight: "400", subsets: ["latin"] });
+const caveat = Caveat({ weight: "400", subsets: ["latin"] });
+const overpass = Overpass({ weight: "900", subsets: ["latin"] });
+const pacifico = Pacifico({ weight: "400", subsets: ["latin"] });
+const spaceMono = Space_Mono({ weight: "400", subsets: ["latin"] });
+export { balsamiqSans, caveat, overpass, pacifico, spaceMono };
 
 export default function App({
   Component,
@@ -52,7 +67,7 @@ export default function App({
       </Head>
       <SessionProvider session={pageProps.session}>
         <Provider store={store}>
-          <div className="min-vh-80">
+          <div className={`min-vh-80 ${balsamiqSans.className}`}>
             {!excludedPaths.includes(router.pathname) && <Header />}
             <FetchData />
             <Component {...pageProps} />
