@@ -4,16 +4,17 @@ export const useGetFilters = () => {
 
     for (const pd of products) {
       for (const [key, value] of Object.entries(pd.characteristics)) {
-        if (category.filters.includes(key)) {
-          if (!filtersMap.has(key)) {
-            filtersMap.set(key, new Set());
-          }
-
-          filtersMap.get(key).add(...value);
+        // if (category.filters.includes(key)) {
+        if (!filtersMap.has(key)) {
+          filtersMap.set(key, new Set());
         }
+
+        filtersMap.get(key).add(...value);
+        // }
       }
     }
 
+    console.log("🚀 ~ filtersMap:", filtersMap);
     return filtersMap;
   }
 

@@ -23,25 +23,17 @@ import { useGetFilterMapFromStr } from "hooks/useGetFilterMapFromStr";
 const Listing = ({
   data: { category, subcategories, products, numPages, page },
 }) => {
+  //todo indefinite products tscrooling
   const router = useRouter();
   const dispatch = useDispatch();
   const { categoryPath, filtersStr } = router.query;
   const { filters } = useSelector((state) => state.filters);
+  const allProducts = useRef();
 
   const { getFilterMapFromStr } = useGetFilterMapFromStr();
   const { genFiltersStr } = useGenFilterStr();
 
-  // const isFirstRender = useRef(true);
-
   useEffect(() => {
-    // if (isFirstRender.current) {
-    //   console.log("This is the first render");
-    //   isFirstRender.current = false;
-    // } else {
-    //   console.log("This is a subsequent render");
-    // }
-
-    console.log("🚀 ~ filtersStr:", filtersStr);
     const filtersMap = getFilterMapFromStr(filtersStr);
     dispatch(setFilters(filtersMap));
 
@@ -53,19 +45,10 @@ const Listing = ({
   //todo fetch filtered products on client side
   useEffect(() => {
     let newFiltersStr = genFiltersStr(filters);
-    console.log("🚀 ~ filters:", filters);
-    // console.log("🚀 ~ newFiltersStr:", newFiltersStr);
-    // console.log("🚀 ~ filtersStr:", filtersStr);
 
     if (Object.keys(filters).length != 0 && newFiltersStr != filtersStr) {
       const filtersStrPageDefault = newFiltersStr.replace(/page=\d+/, "page=1");
-      console.log("🚀 ~ filtersStrPageDefault:", filtersStrPageDefault);
 
-      console.log(
-        isValidURL(
-          `http://localhost:3000/products/${categoryPath}/${filtersStrPageDefault}`
-        )
-      );
       router
         .push(`/products/${categoryPath}/${filtersStrPageDefault}`)
         .catch((error) =>
@@ -73,15 +56,6 @@ const Listing = ({
         );
     }
   }, [filters]);
-
-  function isValidURL(string) {
-    try {
-      new URL(string);
-      return true;
-    } catch (_) {
-      return false;
-    }
-  }
 
   //todo collect filters only on first render of page
   // const [isLoading, setIsLoading] = useState(false);

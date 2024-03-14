@@ -21,6 +21,11 @@ const categorySchema = new Schema({
     type: [String],
     required: false,
   },
+  // filters: {
+  //   type: Map,
+  //   of: [String],
+  //   required: false,
+  // },
 });
 
 export default model("category", categorySchema);

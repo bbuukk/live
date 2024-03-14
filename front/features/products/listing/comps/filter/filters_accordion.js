@@ -6,8 +6,17 @@ import FilterChecks from "./filter_item";
 import s from "./filters_accordion.module.scss";
 import { useEffect, useRef, useState } from "react";
 import { useGetFilters } from "../../hooks/useGetFilters";
+import { useRouter } from "next/router";
 
 const FiltersAccordion = ({ products, category }) => {
+  //todo make those filters active that are in url
+  //todo filters got to recieve all products from filteration not only 50 first products
+  // - hardcore filters for every category and get get minmax price in prop for page on every call
+  //! todo make filters options only cyrylic
+  //todo fix breadcrumps and pagination components navigations
+
+  const router = useRouter();
+  const { categoryPath } = router.query;
   const [isLoading, setIsLoading] = useState(false);
 
   const { getFilters, getMinMaxPrice } = useGetFilters();
@@ -19,6 +28,15 @@ const FiltersAccordion = ({ products, category }) => {
     // setFilters(filters);
     // setIsLoading(false);
   }, [filters]);
+
+  useEffect(() => {
+    // console.log("filters update");
+    // console.log(categoryPath);
+    setIsLoading(true);
+    setMinMaxPrice(getMinMaxPrice(products));
+    setFilters(getFilters(products, category));
+    setIsLoading(false);
+  }, [categoryPath]);
 
   //todo
   // fetch products with query params

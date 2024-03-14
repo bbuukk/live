@@ -37,6 +37,30 @@ export const getProductsByIds = async (req, res) => {
 };
 
 export const getProducts = async (req, res) => {
+  //todo it works, do it with all products with english brand names
+  const updates = [
+    { old: "Josera", new: "Йозера" },
+    { old: "Gourmet", new: "Гурме" },
+    // { old: "purina-friskies", new: "Purina Friskies" },
+    // { old: "Purina Felix", new: "Purina Friskies" },
+    // { old: "Purina Pro Plan", new: "Purina Friskies" },
+    // { old: "ВісКас", new: "Віскас" },
+    // { old: "Royal Canin", new: "Ройал Канін" },
+    // { old: "Trixie", new: "Тріксі" },
+    // { old: "Carnie", new: "Карні" },
+    // { old: "Golden Cat", new: "Голден Кет" },
+    // { old: "Catessy", new: "Катессі" },
+    // { old: "Pet Daily Cat", new: "Пет Дейлі Кет" },
+    // { old: "pan-kitpan-pes", new: "Пан Кіт-Пан Пес" },
+  ];
+  for (const update of updates) {
+    await Product.updateMany(
+      { "characteristics.Бренд": update.old },
+      { $set: { "characteristics.Бренд": update.new } }
+    );
+  }
+
+  return res.status(200).json({ message: "done" });
   const products = await Product.find({})
     .sort({ createdAt: -1 })
 
@@ -44,7 +68,7 @@ export const getProducts = async (req, res) => {
     .populate("category")
     .exec();
 
-  res.status(200).json(products);
+  return res.status(200).json(products);
 };
 
 export const getProductsByCategoryAndFilters = async (req, res) => {
@@ -84,19 +108,25 @@ export const getProductsByCategoryAndFilters = async (req, res) => {
     let query = Product.find({
       category: { $in: activeCategoryIds },
     })
-      .select("name brand price images characteristics")
-      .sort({ createdAt: -1 })
-      .populate("category");
+      .select("name price images characteristics") // if we fetch all products from category
+      .sort({ createdAt: -1 });
+
+    //? todo do we need to populate(category) here?
 
     if (filters) {
       for (let [filterName, filterValues] of filters) {
         if (filterName === "page") {
-          // Support for multiple pages
-          const pageId = filterValues[0];
-          const PRODUCTS_ON_PAGE = 50;
-          query = query
-            .skip(PRODUCTS_ON_PAGE * (pageId - 1))
-            .limit(PRODUCTS_ON_PAGE);
+          //   // if we fetch  products from category by page
+          continue;
+          //   query = query
+          //     .select("name price images characteristics")
+          //     .populate("category");
+
+          //   const pageId = filterValues[0];
+          //   const PRODUCTS_ON_PAGE = 50;
+          //   query = query
+          //     .skip(PRODUCTS_ON_PAGE * (pageId - 1))
+          //     .limit(PRODUCTS_ON_PAGE);
         } else if (filterName === "price") {
           query = query
             .where("price")
@@ -104,14 +134,14 @@ export const getProductsByCategoryAndFilters = async (req, res) => {
             .lte(filterValues[1]);
         } else {
           let unslugFilterName = untransliterate(unslugify(filterName));
+
+          //todo we can't use unslugify here with values being in english, cause it will cause loop
           unslugFilterName =
             unslugFilterName.charAt(0).toUpperCase() +
             unslugFilterName.slice(1);
           const unslugFilterValues = filterValues.map((value) => {
             return untransliterate(unslugify(value));
           });
-          console.log("🚀 ~ unslugFilterName:", unslugFilterName);
-          console.log("🚀 ~ unslugFilterValues:", unslugFilterValues);
 
           query = query.where(`characteristics.${unslugFilterName}`, {
             $in: unslugFilterValues.map(
@@ -122,18 +152,24 @@ export const getProductsByCategoryAndFilters = async (req, res) => {
       }
     }
 
-    // query = query.where(`characteristics.Країна реєстрації бренду`, {
-    //   $in: ["Україна"],
-    // });
+    //if categoryPath is not changed from previous time, we can just use
+    const totalProducts = await query.exec();
+    const numPages = Math.max(1, Math.ceil(totalProducts.length / 50));
 
-    const products = await query.exec();
+    let products = totalProducts;
 
-    const totalDocuments = await Product.find({
-      category: { $in: activeCategoryIds },
-    }).countDocuments();
-    const numPages = Math.max(1, Math.ceil(totalDocuments / 50));
+    //todo uncomment this for by page fetching
+    // const filterValues = filters.get("page");
+    // if (filterValues) {
+    //   const pageId = filterValues[0];
+    //   const PRODUCTS_ON_PAGE = 50;
+    //   products = products.slice(
+    //     PRODUCTS_ON_PAGE * (pageId - 1),
+    //     PRODUCTS_ON_PAGE * pageId
+    //   );
+    // }
 
-    const activeCategoryLevel = activeCategory.path.split(",").length;
+    const activeCategoryNestingLevel = activeCategory.path.split(",").length;
 
     res.status(200).json({
       category: activeCategory,
@@ -142,7 +178,7 @@ export const getProductsByCategoryAndFilters = async (req, res) => {
           // all subcategories except activeCategory
           c["name"] !== activeCategory["name"] &&
           //only one level deeper subcategories
-          c.path.split(",").length == activeCategoryLevel + 1
+          c.path.split(",").length == activeCategoryNestingLevel + 1
       ),
       products,
       numPages,

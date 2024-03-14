@@ -15,8 +15,6 @@ const FilterChecks = ({ filterLabel, options, idx }) => {
   const slugFilterLabel = slugify(transliterate(filterLabel));
   const [activeOptions, setActiveOptions] = useState(filters[slugFilterLabel]);
 
-  console.log("🚀 ~ filters:", filters);
-
   const dispatch = useDispatch();
   function handleConfirm(event, newValue) {
     dispatch(
@@ -41,7 +39,6 @@ const FilterChecks = ({ filterLabel, options, idx }) => {
 
   function handleChange(isChecked, option) {
     const slugOption = slugify(transliterate(option));
-    console.log("🚀 ~ isChecked:", isChecked);
     if (isChecked) {
       if (activeOptions != null) {
         setActiveOptions([...activeOptions, slugOption]);

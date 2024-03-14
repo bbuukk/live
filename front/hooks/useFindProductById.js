@@ -3,7 +3,7 @@ export const useFindProductById = () => {
     const foundProduct = products.find((p) => {
       return p._id == productId;
     });
-    console.log(foundProduct);
+    // console.log(foundProduct);
 
     return foundProduct;
   };
