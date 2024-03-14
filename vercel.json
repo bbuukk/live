@@ -1,0 +1,13 @@
+{
+    "version": 2,
+    "builds": [
+      {
+        "src": "/back/src/server.js",
+        "use": "@vercel/node"
+      },
+      {
+        "src": "/front/package.json",
+        "use": "@vercel/next"
+      }
+    ]
+  }
