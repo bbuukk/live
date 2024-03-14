@@ -1,12 +1,12 @@
 import Head from "next/head";
-import { getSession, useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import PersonalData from "features/profile/comps/personal_data/index";
 
 const PersonalDataPage = () => {
   // console.log(session);
-  const router = useRouter();
-  const { data: session, status } = useSession();
+  // const router = useRouter();
+  // const { data: session, status } = useSession();
   // console.log("🚀 ~ session:", session);
 
   return (

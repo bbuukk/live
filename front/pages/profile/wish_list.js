@@ -1,4 +1,4 @@
-import Gallery from "features/profile/comps/wish_list/gallery";
+// import Gallery from "features/profile/comps/wish_list/gallery";
 import Head from "next/head";
 
 const WishList = () => {

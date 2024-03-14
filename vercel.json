@@ -9,5 +9,6 @@
         "src": "/front/package.json",
         "use": "@vercel/next"
       }
-    ]
+    ],
+    "github": { "enabled": false }
   }
