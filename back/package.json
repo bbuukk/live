@@ -1,6 +1,9 @@
 {
   "name": "back",
   "version": "1.0.0",
+  "imports": {
+    "#src/*": "./src/*"
+  },
   "description": "",
   "main": "src/server.js",
   "type": "module",
@@ -12,6 +15,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+
   "dependencies": {
     "@bbuukk/slugtrans": "^1.0.9",
     "bcryptjs": "^2.4.3",
@@ -19,6 +23,7 @@
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.2",
+    "module-alias": "^2.2.3",
     "mongoose": "^8.1.3",
     "nodemon": "^3.0.1",
     "nookies": "^2.5.2",
