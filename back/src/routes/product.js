@@ -18,11 +18,14 @@ import { updateProduct } from "#src/controllers/productsController/updateProduct
 
 import { deleteProduct } from "#src/controllers/productsController/deleteProduct.js";
 
+import { getRecommendations } from "#src/controllers/productsController/getRecommendations.js";
+
 const router = express.Router();
 
 router.get("/", getProducts);
 router.get("/product/:id", getProductById);
 router.get("/:slugCategoryPath/:filtersStr?", getProductsByCategoryAndFilters);
+router.get("/recommendations/:id", getRecommendations);
 
 router.use(requireAuth);
 router.use(isAdmin);

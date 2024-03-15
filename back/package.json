@@ -15,9 +15,9 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-
   "dependencies": {
     "@bbuukk/slugtrans": "^1.0.9",
+    "axios": "^1.6.8",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
