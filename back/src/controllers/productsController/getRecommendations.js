@@ -1,6 +1,20 @@
 import Product from "#src/models/product.js";
 import axios from "axios";
 
+//? todo is this common practice to use another endpoint here?
+//recomendation system end
+export const getRecommendations = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const product = await Product.findById(id).populate("category");
+    const products = await Product.find({}).select("description").exec();
+
+    return res.status(200).json({ product, products });
+  } catch (error) {
+    return res.status(500).json({ message: "Such product can not be found" });
+  }
+};
+
 // //Recommendation system
 // // Function to calculate term frequency (TF)
 // function calculateTF(term, document) {
@@ -106,28 +120,3 @@ import axios from "axios";
 //   },
 //   [[], []]
 // );
-
-//? todo is this common practice to use another endpoint here?
-//recomendation system end
-export const getRecommendations = async (req, res) => {
-  return res.status(404).json({ message: "Such product can not be found" });
-  const { id } = req.params;
-  console.log("🚀 ~ id:", id);
-
-  let product = null;
-  try {
-    const res = await axios.get(`/products/${id}`);
-    product = res.data;
-  } catch (error) {
-    res.status(500).json({ message: "Such product can not be found" });
-  }
-  if (product == null) {
-    res.status(404).json({ message: "Such product can not be found" });
-  }
-  console.log("🚀 ~ product:", product);
-
-  const products = await Product.find({}).select("description").exec();
-  console.log("🚀 ~ products:", products);
-
-  res.status(200).json(null);
-};

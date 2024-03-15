@@ -1,15 +1,11 @@
 import express from "express";
 import cors from "cors";
-import axios from "axios";
-axios.defaults.baseURL = process.env.BASE_URL;
 
 import { productsRoutes } from "./routes/product.js";
 import { categoryRoutes } from "./routes/category.js";
 import { userRoutes } from "./routes/user.js";
 
 const app = express();
-
-// app.use(express.json({ limit: "300mb" }));
 
 app.use(cors());
 app.use(express.json());
