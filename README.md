@@ -11,6 +11,8 @@
 <span align="center">Pet Care and Household Goods E-Commerce Platform</span>
 </h3>
 
+<!-- add link to website -->
+
 <br>
 <h2>Features</h2>
 
