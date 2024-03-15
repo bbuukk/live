@@ -1,8 +1,6 @@
-import s from "./work_hours.module.scss";
-
 const WorkHours = () => {
   return (
-    <section className={`${s.work_hours}`}>
+    <section>
       <h2>
         <i className="bi bi-clock-fill"></i>
         <span>Коли працюємо?</span>

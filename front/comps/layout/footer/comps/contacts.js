@@ -5,7 +5,7 @@ const Contacts = () => {
         <i className="bi bi-geo-alt-fill"></i>
         <span>Адреса</span>
       </h2>
-      <p>м. Калинівка, вул. Вулична, 18</p>
+      <p className="text-center">м. Калинівка, вул. Незалежності, 47б</p>
     </address>
   );
 };

@@ -1,8 +1,8 @@
-import s from "../footer.module.scss";
+import s from "./location.module.scss";
 
 const Location = () => {
   return (
-    <address>
+    <address className={`${s.location}`}>
       <h2>
         <i className="bi bi-pin-map-fill"></i>
         <span>Мапа</span>

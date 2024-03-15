@@ -3,28 +3,29 @@ import AboutUs from "./comps/about_us";
 import WorkHours from "./comps/work_hours";
 import Contacts from "./comps/contacts";
 import Location from "./comps/location";
+import { balsamiqSans } from "pages/_app";
 
 const Footer = () => (
   <>
-    <div className={`${s.decor_line}`}></div>
-    <footer className={`${s.footer_container}`}>
-      <div className={`row  ${s.footer}`}>
-        <div className={`col-sm-12 col-md-6 col-xl-4 ${s.about_us}`}>
+    <div className={`${s.decor_line}`} />
+    <footer className={` ${s.footer} ${balsamiqSans.className}`}>
+      <ol className={`row`}>
+        <li className={`col-sm-12 col-md-6 col-xl-4`}>
           <AboutUs />
-        </div>
+        </li>
 
-        <div className={`col-sm-12 col-md-6 col-xl-3 ${s.work_hours}`}>
+        <li className={`col-sm-12 col-md-6 col-xl-3 `}>
           <WorkHours />
-        </div>
+        </li>
 
-        <div className={`col-sm-12 col-md-6 col-xl-3 ${s.contacts}`}>
+        <li className={`col-sm-12 col-md-6 col-xl-3 `}>
           <Contacts />
-        </div>
+        </li>
 
-        <div className={`col-sm-12 col-md-6 col-xl-2  ${s.location}`}>
+        <li className={`col-sm-12 col-md-6 col-xl-2`}>
           <Location />
-        </div>
-      </div>
+        </li>
+      </ol>
     </footer>
   </>
 );
