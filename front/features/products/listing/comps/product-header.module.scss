@@ -1,21 +1,7 @@
 @use "styles/variables" as *;
 @use "styles/mixins" as *;
-@import "node_modules/rfs/sass.sass";
 
 .product_header {
-  .body {
-    display: flex;
-    justify-content: space-between;
-    display: flex;
-    align-items: center;
-  }
-
-  .breadcrumbs {
-    margin-bottom: 0.3rem;
-    
-
-    @include text_muted($color-daslgrey, 0.4);
-
-    //to do faded-text style
-  }
+  padding: 0.5rem 0 1.5rem 0;
 }
+  

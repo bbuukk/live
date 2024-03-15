@@ -12,7 +12,7 @@ const SubcategoryCard = ({ category }) => {
   const { name, imagePath } = category;
 
   function saveActiveCategory() {
-    console.log(category);
+    // console.log(category);
     if (typeof window !== "undefineid") {
       localStorage.setItem("activeCategory", JSON.stringify(category));
     }

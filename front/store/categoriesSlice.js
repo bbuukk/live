@@ -6,12 +6,12 @@ export const getCategoriesInfo = createAsyncThunk(
   async () => {
     try {
       const res = await axios.get(`/categories/`);
-
+      
       return { categories: res.data };
     } catch (error) {
       throw new Error("Failed to fetch categories");
     }
-  }
+  } 
 );
 
 export const categoriesSlice = createSlice({

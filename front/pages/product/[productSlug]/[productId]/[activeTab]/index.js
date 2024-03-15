@@ -1,19 +1,9 @@
-import { useRouter } from "next/router";
+
 
 import About from "features/products/landing/comps/about/index";
 import Characteristics from "features/products/landing/comps/characteristics/index";
 
-// import ReviewsList from "features/products/landing/comps/reviews-list";
-
-import LandingProuductLayout from "features/products/landing/comps/layout/layout";
-import { useFindCategoryByPath } from "hooks/useFindCategoryByPath";
-import { useFindProductById } from "hooks/useFindProductById";
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { untransliterate } from "@bbuukk/slugtrans/transliterate";
-import { unslugify } from "@bbuukk/slugtrans/slugify";
 import Head from "next/head";
-import { setActiveIndi } from "store/productsSlice";
 import axios from "axios";
 import Navigation from "features/products/landing/comps/layout/navigation";
 import Breadcrumbs from "comps/breadcrumbs";
@@ -32,10 +22,15 @@ const Landing = ({ product, activeTab }) => {
           )}...`}
         />
       </Head>
-      <div className="">
+      
+      {/* padding: 0.5rem 0 1.5rem 0; */}
+      <div className="mx-5 pt-3">
+
         <Breadcrumbs category={product.category[0]} />
-        <Navigation activeTab={activeTab} />
       </div>
+      
+        <Navigation activeTab={activeTab} />
+      
       {activeTab == "about" && <About product={product} />}
       {activeTab == "characteristics" && <Characteristics product={product} />}
       {/* {activeTab == "reviews" && <Reviews product={product} />} */}

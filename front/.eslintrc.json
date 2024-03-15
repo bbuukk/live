@@ -3,8 +3,7 @@
     "eslint:recommended",
     "next",
     "next/core-web-vitals",
-    "prettier",
-    "next/babel"
+    "prettier"
   ],
   "plugins": [],
   "parserOptions": {

@@ -37,7 +37,7 @@ const Listing = ({
   const dispatch = useDispatch();
   const { categoryPath, filtersStr } = router.query;
   const { filters } = useSelector((state) => state.filters);
-  const allProducts = useRef();
+
 
   const { getFilterMapFromStr } = useGetFilterMapFromStr();
   const { genFiltersStr } = useGenFilterStr();

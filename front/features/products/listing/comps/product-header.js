@@ -1,7 +1,4 @@
-import { useEffect, useState } from "react";
 import s from "./product-header.module.scss";
-import Link from "next/link";
-import { v4 as uuidv4 } from "uuid";
 import Breadcrumbs from "comps/breadcrumbs";
 
 const ProductHeader = ({ category }) => {
@@ -9,6 +6,7 @@ const ProductHeader = ({ category }) => {
     <>
       <div className={`${s.product_header}`}>
         <Breadcrumbs category={category} />
+        <h2>{category.name}</h2>
       </div>
     </>
   );

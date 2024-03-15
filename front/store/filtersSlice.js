@@ -15,16 +15,6 @@ const filtersSlice = createSlice({
     setFilter: (state, action) => {
       state.filters[action.payload.filterName] = action.payload.filterValue;
     },
-    //for adding one single value to an filterValue
-    // addFilter: (state, action) => {
-    //   if (state.filters[action.payload.filterName]) {
-    //     state.filters[action.payload.filterName].push(
-    //       action.payload.filterValue
-    //     );
-    //   } else {
-    //     state.filters[action.payload.filterName] = [action.payload.filterValue];
-    //   }
-    // },
     deleteFilter: (state, action) => {
       delete state.filters[action.payload.filterName];
     },

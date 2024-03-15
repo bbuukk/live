@@ -5,7 +5,7 @@ import axios from "axios";
 
 axios.defaults.baseURL = process.env.BACKEND_URL;
 
-import { SessionProvider, useSession } from "next-auth/react";
+import { SessionProvider } from "next-auth/react";
 
 import React, { useState, useEffect } from "react";
 
@@ -48,7 +48,7 @@ export default function App({
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      require("bootstrap/dist/js/bootstrap");
+      require("bootstrap/dist/js/bootstrap" );
       require("@popperjs/core");
     }
   }, []);
@@ -63,7 +63,7 @@ export default function App({
           content="Живий Світ - Магазин н айкращих товарів для вашого дому, домашніх улюбленців та рослин"
         />
       </Head>
-      <SessionProvider session={pageProps.session}>
+      <SessionProvider session={session}>
         <Provider store={store}>
           <div className={`min-vh-80 ${balsamiqSans.className}`}>
             {!excludedPaths.includes(router.pathname) && <Header />}

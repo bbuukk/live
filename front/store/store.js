@@ -1,4 +1,4 @@
-import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
 import { productsReducer } from "./productsSlice";
 import { categoriesReducer } from "./categoriesSlice";
 import { filtersReducer } from "./filtersSlice";

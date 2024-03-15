@@ -18,7 +18,7 @@ const Header = () => {
   // const { data: session } = useSession();
   // const { user } = useSelector((state) => state.user);
   const { data: session } = useSession();
-  console.log(session);
+  
 
   const [showSignInModal, setShowSignInModal] = useState(false);
   const [showSignUpModal, setShowSignUpModal] = useState(false);
