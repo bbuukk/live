@@ -1,7 +1,5 @@
 import express from "express";
 import cors from "cors";
-import axios from "axios";
-axios.defaults.baseURL = process.env.BASE_URL;
 
 import { productsRoutes } from "./routes/product.js";
 import { categoryRoutes } from "./routes/category.js";

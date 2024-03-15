@@ -24,8 +24,8 @@ const router = express.Router();
 
 router.get("/", getProducts);
 router.get("/product/:id", getProductById);
+router.get("/product/recommendations/:id", getRecommendations);
 router.get("/:slugCategoryPath/:filtersStr?", getProductsByCategoryAndFilters);
-router.get("/recommendations/:id", getRecommendations);
 
 router.use(requireAuth);
 router.use(isAdmin);
