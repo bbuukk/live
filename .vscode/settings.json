@@ -33,7 +33,8 @@
     "front/.env": false,
     ".env": false,
     "**/dump": false,
-    "dump": false
+    "dump": false,
+    "**/.github": false
   },
   "explorerExclude.backup": {},
   "workbench.colorCustomizations": {

@@ -3,9 +3,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import axios from "axios";
 
-//put it env
-axios.defaults.baseURL =
-  "https://live-jv9liryzd-bohdan-buchoks-projects.vercel.app/";
+axios.defaults.baseURL = process.env.BACKEND_URL;
 
 import { SessionProvider, useSession } from "next-auth/react";
 
@@ -62,7 +60,7 @@ export default function App({
         <title> Живий світ - Магазин зоотоварів і товарів для дому </title>
         <meta
           name="description"
-          content="Живий Світ - Магазин найкращих товарів для вашого дому, домашніх улюбленців та рослин"
+          content="Живий Світ - Магазин н айкращих товарів для вашого дому, домашніх улюбленців та рослин"
         />
       </Head>
       <SessionProvider session={pageProps.session}>
