@@ -1,15 +1,20 @@
-import { useState } from "react";
 import s from "./header.module.scss";
-import SignInModal from "../../../features/authentication/comps/auth/sign_in_modal";
-import SignUpModal from "../../../features/authentication/comps/auth/sign_up_modal";
+
+import { CustomTooltip } from "comps/tooltip";
+
+import SignInModal from "features/authentication/comps/auth/sign_in_modal";
+import SignUpModal from "features/authentication/comps/auth/sign_up_modal";
 
 import SignInPopOver from "./comps/sign_in_popover";
 import SearchBar from "./comps/search-bar";
-import { useSelector } from "react-redux";
+
+import { useState } from "react";
+
 import Link from "next/link";
-import { CustomTooltip } from "comps/tooltip";
-import { useSession, signIn, signOut } from "next-auth/react";
 import Image from "next/image";
+
+import { useSession } from "next-auth/react";
+
 import { pacifico } from "pages/_app";
 
 //todo add shopping cart, when user is not auth
@@ -18,7 +23,6 @@ const Header = () => {
   // const { data: session } = useSession();
   // const { user } = useSelector((state) => state.user);
   const { data: session } = useSession();
-  
 
   const [showSignInModal, setShowSignInModal] = useState(false);
   const [showSignUpModal, setShowSignUpModal] = useState(false);

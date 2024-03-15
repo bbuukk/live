@@ -1,5 +1,6 @@
 @use "./variables" as *;
 @use "./mixins" as *;
+@import './normalize.scss';
 @import './reset.scss';
 
 html {
