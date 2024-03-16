@@ -1,12 +1,11 @@
-
-
 import About from "features/products/landing/comps/about/index";
 import Characteristics from "features/products/landing/comps/characteristics/index";
 
-import Head from "next/head";
 import axios from "axios";
-import Navigation from "features/products/landing/comps/layout/navigation";
 import Breadcrumbs from "comps/breadcrumbs";
+import Navigation from "features/products/landing/comps/layout/navigation";
+
+import Head from "next/head";
 import { stripHtmlTags } from "utils/stripHtmlTags";
 
 //todo fix we take first category available on product, but it can be not the category user was in
@@ -22,15 +21,14 @@ const Landing = ({ product, activeTab }) => {
           )}...`}
         />
       </Head>
-      
+
       {/* padding: 0.5rem 0 1.5rem 0; */}
       <div className="mx-5 pt-3">
-
         <Breadcrumbs category={product.category[0]} />
       </div>
-      
-        <Navigation activeTab={activeTab} />
-      
+
+      <Navigation activeTab={activeTab} />
+
       {activeTab == "about" && <About product={product} />}
       {activeTab == "characteristics" && <Characteristics product={product} />}
       {/* {activeTab == "reviews" && <Reviews product={product} />} */}

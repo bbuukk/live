@@ -1,5 +1,5 @@
 import { useState } from "react";
-import s from "../header.module.scss";
+import s from "./search-bar.module.scss";
 
 const SearchBar = () => {
   const [searchText, setSearchText] = useState("");

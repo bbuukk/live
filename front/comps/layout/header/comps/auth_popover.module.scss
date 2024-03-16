@@ -2,7 +2,7 @@
 @use "./styles/mixins" as *;
 @import "node_modules/rfs/sass.sass";
 
-.sign_in_popover {
+.auth_popover {
   box-shadow: 0 0 5px 3px lightgrey;
   --bs-popover-border-color: transparent !important;
 
@@ -41,5 +41,19 @@
         color: $color-milk;
       }
     }
+  }
+}
+
+  
+.overlay_trigger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .profile_icon {
+    color: $color-daslgrey;
+    @include icon;
+    
+    cursor: pointer;
   }
 }

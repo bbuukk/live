@@ -1,2 +1,37 @@
 @use "./styles/variables" as *;
 @import "node_modules/rfs/sass.sass";
+
+.search_bar {
+    display: flex;
+
+    .search_field {
+      flex: 0 1 80%;
+      border: 0;
+      border-radius: 1rem 0 0 1rem;
+
+      @include font-size(1.5rem);
+
+      &::placeholder {
+        color: $color-indep-muted;
+      }
+    }
+
+    .search_button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      gap: 0.3rem;
+
+      flex: 0 1 10%;
+      border-radius: 0 1rem 1rem 0;
+
+      background-color: $color-dureen;
+      color: white;
+      font-size: 1.5rem;
+
+      i {
+        font-size: 1.1rem;
+      }
+    }
+  }

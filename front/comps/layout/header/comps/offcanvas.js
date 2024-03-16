@@ -90,7 +90,7 @@ export const OffcanvasToggler = () => {
       aria-controls="offcanvasNavbar"
       aria-label="Toggle navigation"
     >
-      <span className="navbar-toggler-icon"></span>
+      <i class="bi bi-list" />
     </button>
   );
 };

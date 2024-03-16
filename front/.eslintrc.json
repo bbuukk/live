@@ -5,7 +5,16 @@
     "next/core-web-vitals",
     "prettier"
   ],
-  "plugins": [],
+  "plugins": ["import"],
+  "rules": {
+    "import/order": [
+      "error",
+      {
+        "groups": ["builtin", "external", "internal", "parent", "sibling", "index"],
+        "newlines-between": "always"
+      }
+    ]
+  },
   "parserOptions": {
     "ecmaVersion": 2022,
     "sourceType": "module",
@@ -13,3 +22,4 @@
   },
   "env": { "es6": true, "browser": true, "node": true }
 }
+

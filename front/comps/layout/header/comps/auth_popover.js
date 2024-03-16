@@ -1,39 +1,35 @@
-import { CustomTooltip } from "comps/tooltip";
-import { useSignOut } from "hooks/useSingOut";
+import s from "./auth_popover.module.scss";
+import hs from "../header.module.scss";
+import { balsamiqSans } from "pages/_app";
+
+import { useState } from "react";
 import Link from "next/link";
+
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Popover from "react-bootstrap/Popover";
-import s from "./sign_in_popover.module.scss";
-import hs from "../header.module.scss";
-import { useState, useRef } from "react";
+
 import SignInModal from "features/authentication/comps/auth/sign_in_modal";
 import SignUpModal from "features/authentication/comps/auth/sign_up_modal";
 
-//todo refactor this component, it is an absolute mess
-const SignInPopOver = () => {
+const AuthPopover = () => {
   const [showSignInModal, setShowSignInModal] = useState(false);
   const [showSignUpModal, setShowSignUpModal] = useState(false);
 
+  const closePopover = () => document.body.click();
+  const toggleSignInModal = () => setShowSignInModal(!showSignInModal);
+  const toggleSignUpModal = () => setShowSignUpModal(!showSignUpModal);
+
   const handleSignIn = async (e) => {
-    document.body.click();
-    setShowSignInModal(!showSignInModal);
+    closePopover();
+    toggleSignInModal();
   };
 
   const handleSignUp = async (e) => {
-    document.body.click();
-    setShowSignUpModal(!showSignUpModal);
-  };
-
-  const closePopover = () => {
-    document.body.click();
+    closePopover();
+    toggleSignUpModal();
   };
 
   const [showPopover, setShowPopover] = useState(false);
-  const ref = useRef(null);
-
-  const handleShow = () => {
-    setShowPopover(true);
-  };
 
   let popoverhover = false;
   const handleHide = () => {
@@ -44,11 +40,13 @@ const SignInPopOver = () => {
     }, 250);
   };
 
+  const handleShow = () => {
+    setShowPopover(true);
+  };
+
   const unsignedPopover = (
     <Popover
-      ref={ref}
-      id="popover-basic"
-      className={`${s.sign_in_popover}`}
+      className={`${s.auth_popover}`}
       onMouseLeave={() => {
         setShowPopover(false);
         popoverhover = false;
@@ -58,7 +56,7 @@ const SignInPopOver = () => {
       }}
     >
       <Popover.Body>
-        <div className={`${s.unsigned_popover}`}>
+        <div className={`${s.unsigned_popover} ${balsamiqSans.className}`}>
           <button className={`btn ${s.sign_in_button}`} onClick={handleSignIn}>
             <p>Увійти</p>
           </button>
@@ -79,7 +77,7 @@ const SignInPopOver = () => {
   );
 
   return (
-    <div className={`${hs.overlay_trigger}`}>
+    <div className={`${s.overlay_trigger}`}>
       <OverlayTrigger
         trigger={["hover", "focus"]}
         placement="bottom"
@@ -88,7 +86,7 @@ const SignInPopOver = () => {
         show={showPopover}
       >
         <i
-          className={`bi bi-person-circle fs-1 ${hs.profile_icon}`}
+          className={`bi bi-person-circle ${s.profile_icon}`}
           onMouseEnter={handleShow}
           onMouseLeave={handleHide}
         ></i>
@@ -96,25 +94,17 @@ const SignInPopOver = () => {
 
       <SignInModal
         isOpen={showSignInModal}
-        toggle={() => {
-          setShowSignInModal(!showSignInModal);
-        }}
-        toggleSignUpModal={() => {
-          setShowSignUpModal(!showSignUpModal);
-        }}
+        toggle={toggleSignInModal}
+        toggleSignUpModal={toggleSignUpModal}
       />
 
       <SignUpModal
         isOpen={showSignUpModal}
-        toggle={() => {
-          setShowSignUpModal(!showSignUpModal);
-        }}
-        toggleSignInModal={() => {
-          setShowSignInModal(!showSignInModal);
-        }}
+        toggle={toggleSignUpModal}
+        toggleSignInModal={toggleSignInModal}
       />
     </div>
   );
 };
 
-export default SignInPopOver;
+export default AuthPopover;
