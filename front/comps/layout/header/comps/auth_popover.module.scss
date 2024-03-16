@@ -44,7 +44,7 @@
   }
 }
 
-  
+
 .overlay_trigger {
   display: flex;
   align-items: center;
@@ -56,4 +56,9 @@
     
     cursor: pointer;
   }
+
+  @media only screen and (max-width: 600px) {  
+      display: none;
+} 
 }
+

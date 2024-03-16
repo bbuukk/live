@@ -1,5 +1,6 @@
 import { useState } from "react";
 import s from "./search-bar.module.scss";
+import hs from "../header.module.scss";
 
 const SearchBar = () => {
   const [searchText, setSearchText] = useState("");
@@ -9,7 +10,11 @@ const SearchBar = () => {
   };
 
   return (
-    <form className={`${s.search_bar}`} role="search" onSubmit={handleSearch}>
+    <form
+      className={`${s.search_bar} ${hs.search_bar}`}
+      role="search"
+      onSubmit={handleSearch}
+    >
       <input
         className={`form-control ${s.search_field}`}
         type="search"

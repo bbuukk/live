@@ -1,5 +1,6 @@
 import s from "./auth_popover.module.scss";
 import hs from "../header.module.scss";
+
 import { balsamiqSans } from "pages/_app";
 
 import { useState } from "react";
@@ -77,7 +78,7 @@ const AuthPopover = () => {
   );
 
   return (
-    <div className={`${s.overlay_trigger}`}>
+    <div className={`${s.overlay_trigger} ${hs.overlay_trigger}`}>
       <OverlayTrigger
         trigger={["hover", "focus"]}
         placement="bottom"

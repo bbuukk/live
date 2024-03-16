@@ -1,4 +1,5 @@
-import s from "./icon_button_group.module.scss";
+import s from "./authenticated_button_group.module.scss";
+import hs from "../../header.module.scss";
 
 import { CustomTooltip } from "comps/tooltip";
 
@@ -15,9 +16,10 @@ const IconButton = ({ href, children, tooltipText }) => {
   );
 };
 
-export const IconButtonGroup = ({ session }) => {
+//todo list of links with unordered list
+const AuthenticatedButtonGroup = ({ session }) => {
   return (
-    <div className={`order-sm-2 ${s.icon_btn_group}`}>
+    <div className={`order-sm-2 ${s.icon_btn_group} ${hs.icon_btn_group}`}>
       <IconButton
         href={"/profile/personal_data"}
         tooltipText={"Персональний кабінет"}
@@ -46,3 +48,5 @@ export const IconButtonGroup = ({ session }) => {
     </div>
   );
 };
+
+export default AuthenticatedButtonGroup;

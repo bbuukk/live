@@ -1,4 +1,5 @@
 import s from "./offcanvas.module.scss";
+import hs from "../header.module.scss";
 
 export const Offcanvas = () => {
   return (
@@ -83,7 +84,7 @@ export const Offcanvas = () => {
 export const OffcanvasToggler = () => {
   return (
     <button
-      className=""
+      className={`${s.offcanvas_toggler} ${hs.offcanvas_toggler}`}
       type="button"
       data-bs-toggle="offcanvas"
       data-bs-target="#offcanvasNavbar"

@@ -2,7 +2,7 @@ import s from "./header.module.scss";
 
 import AuthPopover from "./comps/auth_popover";
 import SearchBar from "./comps/search-bar";
-import IconButtonGroup from "./comps/icon_button_group";
+import UnauthenticatedButtonGroup from "./comps/button_group/unatenticated_button_group";
 
 import { useSession } from "next-auth/react";
 
@@ -17,7 +17,7 @@ const Header = () => {
   const { data: session } = useSession();
 
   return (
-    <>
+    <header>
       <nav className={`navbar ${s.header}`}>
         <OffcanvasToggler />
         <Offcanvas />
@@ -29,11 +29,11 @@ const Header = () => {
             <AuthPopover />
           </>
         ) : (
-          <IconButtonGroup session={session} />
+          <UnauthenticatedButtonGroup session={session} />
         )}
       </nav>
       <div className={`${s.underline}`}></div>
-    </>
+    </header>
   );
 };
 
