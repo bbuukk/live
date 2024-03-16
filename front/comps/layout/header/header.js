@@ -2,9 +2,6 @@ import s from "./header.module.scss";
 
 import { CustomTooltip } from "comps/tooltip";
 
-import SignInModal from "features/authentication/comps/auth/sign_in_modal";
-import SignUpModal from "features/authentication/comps/auth/sign_up_modal";
-
 import SignInPopOver from "./comps/sign_in_popover";
 import SearchBar from "./comps/search-bar";
 
@@ -25,9 +22,6 @@ const Header = () => {
   // const { user } = useSelector((state) => state.user);
   const { data: session } = useSession();
 
-  const [showSignInModal, setShowSignInModal] = useState(false);
-  const [showSignUpModal, setShowSignUpModal] = useState(false);
-
   return (
     <>
       <nav className={`navbar ${s.header}`}>
@@ -38,34 +32,11 @@ const Header = () => {
 
         {!session ? (
           <>
-            <SignInPopOver
-              toggleSignInModal={() => setShowSignInModal(!showSignInModal)}
-              toggleSignUpModal={() => setShowSignUpModal(!showSignUpModal)}
-            />
+            <SignInPopOver />
           </>
         ) : (
           <IconButtonGroup session={session} />
         )}
-
-        <SignInModal
-          isOpen={showSignInModal}
-          toggle={() => {
-            setShowSignInModal(!showSignInModal);
-          }}
-          toggleSignUpModal={() => {
-            setShowSignUpModal(!showSignUpModal);
-          }}
-        />
-
-        <SignUpModal
-          isOpen={showSignUpModal}
-          toggle={() => {
-            setShowSignUpModal(!showSignUpModal);
-          }}
-          toggleSignInModal={() => {
-            setShowSignInModal(!showSignInModal);
-          }}
-        />
       </nav>
       <div className={`${s.underline}`}></div>
     </>

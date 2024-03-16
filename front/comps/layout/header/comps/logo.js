@@ -6,7 +6,7 @@ import Link from "next/link";
 const Logo = () => {
   return (
     <>
-      <Link className={`${s.logo} navbar-brand ${pacifico.className}`} href="/">
+      <Link className={`${s.logo}  ${pacifico.className}`} href="/">
         Живий світ
       </Link>
     </>

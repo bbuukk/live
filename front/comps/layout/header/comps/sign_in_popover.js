@@ -6,16 +6,22 @@ import Popover from "react-bootstrap/Popover";
 import s from "./sign_in_popover.module.scss";
 import hs from "../header.module.scss";
 import { useState, useRef } from "react";
+import SignInModal from "features/authentication/comps/auth/sign_in_modal";
+import SignUpModal from "features/authentication/comps/auth/sign_up_modal";
 
-const SignInPopOver = ({ toggleSignInModal, toggleSignUpModal }) => {
+//todo refactor this component, it is an absolute mess
+const SignInPopOver = () => {
+  const [showSignInModal, setShowSignInModal] = useState(false);
+  const [showSignUpModal, setShowSignUpModal] = useState(false);
+
   const handleSignIn = async (e) => {
     document.body.click();
-    toggleSignInModal();
+    setShowSignInModal(!showSignInModal);
   };
 
   const handleSignUp = async (e) => {
     document.body.click();
-    toggleSignUpModal();
+    setShowSignUpModal(!showSignUpModal);
   };
 
   const closePopover = () => {
@@ -87,6 +93,26 @@ const SignInPopOver = ({ toggleSignInModal, toggleSignUpModal }) => {
           onMouseLeave={handleHide}
         ></i>
       </OverlayTrigger>
+
+      <SignInModal
+        isOpen={showSignInModal}
+        toggle={() => {
+          setShowSignInModal(!showSignInModal);
+        }}
+        toggleSignUpModal={() => {
+          setShowSignUpModal(!showSignUpModal);
+        }}
+      />
+
+      <SignUpModal
+        isOpen={showSignUpModal}
+        toggle={() => {
+          setShowSignUpModal(!showSignUpModal);
+        }}
+        toggleSignInModal={() => {
+          setShowSignInModal(!showSignInModal);
+        }}
+      />
     </div>
   );
 };
