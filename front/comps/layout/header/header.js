@@ -15,7 +15,8 @@ import Image from "next/image";
 
 import { useSession } from "next-auth/react";
 
-import { pacifico } from "pages/_app";
+import { Offcanvas, OffcanvasToggler } from "./comps/offcanvas";
+import Logo from "./comps/logo";
 
 //todo add shopping cart, when user is not auth
 //todo make it responsive
@@ -29,23 +30,22 @@ const Header = () => {
 
   return (
     <>
-      <nav className={`navbar navbar-expand-sm ${s.header}`}>
-        <Link
-          className={`${s.logo} navbar-brand ${pacifico.className}`}
-          href="/"
-        >
-          Живий світ
-        </Link>
+      <nav className={`navbar ${s.header}`}>
+        <OffcanvasToggler />
+        <Offcanvas />
+        <Logo />
         <SearchBar />
-        {!session && (
+
+        {!session ? (
           <>
             <SignInPopOver
               toggleSignInModal={() => setShowSignInModal(!showSignInModal)}
               toggleSignUpModal={() => setShowSignUpModal(!showSignUpModal)}
             />
           </>
+        ) : (
+          <IconButtonGroup session={session} />
         )}
-        {session && <IconButtonGroup session={session} />}
 
         <SignInModal
           isOpen={showSignInModal}

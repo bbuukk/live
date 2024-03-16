@@ -14,21 +14,6 @@
   background-color: $color-medbud;
   
 
-  .logo {
-    display: flex;
-    justify-content: center;
-
-    color: $color-daslgrey !important;
-
-    @include font-size(3rem);
-    font-weight: bold;
-
-    &:hover {
-      color: $color-daslgrey;
-      // todo
-    }
-  }
-
   .icon_btn_group {
     display: flex;
     align-items: center;
@@ -137,3 +122,5 @@
   width: 100%;
   background-color: $color-nyanza;
 }
+
+
