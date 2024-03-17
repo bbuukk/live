@@ -1,11 +1,9 @@
-import s from "./header.module.scss";
+import { useSession } from "next-auth/react";
 
+import s from "./header.module.scss";
 import AuthPopover from "./comps/auth_popover";
 import SearchBar from "./comps/search-bar";
 import UnauthenticatedButtonGroup from "./comps/button_group/unatenticated_button_group";
-
-import { useSession } from "next-auth/react";
-
 import Logo from "./comps/logo";
 import { Offcanvas, OffcanvasToggler } from "./comps/offcanvas";
 

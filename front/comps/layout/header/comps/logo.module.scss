@@ -4,10 +4,10 @@
 .logo {
     display: flex;
     justify-content: center;
+    align-items: center;
+    gap: 2%;
 
-    color: $color-daslgrey !important;
-
-
+    color: $color-daslgrey;
     font-size: 3rem;
     font-weight: bold;
     white-space: nowrap;
@@ -16,4 +16,11 @@
       color: $color-daslgrey;
       // todo
     }
+
+    @media only screen and (width < 992px) {
+      p {
+        display: none;
+      }
+    }
+
   }

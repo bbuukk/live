@@ -10,6 +10,9 @@
     "lint": "next lint",
     "lint:watch": "esw -w ."
   },
+  "imports": {
+    "#root/*": "./*"
+  },
   "dependencies": {
     "@auth/mongodb-adapter": "^2.5.0",
     "@bbuukk/slugtrans": "^1.0.9",

@@ -1,10 +1,11 @@
-import s from "./authenticated_button_group.module.scss";
-import hs from "../../header.module.scss";
+import Image from "next/image";
+import Link from "next/link";
 
 import { CustomTooltip } from "comps/tooltip";
 
-import Image from "next/image";
-import Link from "next/link";
+import hs from "../../header.module.scss";
+
+import s from "./authenticated_button_group.module.scss";
 
 const IconButton = ({ href, children, tooltipText }) => {
   return (
@@ -28,6 +29,7 @@ const AuthenticatedButtonGroup = ({ session }) => {
           <Image
             className={`${s.profile_picture}`}
             src={session.user.image}
+            alt="Profile picture"
             width="50"
             height="50"
           />
