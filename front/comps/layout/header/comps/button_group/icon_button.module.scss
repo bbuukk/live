@@ -1,0 +1,21 @@
+@use "./styles/variables" as *;
+@use "./styles/mixins" as *;
+
+
+    .icon_btn {
+        display:flex;
+        justify-content: center;
+        align-items: center;
+    
+        border-radius: 0.5rem;
+        
+        height: 3rem;
+        width: 3rem;
+    
+        &:hover {
+          @include icon_on_hover;
+        // background-color: red !important;
+        }
+      }
+
+

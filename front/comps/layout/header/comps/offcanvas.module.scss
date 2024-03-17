@@ -3,6 +3,29 @@
 
 
 .offcanvas {
-    transition: transform .4s ease-in-out, visibility .4s ease-in-out;
+    transition: transform .4s ease-in-out, visibility .4s ease-in-out;  
+} 
+
+.offcanvas_toggler {
+  display:flex;
+  justify-content: flex-end ;
   
-  } 
+  button {
+    display:flex;
+  justify-content: center;
+  align-items: center;
+
+  
+    height: 3rem;
+  width: 3rem; 
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+  
+    font-size: 1.2em;
+    color: $color-daslgrey;
+
+    &:hover {
+      @include icon_on_hover;
+    }
+  }  
+}

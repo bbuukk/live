@@ -83,15 +83,16 @@ export const Offcanvas = () => {
 
 export const OffcanvasToggler = () => {
   return (
-    <button
-      className={`${s.offcanvas_toggler} ${hs.offcanvas_toggler}`}
-      type="button"
-      data-bs-toggle="offcanvas"
-      data-bs-target="#offcanvasNavbar"
-      aria-controls="offcanvasNavbar"
-      aria-label="Toggle navigation"
-    >
-      <i class="bi bi-list" />
-    </button>
+    <div className={`${s.offcanvas_toggler} ${hs.offcanvas_toggler}`}>
+      <button
+        type="button"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#offcanvasNavbar"
+        aria-controls="offcanvasNavbar"
+        aria-label="Toggle navigation"
+      >
+        <i class="bi bi-list" />
+      </button>
+    </div>
   );
 };

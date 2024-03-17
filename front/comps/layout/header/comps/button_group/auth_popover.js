@@ -1,16 +1,13 @@
-import s from "./auth_popover.module.scss";
-import hs from "../header.module.scss";
-
-import { balsamiqSans } from "pages/_app";
-
 import { useState } from "react";
 import Link from "next/link";
-
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Popover from "react-bootstrap/Popover";
 
 import SignInModal from "features/authentication/comps/auth/sign_in_modal";
 import SignUpModal from "features/authentication/comps/auth/sign_up_modal";
+import { balsamiqSans } from "pages/_app";
+
+import s from "./auth_popover.module.scss";
 
 const AuthPopover = () => {
   const [showSignInModal, setShowSignInModal] = useState(false);
@@ -78,7 +75,7 @@ const AuthPopover = () => {
   );
 
   return (
-    <div className={`${s.overlay_trigger} ${hs.overlay_trigger}`}>
+    <li className={`${s.overlay_trigger}`}>
       <OverlayTrigger
         trigger={["hover", "focus"]}
         placement="bottom"
@@ -104,7 +101,7 @@ const AuthPopover = () => {
         toggle={toggleSignUpModal}
         toggleSignInModal={toggleSignInModal}
       />
-    </div>
+    </li>
   );
 };
 

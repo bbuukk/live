@@ -3,7 +3,7 @@
 @import "node_modules/rfs/sass.sass";
 
 .auth_popover {
-  box-shadow: 0 0 5px 3px lightgrey;
+  box-shadow: 0 0 4px 3px rgba($color-daslgrey,0.2);
   --bs-popover-border-color: transparent !important;
 
   background-color: white;
@@ -48,12 +48,11 @@
 .overlay_trigger {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: center; 
 
   .profile_icon {
     color: $color-daslgrey;
-    @include icon;
-    
+
     cursor: pointer;
   }
 

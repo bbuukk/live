@@ -63,15 +63,8 @@
 //   }
 // }
 
-@mixin icon() {
-  width: fit-content;
-  height: fit-content;
-
-  padding: 0;
-  margin: 0;
-
-  display: block;
-}
+// @mixin icon() {
+// }
 
 @mixin icon_on_hover() {
   background-color: rgba($color-daslgrey, 0.1);
