@@ -1,8 +1,6 @@
-import { useEffect } from "react";
 import CategoriesGallery from "features/categories/comps/gallery";
 import Head from "next/head";
 import axios from "axios";
-import { signIn, signOut, useSession } from "next-auth/react";
 
 const Home = ({ flatCategoryMap }) => {
   //todo useEffect to set categoriesPath of user to []
@@ -21,7 +19,6 @@ const Home = ({ flatCategoryMap }) => {
         <div className="my-5">
           <CategoriesGallery flatCategoryMap={flatCategoryMap} />
         </div>
-        {/* <CarouselReviews /> */}
       </div>
     </>
   );

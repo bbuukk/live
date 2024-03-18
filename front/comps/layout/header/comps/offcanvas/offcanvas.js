@@ -8,7 +8,7 @@ export const Offcanvas = () => {
   return (
     <div
       className={`offcanvas offcanvas-start ${s.offcanvas}`}
-      tabindex="-1"
+      tabIndex="-1"
       id="offcanvasNavbar"
       aria-labelledby="offcanvasNavbarLabel"
     >
@@ -28,7 +28,7 @@ export const OffcanvasToggler = () => {
         aria-controls="offcanvasNavbar"
         aria-label="Toggle navigation"
       >
-        <i class="bi bi-list" />
+        <i className="bi bi-list" />
       </button>
     </div>
   );
