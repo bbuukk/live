@@ -8,7 +8,7 @@ import AuthPopover from "./auth_popover";
 import s from "./button_group.module.scss";
 
 //todo list of links with unordered list
-const AuthenticatedButtonGroup = () => {
+const ButtonGroup = () => {
   const { data: session } = useSession();
 
   return (
@@ -56,4 +56,4 @@ const AuthenticatedButtonGroup = () => {
   );
 };
 
-export default AuthenticatedButtonGroup;
+export default ButtonGroup;

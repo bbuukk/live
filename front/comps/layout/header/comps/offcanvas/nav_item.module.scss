@@ -1,0 +1,46 @@
+@use "./styles/variables" as *;
+@use "./styles/mixins" as *;
+
+.nav_item {
+    margin: 0.2rem;
+    padding: 0.3rem;
+    border-radius: 0.2rem;
+    
+
+    color: $color-daslgrey;
+
+    i {
+        background-color: rgba($color-daslgrey, 0.1);
+        padding: 0.5rem;   
+        border-radius: 10%;
+        color: rgba($color-daslgrey, 1);
+    }
+
+    a {
+      padding: 0 0.5rem;
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 5%;
+
+      p {
+        font-size: 1.2rem;
+        color: black ;
+      }
+    }
+
+    // border-bottom: 1px solid $color-daslgrey;
+
+    //todo make transition
+    &:hover {
+      background-color: $color-medbud;
+
+      i {
+        // background-color: $color-medbud;
+        background-color: $color-dureen;
+        color: white;
+      }
+    }
+  
+  }

@@ -1,0 +1,15 @@
+@use "./styles/variables" as *;
+@use "./styles/mixins" as *;
+
+.nav_link {
+    padding: 0.5rem;
+    font-size: 1.1rem;
+
+    a{
+        color: black;
+    }
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
