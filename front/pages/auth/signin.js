@@ -22,14 +22,16 @@ const SignIn = () => {
   } else {
     return (
       <div className="w-50 h-50">
-        <SignInFormByCredentials
-          toggleModal={toggle}
-          toggleSignUpModal={toggleSignUpModal}
-        />
+        <div className="">
+          <SignInFormByCredentials
+            toggleModal={toggle}
+            toggleSignUpModal={toggleSignUpModal}
+          />
 
-        <VerticalSplitter />
+          <VerticalSplitter />
 
-        <SignFormByServices />
+          <SignFormByServices />
+        </div>
       </div>
     );
   }

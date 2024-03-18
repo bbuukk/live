@@ -2,54 +2,49 @@
 @use "./styles/mixins" as *;
 @import "node_modules/rfs/sass.sass";
 
-
 .modal {
-    --bs-modal-width: 40em !important;
-    color: $color-daslgrey;
-    
+  --bs-modal-width: 40em !important;
+  color: $color-daslgrey;
 
-    
-
-.modal_header {
+  .modal_header {
     display: flex;
     justify-content: center;
 
     padding: 0.9em 1.5em !important;
     margin-bottom: 1em;
-    
+
     position: relative;
     .heading {
-    
-        margin: 0 !important;
-        margin: 0 auto !important;
-     }
+      margin: 0 !important;
+      margin: 0 auto !important;
+    }
 
-     //close button
-     button {
-        position: absolute;
-        right: 1em;
-        padding: 0 !important;
-        margin: 0 !important;
-        font-size: 1.2em !important;
-     }
-}
+    //close button
+    button {
+      position: absolute;
+      right: 1em;
+      padding: 0 !important;
+      margin: 0 !important;
+      font-size: 1.2em !important;
+    }
+  }
 
+  .modal_body {
+    display: flex;
 
-.modal_body {
-    display: flex;        
-
+    //change it to flex
     .left {
-        float: left;
-        width: 65%; /* Adjust as needed */
+      float: left;
+      width: 65%; /* Adjust as needed */
     }
 
     .right {
-        float: right;
-        width: 35%; /* Adjust as needed */
+      float: right;
+      width: 35%; /* Adjust as needed */
     }
-}
+  }
 
-.vertical_splitter {
+  .vertical_splitter {
     float: left;
     display: flex;
     flex-direction: column;
@@ -57,11 +52,10 @@
     padding: 0 1em;
 
     .line {
-        width: 0.1rem;
-        height: 45%;
-        
-        background-color: rgba($color-daslgrey, 0.3);
-    }
-}
-}
+      width: 0.1rem;
+      height: 45%;
 
+      background-color: rgba($color-daslgrey, 0.3);
+    }
+  }
+}
