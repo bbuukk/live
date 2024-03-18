@@ -94,7 +94,7 @@ const callbacks = {
 };
 
 // Auth options
-const authOptions = {
+export const authOptions = {
   providers: [googleProvider, githubProvider, credentialsProvider],
   adapter: MongoDBAdapter(clientPromise),
   session: {
