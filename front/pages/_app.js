@@ -9,6 +9,8 @@ import { SessionProvider } from "next-auth/react";
 
 import React, { useState, useEffect } from "react";
 
+import SignInModal from "features/authentication/comps/auth/sign_in_modal";
+import SignUpModal from "features/authentication/comps/auth/sign_up_modal";
 import Header from "comps/layout/header/header";
 import Footer from "comps/layout/footer/footer";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -21,10 +23,12 @@ enableMapSet();
 
 import { Provider } from "react-redux";
 import { store } from "store/store";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { getProductsInfo } from "store/productsSlice";
 import { getCategoriesInfo } from "store/categoriesSlice";
+
+import { toggleSignInModal, toggleSignUpModal } from "store/modalSlice";
 
 import { Balsamiq_Sans } from "next/font/google";
 import { Caveat } from "next/font/google";
@@ -48,7 +52,7 @@ export default function App({
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      require("bootstrap/dist/js/bootstrap" );
+      require("bootstrap/dist/js/bootstrap");
       require("@popperjs/core");
     }
   }, []);
@@ -68,6 +72,7 @@ export default function App({
           <div className={`min-vh-80 ${balsamiqSans.className}`}>
             {!excludedPaths.includes(router.pathname) && <Header />}
             <FetchData />
+            <Modals />
             <Component {...pageProps} />
           </div>
           {!excludedPaths.includes(router.pathname) && <Footer />}
@@ -92,4 +97,27 @@ function FetchData() {
   }, [dispatch, fetched]);
 
   return null;
+}
+
+function Modals() {
+  const dispatch = useDispatch();
+  const { signInModalOpen, signUpModalOpen } = useSelector(
+    (state) => state.modals
+  );
+
+  return (
+    <>
+      <SignInModal
+        isOpen={signInModalOpen}
+        toggle={() => dispatch(toggleSignInModal())}
+        toggleSignUpModal={() => dispatch(toggleSignUpModal())}
+      />
+
+      <SignUpModal
+        isOpen={signUpModalOpen}
+        toggle={() => dispatch(toggleSignUpModal())}
+        toggleSignInModal={() => dispatch(toggleSignInModal())}
+      />
+    </>
+  );
 }

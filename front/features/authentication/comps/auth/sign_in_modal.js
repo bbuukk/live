@@ -8,18 +8,19 @@ import Link from "next/link";
 import { signIn } from "next-auth/react";
 import SignInFormByCredentials from "./sign_in_form_by_credentials";
 import SignFormByServices from "./sign_form_by_services";
+import { useDispatch } from "react-redux";
+
+import { toggleSignInModal, toggleSignUpModal } from "store/modalSlice";
 
 //todo input validation
 //todo make modal responsive
 
 const SignInModal = ({ isOpen, toggle, toggleSignUpModal }) => {
-  const [showA, setShowA] = useState(true);
-  const [showB, setShowB] = useState(false);
   return (
     <>
       <Modal
         id="SignInModal"
-        show={isOpen && showA}
+        show={isOpen}
         onHide={toggle}
         centered
         className={`${modal_s.modal}`}

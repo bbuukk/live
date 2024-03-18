@@ -1,27 +1,25 @@
-
 @use "./styles/variables" as *;
 @use "./styles/mixins" as *;
 
 .body {
-    padding: 0 !important;
-    font-size: 1.3rem;
+  padding: 0 !important;
+  font-size: 1.3rem;
 
-    ul {
-        border-bottom: 2px solid rgba($color-daslgrey, 0.3);        
+  ul {
+    border-bottom: 2px solid rgba($color-daslgrey, 0.1);
+    padding: 1rem 0;
+
+    &:last-child {
+      border-bottom: none;
     }
-
-    ul:last-child {
-        border-bottom: none;
-    }
-
-    .link_section {
-        padding:1rem;
-
-        h5{
-            color: rgba($color-daslgrey, 0.7);
-            padding-bottom: 1rem;
-        }
-    }
-
-  
   }
+
+  .link_section {
+    padding: 1rem;
+
+    h5 {
+      color: rgba($color-daslgrey, 0.7);
+      padding-bottom: 1rem;
+    }
+  }
+}

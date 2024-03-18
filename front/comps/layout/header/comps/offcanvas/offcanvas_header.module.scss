@@ -1,40 +1,38 @@
 @use "./styles/variables" as *;
 @use "./styles/mixins" as *;
 
-.header {      
-    display: flex;
-    
-    background-color: $color-medbud;
+.header {
+  display: flex;
 
-    border-bottom: 2px solid rgba($color-daslgrey, 0.3);        
-    border-radius: 0 1rem 0 0;
-    margin-bottom: 1rem;
-    padding-right : 1.5rem !important;
-    
-    button {
-      padding: 1rem;
-      border-radius: 0.5rem;
+  border-bottom: 2px solid rgba($color-daslgrey, 0.1);
+  background-color: $color-medbud;
 
-      font-size: 1rem;
-      
-      &:hover {
-        @include icon_on_hover;
-      }
-    }
-    
-    .logo {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 5%;
+  border-radius: 0 1rem 0 0;
 
-      white-space: nowrap;
-      font-size: 2rem;
+  button {
+    padding: 1rem !important;
+    border-radius: 0.5rem;
 
-      img {
-        height: 2rem;
-        width:2rem;
-        object-fit: cover;
-      }
+    font-size: 1rem;
+
+    &:hover {
+      @include icon_on_hover;
     }
   }
+
+  .logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5%;
+
+    white-space: nowrap;
+    font-size: 1.5rem;
+
+    img {
+      height: 1.5rem;
+      width: 1.5rem;
+      object-fit: cover;
+    }
+  }
+}

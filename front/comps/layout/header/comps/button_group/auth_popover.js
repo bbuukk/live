@@ -2,29 +2,26 @@ import { useState } from "react";
 import Link from "next/link";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Popover from "react-bootstrap/Popover";
+import { useDispatch } from "react-redux";
 
-import SignInModal from "features/authentication/comps/auth/sign_in_modal";
-import SignUpModal from "features/authentication/comps/auth/sign_up_modal";
+import { toggleSignInModal, toggleSignUpModal } from "store/modalSlice";
 import { balsamiqSans } from "pages/_app";
 
 import s from "./auth_popover.module.scss";
 
 const AuthPopover = () => {
-  const [showSignInModal, setShowSignInModal] = useState(false);
-  const [showSignUpModal, setShowSignUpModal] = useState(false);
+  const dispatch = useDispatch();
 
   const closePopover = () => document.body.click();
-  const toggleSignInModal = () => setShowSignInModal(!showSignInModal);
-  const toggleSignUpModal = () => setShowSignUpModal(!showSignUpModal);
 
   const handleSignIn = async (e) => {
     closePopover();
-    toggleSignInModal();
+    dispatch(toggleSignInModal());
   };
 
   const handleSignUp = async (e) => {
     closePopover();
-    toggleSignUpModal();
+    dispatch(toggleSignUpModal());
   };
 
   const [showPopover, setShowPopover] = useState(false);
@@ -89,18 +86,6 @@ const AuthPopover = () => {
           onMouseLeave={handleHide}
         ></i>
       </OverlayTrigger>
-
-      <SignInModal
-        isOpen={showSignInModal}
-        toggle={toggleSignInModal}
-        toggleSignUpModal={toggleSignUpModal}
-      />
-
-      <SignUpModal
-        isOpen={showSignUpModal}
-        toggle={toggleSignUpModal}
-        toggleSignInModal={toggleSignInModal}
-      />
     </li>
   );
 };

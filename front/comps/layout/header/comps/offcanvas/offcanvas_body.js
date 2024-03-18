@@ -1,14 +1,15 @@
-import { signIn, signOut, useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 
 import s from "./offcanvas_body.module.scss";
 import NavItem from "./nav_item";
 import NavLink from "./nav_link";
+import UserItem from "./user_item";
 
 const OffcanvasBody = () => {
   const { data: session } = useSession();
-
   return (
     <div className={`offcanvas-body ${s.body}`}>
+      <UserItem />
       <ul className="navbar-nav justify-content-end flex-grow-1">
         {session ? (
           <>
@@ -16,11 +17,6 @@ const OffcanvasBody = () => {
               href={"/"}
               icon={"bi-book"}
               text={"Усі категорії товарів"}
-            />
-            <NavItem
-              href={"/profile/personal_data"}
-              icon={"bi-person-circle"}
-              text={"Особистий кабінет"}
             />
             <NavItem
               href={"/profile/wish_list"}
@@ -34,21 +30,7 @@ const OffcanvasBody = () => {
             />
           </>
         ) : (
-          <>
-            <NavItem
-              href={"/"}
-              icon={"bi-person-circle"}
-              text={"Увійти в акаунт"}
-              onClick={() => {
-                signIn({ callbackUrl: "/" });
-              }}
-            />
-            <NavItem
-              href={"/"}
-              icon={"bi-book"}
-              text={"Усі категорії товарів"}
-            />
-          </>
+          <NavItem href={"/"} icon={"bi-book"} text={"Усі категорії товарів"} />
         )}
 
         <NavItem href={"#"} icon={"bi-cart3"} text={"Кошик покупок"} />

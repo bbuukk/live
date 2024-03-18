@@ -2,17 +2,72 @@
 @use "./styles/mixins" as *;
 
 .user_item {
-    // display: flex;
-    // justify-content: center;
-    // align-items: center;
-    // gap: 5%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
 
-    // white-space: nowrap;
-    // font-size: 2rem;
+  white-space: nowrap;
+  padding: 1rem 0.7rem;
+  border-bottom: 2px solid rgba($color-daslgrey, 0.1);
+  color: $color-daslgrey;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
 
-    // img {
-    //     height: 2rem;
-    //     width:2rem;
-    //     object-fit: cover;
-    // }
+.auth_user_item {
+  // display: flex;
+  // justify-content: flex-start;
+  // gap: 10px;
+
+  // padding: 1rem 0.7rem;
+  // border-bottom: 2px solid rgba($color-daslgrey, 0.1);
+
+  // color: $color-daslgrey;
+  // font-weight: bold;
+  // font-size: 1.2rem;
+
+  img {
+    padding: 0.5rem;
+    width: 3rem;
+    height: 3rem;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+
+  div {
+    p:first-child {
+    }
+    p:last-child {
+      font-size: 0.8em;
+    }
+  }
+}
+
+.not_auth_user_item {
+  i {
+    padding: 0.5rem;
+    border-radius: 10%;
+
+    font-size: 2rem;
+
+    color: $color-daslgrey;
+    background-color: rgba($color-daslgrey, 0.1);
+  }
+
+  p {
+    display: inline-flex;
+    justify-content: space-between;
+    padding: 0 0.5rem;
+
+    a {
+      text-decoration: underline;
+    }
+
+    span {
+      margin: 0 0.5rem;
+      align-self: flex-end;
+      font-size: 1rem;
+    }
+  }
 }
