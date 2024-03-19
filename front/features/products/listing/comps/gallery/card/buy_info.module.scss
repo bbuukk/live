@@ -1,0 +1,33 @@
+@use "./styles/variables" as *;
+@use "./styles/mixins" as *;
+
+.buy_info {
+  flex: 1 1 15%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+
+  width: 100%;
+  font-size: 1.5em;
+  .price {
+    color: $color-suncycl;
+    span {
+      font-size: 0.75em;
+    }
+  }
+
+  .buy_button {
+    border: none;
+    border-radius: 5px;
+    padding: 0.2rem 0.6rem;
+
+    background-color: white;
+    color: $color-dureen;
+
+    font-size: inherit;
+
+    &:hover {
+      @include icon_on_hover;
+    }
+  }
+}
