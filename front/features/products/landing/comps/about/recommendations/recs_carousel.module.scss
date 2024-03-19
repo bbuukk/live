@@ -1,0 +1,17 @@
+@use "./styles/variables" as *;
+@use "./styles/mixins" as *;
+
+.recs {
+  padding: 0 2rem;
+  height: 22rem;
+  border: 2px dotted blue;
+
+  h3 {
+    padding-bottom: 1.5rem;
+  }
+
+  .scroll_conteiner {
+    // padding-bottom: 25px;
+    padding: 25px 0;
+  }
+}

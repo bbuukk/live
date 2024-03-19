@@ -1,16 +1,8 @@
-import { Accordion } from "react-bootstrap";
 import Link from "next/link";
 import s from "./card.module.scss";
 import Image from "next/image";
-import { useDispatch, useSelector } from "react-redux";
 import { slugify } from "@bbuukk/slugtrans/slugify";
 import { transliterate } from "@bbuukk/slugtrans/transliterate";
-import { setActiveProduct } from "store/productsSlice";
-import { useEffect, useId, useRef, useState } from "react";
-import axios from "axios";
-import { useRouter } from "next/router";
-//todo it is temporary - delete
-import { v4 as uuidv4 } from "uuid";
 
 //todo make link dry
 

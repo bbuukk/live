@@ -6,24 +6,31 @@ import { slugify } from "@bbuukk/slugtrans/slugify";
 import { transliterate } from "@bbuukk/slugtrans/transliterate";
 
 const Navigation = ({ activeTab }) => {
+  const router = useRouter();
+  const { productSlug, productId } = router.query;
+
+  const productUrl = (activeTab) =>
+    `/product/${productSlug}/${productId}/${activeTab}`;
+
   const TabLink = ({ tabName, label }) => {
+    const handleClick = (e) => {
+      e.preventDefault();
+      router.push(productUrl(tabName), undefined, { shallow: true });
+    };
+
     return (
       <Link
+        href={productUrl(tabName)}
         className={`nav-link ${s.link}  ${
           activeTab === tabName ? s.active : ""
         }`}
         aria-current="page"
-        href={productUrl(tabName)}
+        onClick={handleClick}
       >
         {label}
       </Link>
     );
   };
-
-  const router = useRouter();
-  const { productSlug, productId } = router.query;
-  const productUrl = (activeTab) =>
-    `/product/${productSlug}/${productId}/${activeTab}`;
 
   return (
     <>

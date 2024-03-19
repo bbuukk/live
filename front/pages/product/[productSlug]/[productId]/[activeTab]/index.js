@@ -1,19 +1,27 @@
-import About from "features/products/landing/comps/about/index";
-import Characteristics from "features/products/landing/comps/characteristics/index";
-
-import axios from "axios";
-import Breadcrumbs from "comps/breadcrumbs";
-import Navigation from "features/products/landing/comps/layout/navigation";
-
+import { useRouter } from "next/router";
 import Head from "next/head";
 import { stripHtmlTags } from "utils/stripHtmlTags";
+import axios from "axios";
+import { Suspense, lazy, use } from "react";
 
+const About = lazy(() => import("features/products/landing/comps/about/index"));
+const Characteristics = lazy(() =>
+  import("features/products/landing/comps/characteristics/index")
+);
+
+import Navigation from "features/products/landing/comps/layout/navigation";
+import Breadcrumbs from "comps/breadcrumbs";
+
+//todo make fallback page for suspense
 //todo fix we take first category available on product, but it can be not the category user was in
-const Landing = ({ product, activeTab }) => {
+const Landing = ({ product }) => {
+  const router = useRouter();
+  const { activeTab } = router.query;
+
   return (
     <>
       <Head>
-        <title>{product.name} в інтернет-магазині Живий світ</title>
+        <title>{`${product.name} в інтернет-магазині Живий світ`}</title>
         <meta
           name="description"
           content={`${product.name}\n\n${stripHtmlTags(
@@ -27,11 +35,13 @@ const Landing = ({ product, activeTab }) => {
         <Breadcrumbs category={product.category[0]} />
       </div>
 
-      <Navigation activeTab={activeTab} />
-
-      {activeTab == "about" && <About product={product} />}
-      {activeTab == "characteristics" && <Characteristics product={product} />}
-      {/* {activeTab == "reviews" && <Reviews product={product} />} */}
+      <Suspense fallback={<div>Loading...</div>}>
+        {activeTab == "about" && <About product={product} />}
+        {activeTab == "characteristics" && (
+          <Characteristics product={product} />
+        )}
+        {/* {activeTab == "reviews" && <Reviews product={product} />} */}
+      </Suspense>
     </>
   );
 };
@@ -39,7 +49,7 @@ const Landing = ({ product, activeTab }) => {
 export default Landing;
 
 export async function getServerSideProps({ params }) {
-  const { productSlug, productId, activeTab } = params;
+  const { productId, activeTab } = params;
 
   const res = await axios.get(`/products/product/${productId}`);
 
@@ -54,7 +64,6 @@ export async function getServerSideProps({ params }) {
   return {
     props: {
       product,
-      activeTab,
     },
   };
 }

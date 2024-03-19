@@ -1,7 +1,13 @@
 @use "styles/variables" as *;
 @use "styles/mixins" as *;
 
+<<<<<<< HEAD
   .footer { 
+=======
+.footer_container {
+  background-color: $color-daslgrey;
+  color: $color-milk;
+>>>>>>> 315c7a0 (Start of dev recomendation component)
 
     ol {
       padding: 0;
@@ -23,8 +29,16 @@
       box-shadow: 0px 0px 2px 0.5px rgba(0, 0, 0, 0.25) inset;
 
       h2 {
+<<<<<<< HEAD
         font-weight: bold;        
         margin-bottom: 10px !important;      
+=======
+        font-weight: bold;
+        text-align: center;
+
+        margin-bottom: 10px !important;
+
+>>>>>>> 315c7a0 (Start of dev recomendation component)
         span {
           margin-left: 10px;
         }
@@ -42,8 +56,32 @@
         }
         }
       }
-      
     }
+<<<<<<< HEAD
+=======
+
+    .about_us {
+      h2 {
+        padding: 0 15px;
+        text-align: start;
+      }
+    }
+
+    .contacts {
+      line-height: 1.5rem;
+    }
+
+    .location {
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+
+      .map {
+        width: 80%;
+        height: 50%;
+      }
+    }
+>>>>>>> 315c7a0 (Start of dev recomendation component)
   }
   }
 
