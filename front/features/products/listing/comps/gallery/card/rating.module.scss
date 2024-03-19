@@ -1,0 +1,34 @@
+@use "./styles/variables" as *;
+@use "./styles/mixins" as *;
+
+.rating {
+  flex: 0 1 5%;
+  margin-top: 0.4em;
+  display: flex;
+  gap: 1em;
+  line-height: 1rem;
+
+  .stars {
+    display: flex;
+
+    .star {
+      color: #d3d3d3;
+
+      &.checked {
+        color: orange;
+      }
+    }
+  }
+
+  .amount_reviews {
+    display: flex;
+    gap: 5px;
+    i {
+      font-size: 0.75em;
+    }
+    span {
+      @include text_muted($color-daslgrey, 0.8);
+      font-size: 0.9em;
+    }
+  }
+}
