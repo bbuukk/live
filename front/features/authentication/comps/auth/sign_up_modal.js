@@ -11,15 +11,22 @@ import SignUpForm from "./sign_up_form_by_credentials";
 import { useSelector } from "react-redux";
 
 import { useDispatch } from "react-redux";
+import { toggleSignInModal, toggleSignUpModal } from "store/modalSlice";
 
 //todo input validation
 
-const SignUpModal = ({ isOpen, toggle, toggleSignInModal }) => {
+const SignUpModal = () => {
+  const dispatch = useDispatch();
+  const { signUpModalOpen } = useSelector((state) => state.modals);
+
+  const toggle = () => dispatch(toggleSignUpModal());
+  const toggleAlternative = () => dispatch(toggleSignInModal());
+
   return (
     <>
       <Modal
         id="changePasswordModal"
-        show={isOpen}
+        show={signUpModalOpen}
         onHide={toggle}
         centered
         className={`${modal_s.modal}`}
@@ -30,7 +37,7 @@ const SignUpModal = ({ isOpen, toggle, toggleSignInModal }) => {
         <Modal.Body className={`${modal_s.modal_body}`}>
           <SignUpForm
             toggleModal={toggle}
-            toggleSignInModal={toggleSignInModal}
+            toggleSignInModal={toggleAlternative}
           />
           <VerticalSplitter />
           <SignFormByServices />

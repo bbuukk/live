@@ -101,25 +101,11 @@ function FetchData() {
 }
 
 function Modals() {
-  const dispatch = useDispatch();
-  const { signInModalOpen, signUpModalOpen } = useSelector(
-    (state) => state.modals
-  );
-
   return (
     <>
       <ChangePasswordModal />
-      <SignInModal
-        isOpen={signInModalOpen}
-        toggle={() => dispatch(toggleSignInModal())}
-        toggleSignUpModal={() => dispatch(toggleSignUpModal())}
-      />
-
-      <SignUpModal
-        isOpen={signUpModalOpen}
-        toggle={() => dispatch(toggleSignUpModal())}
-        toggleSignInModal={() => dispatch(toggleSignInModal())}
-      />
+      <SignInModal />
+      <SignUpModal />
     </>
   );
 }

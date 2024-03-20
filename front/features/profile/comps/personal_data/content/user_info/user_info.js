@@ -1,4 +1,3 @@
-import { useSession } from "next-auth/react";
 import ProfileImage from "./profile_image";
 import UserInfoForm from "./user_info_form";
 import Card from "react-bootstrap/Card";

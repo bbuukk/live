@@ -14,21 +14,15 @@
     margin-bottom: 1em;
 
     position: relative;
-    .heading {
-      margin: 0 !important;
-      margin: 0 auto !important;
-    }
 
     //close button
     button {
       position: absolute;
-      right: 1em;
-      padding: 0 !important;
-      margin: 0 !important;
-      font-size: 1.2em !important;
+      right: 1.5em;
     }
   }
 
+  //todo do not use float here
   .modal_body {
     display: flex;
 

@@ -1,49 +1,46 @@
 @use "./variables" as *;
 @use "./mixins" as *;
-@import './normalize.scss';
-@import './reset.scss';
-
+@import "./normalize.scss";
+@import "./reset.scss";
 
 html {
-body {
-  p,
-  h1,
-  h2 {
-    
-  }
-
-  p {
-    margin-bottom: 0;
-  }
-
-  a {
-    text-decoration: none;
-    color: $color-daslgrey;
-  }
-
-  .link {
-    text-decoration: none;
-    color: inherit;
-  }
-
-  button {
-    &:focus {
-      border: none;
+  body {
+    p,
+    h1,
+    h2 {
     }
 
-    &:active {
-      border: none;
+    p {
+      margin-bottom: 0;
     }
 
-    &:visited {
-      border: none;
+    a {
+      text-decoration: none;
+      color: $color-daslgrey;
     }
+
+    .link {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    button {
+      &:focus {
+        border: none;
+      }
+
+      &:active {
+        border: none;
+      }
+
+      &:visited {
+        border: none;
+      }
+    }
+
+    scroll-behavior: smooth;
+    overflow-x: hidden;
   }
-
-  scroll-behavior: smooth;
-  overflow-x: hidden;  
-}
-
 
   overscroll-behavior: none;
 }
@@ -57,9 +54,25 @@ body {
   min-height: 80vh;
 }
 
-button[disabled]{
+button[disabled] {
   background-color: rgba($color-daslgrey, 0.1) !important;
   border-color: rgba($color-daslgrey, 0.1) !important;
   cursor: not-allowed !important;
 }
 
+.modal-header {
+  padding: 0.9em 1.5em !important;
+  margin-bottom: 1em !important;
+
+  button {
+    border-radius: none;
+    @include icon_on_hover;
+  }
+}
+
+// .modal {
+//   position: absolute;
+//   left: 50%;
+//   top: 50%;
+//   transform: translate(-50%, -50%);
+// }

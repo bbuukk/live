@@ -2,12 +2,6 @@ img {
   display: block;
 }
 
-.bi {
-  margin: 0;
-  padding: 0;
-  line-height: 0.1rem;
-}
-
 *,
 *::before,
 *::after {
@@ -23,6 +17,8 @@ figure {
 .bi {
   display: inline-block;
   line-height: 1px;
+  margin: 0;
+  padding: 0;
 }
 
 button {

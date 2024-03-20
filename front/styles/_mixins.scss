@@ -1,4 +1,5 @@
 @use "./styles/variables" as *;
+@use "mixins/buttons" as *;
 
 @mixin underline(
   $colorFrom1: white,
@@ -21,13 +22,12 @@
   // }
 }
 
-@mixin horizontal_splitter($color, $height){
-  width: 100%;  
+@mixin horizontal_splitter($color, $height) {
+  width: 100%;
   background-color: $color;
-  height: $height;  
+  height: $height;
   border: 0;
 }
-
 
 @mixin decor_line($bg-color) {
   height: 1rem;
@@ -36,17 +36,16 @@
 
 @mixin link() {
   color: $color-bluedefrnc;
-  
+
   &:hover {
     color: $color-suncycl;
   }
-  
+
   &:visited {
     color: $color-iris;
   }
-  
 }
-  
+
 @mixin text_muted($color, $opacity) {
   color: rgba($color, $opacity);
 }
