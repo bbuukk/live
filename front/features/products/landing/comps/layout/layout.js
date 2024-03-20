@@ -1,4 +1,4 @@
-import Breadcrumbs from "comps/breadcrumbs";
+import Breadcrumbs from "comps/navigation/breadcrumbs";
 import Navigation from "./navigation";
 
 const LandingProuductLayout = ({ children, category, product, activePage }) => {

@@ -4,6 +4,7 @@ import { Card } from "react-bootstrap";
 
 import { useDispatch, useSelector } from "react-redux";
 import { toggleChangePasswordModal } from "store/modalSlice";
+import { signOut } from "next-auth/react";
 
 const Security = () => {
   const dispatch = useDispatch();
@@ -13,13 +14,18 @@ const Security = () => {
         <i className="bi bi-lock-fill"></i>
         <h5>Безпека</h5>
       </Card.Header>
-      <Card.Body className={`${card_s.body}`}>
-        <section className={`${s.security}`}>
-          <button onClick={() => dispatch(toggleChangePasswordModal())}>
-            Змінити пароль?
-          </button>
-          {/* <Link href={"/"}>Вийти</Link> */}
-        </section>
+      <Card.Body className={`${card_s.body} ${s.security}`}>
+        <button onClick={() => dispatch(toggleChangePasswordModal())}>
+          Змінити пароль?
+        </button>
+        <button onClick={() => {}}>Видалити акаунт</button>
+        <button
+          onClick={() => {
+            signOut({ callbackUrl: "/" });
+          }}
+        >
+          Вийти з акаунту
+        </button>
       </Card.Body>
     </Card>
   );

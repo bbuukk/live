@@ -1,0 +1,28 @@
+@use "styles/variables" as *;
+@use "styles/mixins" as *;
+@import "node_modules/rfs/sass.sass";
+
+.card {
+  color: $color-daslgrey;
+  border: 0 !important;
+
+  .header {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+
+    border-bottom: 2px solid rgba($color-daslgrey, 0.1);
+
+    background-color: $color-alabaster;
+    background-color: white;
+
+    i {
+      font-size: 1.8rem;
+    }
+  }
+
+  .body {
+    padding: 15px;
+    padding-top: 25px;
+  }
+}

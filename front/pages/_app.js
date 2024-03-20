@@ -9,9 +9,10 @@ import { SessionProvider } from "next-auth/react";
 
 import React, { useState, useEffect } from "react";
 
-import ChangePasswordModal from "features/profile/comps/personal_data/content/security/changePasswordModal";
-import SignInModal from "features/authentication/comps/auth/sign_in_modal";
-import SignUpModal from "features/authentication/comps/auth/sign_up_modal";
+import ChangePasswordModal from "comps/modals/change_password_modal/change_password_modal";
+import SignInModal from "comps/modals/auth/sign_in_modal/sign_in_modal";
+import SignUpModal from "comps/modals/auth/sign_up_modal/sign_up_modal";
+
 import Header from "comps/layout/header/header";
 import Footer from "comps/layout/footer/footer";
 import "bootstrap/dist/css/bootstrap.min.css";

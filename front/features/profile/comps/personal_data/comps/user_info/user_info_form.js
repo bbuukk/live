@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import s from "./user_info.module.scss";
 import { Accordion, Form, Card, Button } from "react-bootstrap";
 import { useSession } from "next-auth/react";
-import InputField from "comps/input_field";
+import InputField from "comps/input_fields/input_field";
 import Image from "next/image";
 import ProfileImage from "./profile_image";
 

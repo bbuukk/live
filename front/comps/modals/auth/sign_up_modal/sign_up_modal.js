@@ -3,10 +3,10 @@ import { useState } from "react";
 import { Modal } from "react-bootstrap";
 
 import s from "./sign_up_modal.module.scss";
-import modal_s from "./modal.module.scss";
+import modal_s from "../modal.module.scss";
 import Link from "next/link";
-import SignFormByServices from "./sign_form_by_services";
-import VerticalSplitter from "./vertical_splitter";
+import SignFormByServices from "../sign_form_by_services";
+import VerticalSplitter from "../vertical_splitter";
 import SignUpForm from "./sign_up_form_by_credentials";
 import { useSelector } from "react-redux";
 

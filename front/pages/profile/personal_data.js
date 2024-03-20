@@ -1,7 +1,8 @@
 import Head from "next/head";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
-import PersonalData from "features/profile/comps/personal_data/index";
+import PersonalData from "features/profile/comps/personal_data/personal_data";
+import Tabs from "features/profile/comps/tabs/index";
 
 const PersonalDataPage = () => {
   // console.log(session);
@@ -22,7 +23,10 @@ const PersonalDataPage = () => {
       {/* <div className="accordion d-flex flex-column gap-3" id="accordionExample"> */}
       {/* </div> */}
 
-      <PersonalData />
+      <div className={`d-flex`}>
+        <Tabs />
+        <PersonalData />
+      </div>
     </>
   );
 };

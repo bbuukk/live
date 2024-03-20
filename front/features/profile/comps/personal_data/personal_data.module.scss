@@ -1,0 +1,14 @@
+@use "styles/variables" as *;
+@use "styles/mixins" as *;
+@import "node_modules/rfs/sass.sass";
+
+.personal {
+  flex: 1 1 75%;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  padding: 15px;
+  padding-top: 25px;
+}

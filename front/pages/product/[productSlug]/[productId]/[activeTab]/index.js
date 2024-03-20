@@ -10,7 +10,7 @@ const Characteristics = lazy(() =>
 );
 
 import Navigation from "features/products/landing/comps/layout/navigation";
-import Breadcrumbs from "comps/breadcrumbs";
+import Breadcrumbs from "comps/navigation/breadcrumbs";
 
 //todo make fallback page for suspense
 //todo fix we take first category available on product, but it can be not the category user was in

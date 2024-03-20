@@ -32,7 +32,7 @@ const Tabs = () => {
           }}
         >
           <i className="bi bi-box-arrow-left" />
-          <p>Вийти</p>
+          <p>Вийти з акаунту</p>
         </Tab>
       </ul>
     </nav>

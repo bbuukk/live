@@ -1,0 +1,24 @@
+@use "./styles/variables" as *;
+@use "./styles/mixins" as *;
+
+.security {
+  display: flex;
+  align-items: start;
+  flex-flow: column nowrap;
+  gap: 0.5rem;
+
+  font-size: 1.1rem;
+
+  button {
+    color: $color-daslgrey;
+
+    &:hover {
+      color: $color-dureen;
+      text-decoration: underline;
+    }
+  }
+
+  button:last-child {
+    margin-top: 1rem;
+  }
+}

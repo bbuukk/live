@@ -7,7 +7,7 @@ import s from "./change_password_modal.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleChangePasswordModal } from "store/modalSlice";
 
-import PasswordInputField from "comps/password_input_field";
+import PasswordInputField from "comps/input_fields/password_input_field";
 import { useEffect, useState } from "react";
 import { balsamiqSans } from "pages/_app";
 

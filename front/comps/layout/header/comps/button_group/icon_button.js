@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { CustomTooltip } from "comps/tooltip";
+import { CustomTooltip } from "comps/accessibility/tooltip";
 
 import s from "./icon_button.module.scss";
 

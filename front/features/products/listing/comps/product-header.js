@@ -1,5 +1,5 @@
 import s from "./product-header.module.scss";
-import Breadcrumbs from "comps/breadcrumbs";
+import Breadcrumbs from "comps/navigation/breadcrumbs";
 
 const ProductHeader = ({ category }) => {
   return (
