@@ -8,18 +8,6 @@
   gap: 1em;
   line-height: 1rem;
 
-  .stars {
-    display: flex;
-
-    .star {
-      color: #d3d3d3;
-
-      &.checked {
-        color: orange;
-      }
-    }
-  }
-
   .amount_reviews {
     display: flex;
     gap: 5px;

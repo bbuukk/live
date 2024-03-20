@@ -1,0 +1,12 @@
+@use "./styles/variables" as *;
+@use "./styles/mixins" as *;
+
+.stars {
+  display: flex;
+  flex-flow: row nowrap;
+
+  .star {
+    width: fit-content;
+    height: fit-content;
+  }
+}
