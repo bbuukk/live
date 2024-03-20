@@ -1,9 +1,9 @@
-import SignInFormByCredentials from "features/authentication/comps/auth/sign_in_form_by_credentials";
-import SignFormByServices from "features/authentication/comps/auth/sign_form_by_services";
-import VerticalSplitter from "features/authentication/comps/auth/vertical_splitter";
+// import SignInFormByCredentials from "features/authentication/comps/auth/sign_in_form_by_credentials";
+// import SignFormByServices from "features/authentication/comps/auth/sign_form_by_services";
+// import VerticalSplitter from "features/authentication/comps/auth/vertical_splitter";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
-import UserAlreadySignedIn from "features/authentication/comps/auth/already_signed_in";
+import UserAlreadySignedIn from "comps/modals/auth/already_signed_in";
 import { getServerSession } from "next-auth";
 
 //todo make redisign
@@ -22,7 +22,7 @@ const SignIn = () => {
   } else {
     return (
       <div className="w-50 h-50">
-        <div className="">
+        {/* <div className="">
           <SignInFormByCredentials
             toggleModal={toggle}
             toggleSignUpModal={toggleSignUpModal}
@@ -31,7 +31,7 @@ const SignIn = () => {
           <VerticalSplitter />
 
           <SignFormByServices />
-        </div>
+        </div> */}
       </div>
     );
   }

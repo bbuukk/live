@@ -9,11 +9,10 @@
   .header {
     display: inline-flex;
     align-items: center;
-    gap: 10px;
+    gap: 1rem;
 
     border-bottom: 2px solid rgba($color-daslgrey, 0.1);
 
-    background-color: $color-alabaster;
     background-color: white;
 
     i {

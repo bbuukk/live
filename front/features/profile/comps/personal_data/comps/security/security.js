@@ -18,7 +18,6 @@ const Security = () => {
         <button onClick={() => dispatch(toggleChangePasswordModal())}>
           Змінити пароль?
         </button>
-        <button onClick={() => {}}>Видалити акаунт</button>
         <button
           onClick={() => {
             signOut({ callbackUrl: "/" });
