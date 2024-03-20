@@ -28,7 +28,7 @@ const RecsCarousel = () => {
       <h3>Також вас можуть зацікавити</h3>
       <div class={`container-fluid `}>
         <div
-          class={`row flex-row flex-nowrap overflow-auto ${s.scroll_conteiner}`}
+          class={`row flex-row flex-nowrap overflow-auto ${s.scroll_container}`}
         >
           {recs.map((product) => (
             <div class="col-2">
