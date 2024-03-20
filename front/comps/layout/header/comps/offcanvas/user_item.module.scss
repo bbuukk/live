@@ -7,26 +7,20 @@
   align-items: center;
   gap: 10px;
 
-  white-space: nowrap;
-  padding: 1rem 0.7rem;
-  border-bottom: 2px solid rgba($color-daslgrey, 0.1);
+  margin: 0.3rem 0.5rem 0.3rem 0.2rem;
+  padding: 0.3rem;
+  border-radius: 0.2rem;
+
+  padding: 0.7rem 0.4rem;
+
   color: $color-daslgrey;
+
+  white-space: nowrap;
   font-weight: bold;
   font-size: 1.2rem;
 }
 
 .auth_user_item {
-  // display: flex;
-  // justify-content: flex-start;
-  // gap: 10px;
-
-  // padding: 1rem 0.7rem;
-  // border-bottom: 2px solid rgba($color-daslgrey, 0.1);
-
-  // color: $color-daslgrey;
-  // font-weight: bold;
-  // font-size: 1.2rem;
-
   img {
     padding: 0.5rem;
     width: 3rem;
@@ -41,6 +35,10 @@
     p:last-child {
       font-size: 0.8em;
     }
+  }
+
+  &:hover {
+    background-color: rgba($color-daslgrey, 0.1);
   }
 }
 

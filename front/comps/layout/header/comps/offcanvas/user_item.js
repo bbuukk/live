@@ -14,14 +14,19 @@ const UserItem = () => {
   const AuthUserItem = () => {
     const user = session?.user;
     return (
-      <div className={`${s.auth_user_item} ${s.user_item}`}>
-        {user && user.image && (
-          <Image src={user.image} width={50} height={50} sizes="100vw" />
-        )}
-        <div>
-          <p>{`${user?.firstName}  ${user?.secondName}`}</p>
-          <p>{user?.email}</p>
-        </div>
+      <div data-bs-dismiss="offcanvas">
+        <Link
+          className={`${s.auth_user_item} ${s.user_item}`}
+          href={"/profile/personal_data"}
+        >
+          {user && user.image && (
+            <Image src={user.image} width={50} height={50} sizes="100vw" />
+          )}
+          <div>
+            <p>{`${user?.firstName}  ${user?.secondName}`}</p>
+            <p>{user?.email}</p>
+          </div>
+        </Link>
       </div>
     );
   };
