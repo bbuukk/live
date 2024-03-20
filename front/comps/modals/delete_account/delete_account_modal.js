@@ -26,7 +26,7 @@ const DeleteAccountModal = () => {
       centered
       className={`${s.modal} ${balsamiqSans.className}`}
     >
-      <Modal.Header closeButton={true} className={`${s.modal_header}`}>
+      <Modal.Header closeButton={true} className="modal_header_title_center">
         <h3>Видалити акаунт ?</h3>
       </Modal.Header>
       <Modal.Body className={`${s.modal_body}`}>

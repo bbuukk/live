@@ -2,106 +2,93 @@
 @use "styles/mixins" as *;
 @import "node_modules/rfs/sass.sass";
 
-
-.user_info {
+.body {
   display: flex;
 
   .profile_image {
     flex: 0 1 20%;
-    
+
     gap: 10px;
     margin-bottom: 30px;
     padding: 0 15px;
-    
 
-    //todo only use image, not icon
-    img  {  
-      width: 100%  !important;
+    img {
+      width: 100% !important;
       height: auto !important;
-      object-fit: contain;  
-            
-            border-radius: 500px;
-        }    
+      object-fit: contain;
+
+      border-radius: 500px;
+    }
   }
 
-  .user_info_form{
+  .user_info_form {
     flex: 0 1 80%;
     padding: 15px;
-    
+
     .input_group {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px; 
+      gap: 10px;
 
       div {
-        width: 40% !important;        
+        width: 40% !important;
       }
-      
+
       input[disabled] {
-        background-color: rgba($color-daslgrey, 0.1); 
+        background-color: rgba($color-daslgrey, 0.1);
         color: $color-daslgrey;
         font-weight: bold;
       }
     }
-
 
     .button_group {
       display: flex;
       gap: 20px;
 
       padding: 20px 0;
-    
 
       button {
         border-radius: 10px;
         padding: 0.3em 1em;
-  
+
         vertical-align: center;
         text-align: center;
-  
-        font-size: 1.2rem;
-        
-        border: 2px solid $color-yelgreen;
-        color: $color-daslgrey;  
-      }
-      
-    .edit_btn {
-      
-    }
-      .save_btn {
 
-        
+        font-size: 1.2rem;
+
+        border: 2px solid $color-yelgreen;
+        color: $color-daslgrey;
+      }
+
+      .edit_btn {
+      }
+      .save_btn {
       }
       .cancel_btn {
-        border-color: $color-spink !important;        
+        border-color: $color-spink !important;
       }
-
     }
   }
-  
-  
-  
 }
 
+//   label {
+//     color: $color-daslgrey !important;
+//     // color: white !important;
+//   }
+//   label::after {
+//     background-color: transparent !important;
+//   }
+//   input[disabled] {
+//     background-color: $color-nyanza;
+//     color: $color-daslgrey;
+//     font-weight: bold;
+//   }
 
-  //   label {
-  //     color: $color-daslgrey !important;
-  //     // color: white !important;
-  //   }
-  //   label::after {
-  //     background-color: transparent !important;
-  //   }
-  //   input[disabled] {
-  //     background-color: $color-nyanza;
-  //     color: $color-daslgrey;
-  //     font-weight: bold;
-  //   }
-
-  //   input {
-  //     border: 0;
-  //     color: $color-daslgrey;
-  //   }
-  // }
+//   input {
+//     border: 0;
+//     color: $color-daslgrey;
+//   }
+// }
 //   .accordion_header {
 //     background-color: $color-yelgreen;
 //     border-bottom: 1px solid $color-nyanza;
@@ -132,4 +119,3 @@
 //     }
 //   }
 // }
-

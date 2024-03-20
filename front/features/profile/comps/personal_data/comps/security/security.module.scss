@@ -11,10 +11,10 @@
 
   button {
     color: $color-daslgrey;
+    text-decoration: underline;
 
     &:hover {
       color: $color-bluedefrnc;
-      text-decoration: underline;
     }
   }
 

@@ -10,13 +10,11 @@ const UserInfo = () => {
       <Card className={`${card_s.card}`}>
         <Card.Header className={`${card_s.header}`}>
           <i className="bi bi-person-circle" />
-          <h4>Персональна інформація</h4>
+          <h4>Персональні </h4>
         </Card.Header>
-        <Card.Body className={`${card_s.body}`}>
-          <section className={`${s.user_info}`}>
-            <ProfileImage />
-            <UserInfoForm />
-          </section>
+        <Card.Body className={`${card_s.body} ${s.body}`}>
+          <ProfileImage />
+          <UserInfoForm />
         </Card.Body>
       </Card>
     </>

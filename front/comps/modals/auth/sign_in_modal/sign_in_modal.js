@@ -31,7 +31,7 @@ const SignInModal = () => {
         centered
         className={`${modal_s.modal}`}
       >
-        <Modal.Header closeButton={true} className={`${modal_s.modal_header}`}>
+        <Modal.Header closeButton={true} className="modal_header_title_center">
           <h3 className={`${modal_s.heading}`}>Вхід</h3>
         </Modal.Header>
         <Modal.Body className={`${modal_s.modal_body}`}>

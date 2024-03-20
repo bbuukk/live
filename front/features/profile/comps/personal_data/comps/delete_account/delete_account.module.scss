@@ -7,6 +7,9 @@
 }
 
 .body {
+  p {
+    max-width: 60ch;
+  }
   button {
     margin-top: 1rem;
     @include button(white, $color-decapink);

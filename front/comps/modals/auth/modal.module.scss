@@ -6,21 +6,6 @@
   --bs-modal-width: 40em !important;
   color: $color-daslgrey;
 
-  .modal_header {
-    display: flex;
-    justify-content: center;
-
-    padding: 0.9em 1.5em;
-
-    position: relative;
-
-    //close button
-    button {
-      position: absolute;
-      right: 1.5em;
-    }
-  }
-
   //todo do not use float here
   .modal_body {
     display: flex;

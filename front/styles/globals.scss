@@ -70,6 +70,18 @@ button[disabled] {
   }
 }
 
+.modal_header_title_center {
+  display: flex !important;
+  justify-content: center !important;
+
+  position: relative;
+
+  button {
+    position: absolute;
+    right: 1.5em;
+  }
+}
+
 // .modal {
 //   position: absolute;
 //   left: 50%;

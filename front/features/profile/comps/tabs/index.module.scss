@@ -1,10 +1,13 @@
 @use "styles/variables" as *;
 @use "styles/mixins" as *;
 
-.tabs_section {
-    flex: 1 1 25%;    
-    padding: 15px;
-    padding-top: 25px;
-    border-right: 2px double rgba($color-daslgrey, 0.1);
-}
+.tabs {
+  flex: 1 1 25%;
+  padding: 15px;
+  padding-top: 25px;
+  border-right: 2px double rgba($color-daslgrey, 0.1);
 
+  @media screen and (width < 992px) {
+    display: none;
+  }
+}

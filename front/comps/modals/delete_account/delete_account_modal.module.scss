@@ -5,18 +5,6 @@
 .modal {
   color: $color-daslgrey;
 
-  .modal_header {
-    display: flex;
-    justify-content: center;
-
-    position: relative;
-
-    button {
-      position: absolute;
-      right: 1.5em;
-    }
-  }
-
   .button_group {
     display: flex;
     flex-flow: row wrap;
@@ -26,6 +14,7 @@
     list-style: none;
 
     li:last-child button {
+      // @include button(white, $color-decapink);
       @include button(white, $color-decapink);
     }
     li:first-child button {

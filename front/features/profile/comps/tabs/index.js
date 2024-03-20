@@ -8,12 +8,12 @@ import ProfileTab from "./profile-tab";
 
 const Tabs = () => {
   return (
-    <nav className={`${s.tabs_section}`}>
+    <nav className={`${s.tabs}`}>
       <ul>
         <ProfileTab />
         <Tab href="/profile/personal_data">
           <i className="bi bi-person-circle" />
-          <p>Персональні дані</p>
+          <p>Особистий кабінет</p>
         </Tab>
 
         <Tab href="/profile/wish_list">
