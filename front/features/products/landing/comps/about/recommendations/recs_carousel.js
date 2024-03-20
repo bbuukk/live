@@ -18,7 +18,8 @@ const RecsCarousel = () => {
 
     return () => {
       if (recsWorker) {
-        recsWorker.terminate();
+        console.log("terminate");
+        // recsWorker.terminate();
       }
     };
   }, []);
