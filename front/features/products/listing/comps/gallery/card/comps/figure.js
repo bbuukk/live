@@ -16,7 +16,6 @@ const ProductFigure = ({ product, productUrl }) => {
           width={0}
           height={0}
           priority
-          quality={100}
         />
         <figcaption>{product.name}</figcaption>
       </figure>

@@ -4,14 +4,16 @@
 .recs {
   padding: 0 2rem;
   height: 22rem;
-  border: 2px dotted blue;
 
-  h3 {
-    padding-bottom: 1.5rem;
-  }
+  color: $color-daslgrey;
 
   .scroll_container {
-    // padding-bottom: 25px;
     padding: 25px 0;
+    height: 90%;
+  }
+
+  .col {
+    flex: 0 0 auto;
+    width: 16rem;
   }
 }
