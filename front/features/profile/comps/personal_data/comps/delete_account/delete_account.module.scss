@@ -13,5 +13,6 @@
   button {
     margin-top: 1rem;
     @include button(white, $color-decapink);
+    width: fit-content;
   }
 }

@@ -1,0 +1,51 @@
+@use "styles/variables" as *;
+@use "styles/mixins/buttons" as *;
+
+.user_info_form {
+  padding: 15px;
+
+  .input_group {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 10px;
+
+    div {
+      width: 45%;
+    }
+
+    color: $color-daslgrey;
+
+    @media screen and (width < 768px) {
+      flex-flow: column wrap;
+      div {
+        width: 100%;
+      }
+    }
+  }
+
+  .button_group {
+    display: flex;
+    gap: 20px;
+
+    padding-top: 20px;
+
+    li {
+      width: 45%;
+
+      button {
+        @include button($color-dureen, $color-milk);
+        border: 1px solid $color-dureen;
+      }
+      .save_btn {
+        background-color: $color-dureen;
+        color: $color-milk;
+      }
+    }
+
+    @media screen and (width < 768px) {
+      li {
+        width: 100%;
+      }
+    }
+  }
+}

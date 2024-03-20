@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
-import s from "./user_info.module.scss";
-import { Accordion, Form, Card, Button } from "react-bootstrap";
+import s from "./user_info_form.module.scss";
+import ps from "../user_info.module.scss";
 import { useSession } from "next-auth/react";
 import InputField from "comps/input_fields/input_field";
-import Image from "next/image";
-import ProfileImage from "./profile_image";
 
 const UserInfoForm = () => {
   const { data: session, status } = useSession();
@@ -33,7 +31,10 @@ const UserInfoForm = () => {
   };
 
   return (
-    <form className={`${s.user_info_form}`} onSubmit={handleSubmit}>
+    <form
+      className={`${s.user_info_form} ${ps.user_info_form}`}
+      onSubmit={handleSubmit}
+    >
       <div className={`${s.input_group}`}>
         <InputField
           type="text"
@@ -71,44 +72,50 @@ const UserInfoForm = () => {
         />
       </div>
 
-      <div className={`${s.button_group}`}>
+      <menu className={`${s.button_group}`}>
         {!isBeingModified && (
-          <button
-            type="button"
-            className={`${s.edit_btn}`}
-            onClick={() => setIsBeingModified(true)}
-          >
-            Редагувати
-          </button>
+          <li>
+            <button
+              type="button"
+              className={`${s.edit_btn}`}
+              onClick={() => setIsBeingModified(true)}
+            >
+              Редагувати
+            </button>
+          </li>
         )}
         {isBeingModified && (
           <>
-            <button
-              data-toggle="tooltip"
-              title={hasBeenBeingModified ? "" : "Дані не були змінені"}
-              data-placement="bottom"
-              type="submit"
-              className={`${s.save_btn}`}
-              disabled={!hasBeenBeingModified}
-              onClick={() => {
-                setHasBeenBeingModified(false);
-              }}
-            >
-              Зберегти
-            </button>
-            <button
-              type="button"
-              className={`${s.cancel_btn}`}
-              onClick={() => {
-                setHasBeenBeingModified(false);
-                setIsBeingModified(false);
-              }}
-            >
-              Скасувати
-            </button>
+            <li>
+              <button
+                data-toggle="tooltip"
+                title={hasBeenBeingModified ? "" : "Дані не були змінені"}
+                data-placement="bottom"
+                type="submit"
+                className={`${s.save_btn}`}
+                disabled={!hasBeenBeingModified}
+                onClick={() => {
+                  setHasBeenBeingModified(false);
+                }}
+              >
+                Зберегти
+              </button>
+            </li>
+            <li>
+              <button
+                type="button"
+                className={`${s.cancel_btn}`}
+                onClick={() => {
+                  setHasBeenBeingModified(false);
+                  setIsBeingModified(false);
+                }}
+              >
+                Скасувати
+              </button>
+            </li>
           </>
         )}
-      </div>
+      </menu>
     </form>
   );
 };

@@ -1,121 +1,18 @@
 @use "styles/variables" as *;
 @use "styles/mixins" as *;
-@import "node_modules/rfs/sass.sass";
 
 .body {
   display: flex;
 
   .profile_image {
-    flex: 0 1 20%;
-
-    gap: 10px;
-    margin-bottom: 30px;
-    padding: 0 15px;
-
-    img {
-      width: 100% !important;
-      height: auto !important;
-      object-fit: contain;
-
-      border-radius: 500px;
-    }
+    flex: 0 1 30%;
   }
 
   .user_info_form {
     flex: 0 1 80%;
-    padding: 15px;
+  }
 
-    .input_group {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-
-      div {
-        width: 40% !important;
-      }
-
-      input[disabled] {
-        background-color: rgba($color-daslgrey, 0.1);
-        color: $color-daslgrey;
-        font-weight: bold;
-      }
-    }
-
-    .button_group {
-      display: flex;
-      gap: 20px;
-
-      padding: 20px 0;
-
-      button {
-        border-radius: 10px;
-        padding: 0.3em 1em;
-
-        vertical-align: center;
-        text-align: center;
-
-        font-size: 1.2rem;
-
-        border: 2px solid $color-yelgreen;
-        color: $color-daslgrey;
-      }
-
-      .edit_btn {
-      }
-      .save_btn {
-      }
-      .cancel_btn {
-        border-color: $color-spink !important;
-      }
-    }
+  @media screen and (width < 576px) {
+    flex-flow: column wrap;
   }
 }
-
-//   label {
-//     color: $color-daslgrey !important;
-//     // color: white !important;
-//   }
-//   label::after {
-//     background-color: transparent !important;
-//   }
-//   input[disabled] {
-//     background-color: $color-nyanza;
-//     color: $color-daslgrey;
-//     font-weight: bold;
-//   }
-
-//   input {
-//     border: 0;
-//     color: $color-daslgrey;
-//   }
-// }
-//   .accordion_header {
-//     background-color: $color-yelgreen;
-//     border-bottom: 1px solid $color-nyanza;
-
-//     h3 {
-//       margin: 0;
-//     }
-
-//     .accordion_button {
-//       gap: 0.5em;
-
-//       i {
-//         font-size: 1.5em;
-//       }
-
-//       padding: 0.3em 2em;
-//       color: $color-indep;
-//       background-color: $color-yelgreen;
-//     }
-//   }
-
-//   .btn {
-//     background-color: $color-milk;
-//     border: 0;
-//     transition: scale 0.5s;
-//     &:hover {
-//       box-shadow: 0 0 5px lightblue inset;
-//     }
-//   }
-// }

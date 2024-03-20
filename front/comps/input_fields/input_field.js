@@ -11,7 +11,7 @@ const InputField = ({
   disabled,
 }) => {
   return (
-    <div className="form-floating w-100">
+    <div className={`form-floating ${s.input_container}`}>
       <input
         type={type}
         id={id}
