@@ -8,6 +8,9 @@ import Link from "next/link";
 import SignFormByServices from "./sign_form_by_services";
 import VerticalSplitter from "./vertical_splitter";
 import SignUpForm from "./sign_up_form_by_credentials";
+import { useSelector } from "react-redux";
+
+import { useDispatch } from "react-redux";
 
 //todo input validation
 
@@ -15,7 +18,7 @@ const SignUpModal = ({ isOpen, toggle, toggleSignInModal }) => {
   return (
     <>
       <Modal
-        id="SignUpModal"
+        id="changePasswordModal"
         show={isOpen}
         onHide={toggle}
         centered

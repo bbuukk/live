@@ -9,6 +9,7 @@ import { SessionProvider } from "next-auth/react";
 
 import React, { useState, useEffect } from "react";
 
+import ChangePasswordModal from "features/profile/comps/personal_data/content/security/changePasswordModal";
 import SignInModal from "features/authentication/comps/auth/sign_in_modal";
 import SignUpModal from "features/authentication/comps/auth/sign_up_modal";
 import Header from "comps/layout/header/header";
@@ -107,6 +108,7 @@ function Modals() {
 
   return (
     <>
+      <ChangePasswordModal />
       <SignInModal
         isOpen={signInModalOpen}
         toggle={() => dispatch(toggleSignInModal())}
