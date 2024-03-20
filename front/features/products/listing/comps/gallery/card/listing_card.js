@@ -3,10 +3,10 @@ import s from "./listing_card.module.scss";
 
 import { slugify } from "@bbuukk/slugtrans/slugify";
 import { transliterate } from "@bbuukk/slugtrans/transliterate";
-import ProductFigure from "./figure";
-import ProductRating from "./rating";
-import BuyInfo from "./buy_info";
-import LikeButton from "./like_btn";
+import ProductFigure from "./comps/figure";
+import ProductRating from "./comps/rating";
+import BuyInfo from "./comps/buy_info";
+import LikeButton from "./comps/like_btn";
 
 const ListingProductCard = ({ product, like, isLiked }) => {
   const productUrl = (activeTab) =>
@@ -15,7 +15,7 @@ const ListingProductCard = ({ product, like, isLiked }) => {
     }/${activeTab}`;
 
   return (
-    <article className={`${s.product_card} `}>
+    <article className={`${s.card} `}>
       <LikeButton isLiked={false} />
       <ProductFigure product={product} productUrl={productUrl} />
       <ProductRating product={product} productUrl={productUrl} />

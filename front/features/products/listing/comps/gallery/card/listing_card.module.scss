@@ -1,19 +1,15 @@
 @use "./styles/variables" as *;
 @use "./styles/mixins" as *;
 
-$radius: 0.7rem;
-$small_radius: 0.3rem;
-
-.product_card {
+.card {
   display: flex;
   flex-flow: column nowrap;
 
   position: relative;
   padding: 0.4rem;
-  // border-radius: 1px;
 
-  // height: 25rem;
-  // width: 15rem;
+  height: 100%;
+  width: 100%;
 
   background-color: white;
   box-shadow: 0 0 0 0.5em white, 0 0 0.3em 0.5em rgba($color-daslgrey, 0.4);
@@ -22,10 +18,17 @@ $small_radius: 0.3rem;
 
   transition: transform 0.25s, box-shadow 0.2s 0.1s;
 
-  //todo enable hover back
-  // &:hover {
-  //   transform: scale(1.1, 1.1);
-  //   z-index: 99;
-  //   box-shadow: 0 0 0 0.5em white, 0 0 0.3em 0.5em rgba($color-daslgrey, 1);
-  // }
+  .figure {
+    flex: 0 0 75%;
+    max-height: 75%;
+  }
+
+  .buy_info {
+    // background-color: magenta;
+    flex: 0 1 20%;
+  }
+
+  .rating {
+    flex: 0 1 20%;
+  }
 }

@@ -1,4 +1,5 @@
 import s from "./like_btn.module.scss";
+import lcs from "../listing_card.module.scss";
 
 const LikeButton = ({ isLiked }) => {
   return (

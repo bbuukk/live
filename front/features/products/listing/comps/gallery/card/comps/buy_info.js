@@ -1,8 +1,9 @@
 import s from "./buy_info.module.scss";
+import lcs from "../listing_card.module.scss";
 
 const BuyInfo = ({ product }) => {
   return (
-    <section className={`${s.buy_info}`}>
+    <section className={`${s.buy_info} ${lcs.buy_info}`}>
       <p className={`${s.price}`}>
         {product.price} <span>₴</span>
       </p>

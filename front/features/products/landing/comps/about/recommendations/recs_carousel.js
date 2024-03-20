@@ -1,5 +1,5 @@
 import s from "features/products/landing/comps/about/recommendations/recs_carousel.module.scss";
-import ProductCard from "features/products/listing/comps/gallery/card";
+import ListingProductCard from "features/products/listing/comps/gallery/card/listing_card";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 
@@ -31,8 +31,8 @@ const RecsCarousel = () => {
           class={`row flex-row flex-nowrap overflow-auto ${s.scroll_conteiner}`}
         >
           {recs.map((product) => (
-            <div class="col-3">
-              <ProductCard product={product} />
+            <div class="col-2">
+              <ListingProductCard product={product} />
             </div>
           ))}
         </div>
