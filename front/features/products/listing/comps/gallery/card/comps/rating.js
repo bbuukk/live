@@ -4,12 +4,13 @@ import lcs from "../listing_card.module.scss";
 import Image from "next/image";
 import StarRating from "./star_rating";
 
+//use rating from product
 const ProductRating = ({ product, productUrl }) => {
   return (
-    <section className={`${s.rating} ${lcs.rating}`}>
-      <StarRating rating={4.1} />
-      <Link href={productUrl("characteristics")}>
-        <i className="bi bi-chat-left-text"></i>
+    <section className={` ${lcs.rating}`}>
+      <Link className={`${s.rating}`} href={productUrl("characteristics")}>
+        <StarRating rating={4.1} />
+        <i className="bi bi-chat-left-text" />
         <p>{10}</p>
       </Link>
     </section>

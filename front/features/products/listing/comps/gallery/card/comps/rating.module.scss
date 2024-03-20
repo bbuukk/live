@@ -2,21 +2,15 @@
 @use "./styles/mixins" as *;
 
 .rating {
-  flex: 0 1 5%;
-  margin-top: 0.4em;
   display: flex;
-  gap: 1em;
-  line-height: 1rem;
+  align-items: center;
+  gap: 3%;
 
-  .amount_reviews {
-    display: flex;
-    gap: 5px;
-    i {
-      font-size: 0.75em;
-    }
-    span {
-      @include text_muted($color-daslgrey, 0.8);
-      font-size: 0.9em;
-    }
+  i {
+    font-size: 0.75em;
+  }
+  p {
+    color: rgba($color-daslgrey, 0.8);
+    font-size: 0.9em;
   }
 }
