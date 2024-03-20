@@ -4,20 +4,20 @@ import { slugify } from "@bbuukk/slugtrans/slugify";
 import { transliterate } from "@bbuukk/slugtrans/transliterate";
 import { useSelector } from "react-redux";
 
-
 const Breadcrumbs = ({ category }) => {
   const { categories: allCategories } = useSelector(
     (state) => state.categories
   );
-  
+
   return (
     <>
-      <nav className={`${s.breadcrumbs}`} aria-label="Category path breadcrumbs">
+      <nav
+        className={`${s.breadcrumbs}`}
+        aria-label="Category path breadcrumbs"
+      >
         <ol className="breadcrumb">
-          <li>
-            <Link href="/">
-              Головна
-            </Link>
+          <li className={`breadcrumb-item`}>
+            <Link href="/">Головна</Link>
           </li>
 
           {allCategories &&
@@ -38,9 +38,7 @@ const Breadcrumbs = ({ category }) => {
                   }`}
                   key={pathPart}
                 >
-                  <Link
-                    href={`/products/${categoryPathSlug}/page=1`}
-                  >
+                  <Link href={`/products/${categoryPathSlug}/page=1`}>
                     {pathPart}
                   </Link>
                 </li>
@@ -51,6 +49,5 @@ const Breadcrumbs = ({ category }) => {
     </>
   );
 };
-          
 
 export default Breadcrumbs;
