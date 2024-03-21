@@ -33,7 +33,7 @@ const Breadcrumbs = ({ category }) => {
               const isActiveCategory = index === pathParts.length - 1;
               return (
                 <li
-                  className={`breadcrumb-item ${
+                  className={`breadcrumb-item ${s.item} ${
                     isActiveCategory ? "active" : ""
                   }`}
                   key={pathPart}
