@@ -2,38 +2,32 @@
 @use "styles/mixins" as *;
 @import "node_modules/rfs/sass.sass";
 
-
-// $radius: 0.7rem;
 $border_thickness: 2px;
-// $border: 2px solid $color-medbud;
 $padding: 1rem;
 
 .filters_container {
   margin-right: 1em;
-  
-  
-  .filter_accordion {
 
+  .filter_accordion {
     border: 2px solid $color-alabaster;
-    
+
     height: fit-content;
     width: 20rem;
-    
+
     border-radius: 0 1em 1em 0;
     padding: 1em 1em 1em 3em;
-    
+
     .price_slider {
       // padding: $padding;
-      
     }
-  
+
     .filter_checks {
       border-bottom: 2px solid $color-alabaster !important;
 
       &:last-child {
-        border-bottom: none !important; 
-   }
-     
+        border-bottom: none !important;
+      }
+
       .check {
         padding-left: $padding;
       }
@@ -45,38 +39,25 @@ $padding: 1rem;
     //   background-color: $color-medbud;
     // }
 
-  
-  
- 
-    .accordion_item{  
+    .accordion_item {
+      h2 {
+        button {
+          outline: none !important;
+          // background-color: magenta !important;
+          background-color: transparent !important;
+          box-shadow: none !important;
+        }
+      }
 
-h2 {
-    
-    button {
-
-        
-        outline: none !important;
-        // background-color: magenta !important;
-        background-color: transparent !important;
-        box-shadow: none !important;
+      input {
+      }
     }
-}
+    .price_slider_item {
+      border-bottom: 2px solid $color-alabaster !important;
 
-input {
-    
-
-}
-
-}
-.price_slider_item{
-  border-bottom: 2px solid $color-alabaster !important;  
-  
-  div {  
-    padding: 0.2em !important;
+      div {
+        padding: 0.2em !important;
+      }
+    }
   }
 }
-  }
-  
-
-}
-

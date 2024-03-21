@@ -19,6 +19,7 @@ import ProductsPagination from "features/products/listing/comps/gallery/paginati
 import { useGenFilterStr } from "hooks/genFilterStr";
 import { setFilters } from "store/filtersSlice";
 import { useGetFilterMapFromStr } from "hooks/useGetFilterMapFromStr";
+import ProductListingBody from "features/products/listing/product_listing_body";
 
 const Listing = ({
   data: {
@@ -78,7 +79,7 @@ const Listing = ({
         <meta name="description" content={`Живий Світ | ${category.path}`} />
       </Head>
       {/* {!isLoading && ( */}
-      <div className="mt-2">
+      <div className="mt-2 ">
         <div>
           <>
             <ProductHeader category={category} />
@@ -87,22 +88,15 @@ const Listing = ({
 
           {/* <SortGroup /> */}
         </div>
-
-        <div className="d-flex me-5">
-          <FiltersAccordion
-            filters={filtersMap}
-            minMaxPrice={minMaxPrice}
-            currentMinMaxPrice={currentMinMaxPrice}
-          />
-
-          <div>
-            <ProductGallery
-              activeProducts={products}
-              activeCategory={category}
-            />
-            <ProductsPagination numPages={numPages} activePageId={page} />
-          </div>
-        </div>
+        <ProductListingBody
+          filtersMap={filtersMap}
+          minMaxPrice={minMaxPrice}
+          currentMinMaxPrice={currentMinMaxPrice}
+          products={products}
+          category={category}
+          numPages={numPages}
+          page={page}
+        />
       </div>
       {/* )} */}
     </>

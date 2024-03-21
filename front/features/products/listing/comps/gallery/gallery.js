@@ -6,14 +6,10 @@ const ProductGallery = ({
   activeCategory: category,
 }) => {
   return (
-    <div className="row gy-4">
+    <section className={`${s.gallery}`}>
       {products.map((product) => {
         return (
-          <div
-            key={product._id}
-            //todo why do we need to use g-4 here? refactor and delete
-            className={`col col-12 col-sm-6 col-md-4 col-lg-3 ${s.col}`}
-          >
+          <div key={product._id} className={`${s.col} w-100 h-100 bg-dark`}>
             <ListingProductCard
               product={product}
               category={category}
@@ -23,7 +19,7 @@ const ProductGallery = ({
           </div>
         );
       })}
-    </div>
+    </section>
   );
 };
 

@@ -1,0 +1,20 @@
+@use "./styles/variables" as *;
+@use "./styles/mixins" as *;
+
+.body {
+  display: flex;
+  flex-flow: row nowrap;
+  padding: 0 1rem;
+
+  .filters {
+    flex: 1 1 20%;
+
+    @media screen and (width < 992px) {
+      display: none;
+    }
+  }
+
+  .gallery {
+    flex: 1 1 80%;
+  }
+}
