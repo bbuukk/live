@@ -43,7 +43,7 @@ const About = ({ product }) => {
         {/* <ReviewsList /> */}
       </div>
 
-      {/* {isVisible && <RecsCarousel isVisible={isVisible} />} */}
+      {isVisible && <RecsCarousel isVisible={isVisible} />}
     </div>
   );
 };

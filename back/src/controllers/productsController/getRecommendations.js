@@ -8,10 +8,12 @@ export const getRecommendations = async (req, res) => {
   console.log("🚀 ~ id:", id);
   // try {
   const product = await Product.findById(id).populate("category");
+  console.log("🚀 ~ product:", product);
   //all products we have
   const products = await Product.find({})
     .select("name description images price")
     .exec();
+  console.log("🚀 ~ products:", products);
   const similaritiesRes = similarities(products, product);
 
   return res.status(200).json({ similaritiesRes });
