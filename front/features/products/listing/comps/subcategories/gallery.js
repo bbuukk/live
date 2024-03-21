@@ -8,14 +8,16 @@ const SubcategoriesGallery = ({ subcategories }) => {
   return (
     <>
       {subcategories && (
-        <div className={`${s.subcategories_gallery}  row gy-4`}>
+        // <div className={`${s.center_container}`}>
+
+        <div className={`${s.gallery} row g-3`}>
           {subcategories
             .sort((a, b) => a.order - b.order)
             .map((category) => {
               return (
-                <div key={category._id} className={`col ${s.col}`}>
+                <li key={category._id} className={`col ${s.col}`}>
                   <SubcategoryCard category={category} />
-                </div>
+                </li>
               );
             })}
         </div>

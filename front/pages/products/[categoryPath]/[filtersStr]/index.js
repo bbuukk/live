@@ -38,7 +38,6 @@ const Listing = ({
   const { categoryPath, filtersStr } = router.query;
   const { filters } = useSelector((state) => state.filters);
 
-
   const { getFilterMapFromStr } = useGetFilterMapFromStr();
   const { genFiltersStr } = useGenFilterStr();
 
@@ -79,17 +78,15 @@ const Listing = ({
         <meta name="description" content={`Живий Світ | ${category.path}`} />
       </Head>
       {/* {!isLoading && ( */}
-      <div className="mt-2 ">
-        <div className="mx-5">
+      <div className="mt-2">
+        <div>
           <>
             <ProductHeader category={category} />
             <SubcategoriesGallery subcategories={subcategories} />
           </>
 
-          <div className="mt-5">{/* <SortGroup /> */}</div>
+          {/* <SortGroup /> */}
         </div>
-
-        {/* <hr className="mt-2 mb-4 horizontal_splitter " /> */}
 
         <div className="d-flex me-5">
           <FiltersAccordion

@@ -7,58 +7,51 @@
 
 .card {
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  flex-flow: column nowrap;
 
   border-radius: 5px;
-  overflow: hidden;
 
-  height: 10em;
-  width: 8em;
+  height: 100%;
+  width: 100%;
+
+  text-align: center;
+  font-weight: bold;
+  font-size: 1rem;
+  color: $color-daslgrey;
 
   box-shadow: 0 0 0 0.2em white, 0 0 0.3em 0.2em rgba($color-daslgrey, 0.4);
   background-color: white;
 
-  color: $color-daslgrey;
-  font-weight: bold;
-  
-  @include font-size(1em);
-  text-align: center;
+  img {
+    flex: 0 1 70%;
+    min-height: 70%;
 
-  .image {
+    border-radius: 5px;
+
     width: 100%;
-    flex: 1 1 70%;
-    // max-height: 0%;
-    object-fit: cover;
+    max-height: 70%;
+
+    object-fit: contain;
   }
 
-  // .name {
-  //   flex: 0 1 30%;
-  //   @include truncate_lines_after(2);
-  // }
-  .name {
-    flex: 0 1 30%;
+  div {
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
 
-    overflow: hidden;
-
-    $line_height: 1.2rem;
-    $number_of_lines: 2;
-
-    line-height: $line_height; /* adjust this as needed */
-    max-height: $line_height * $number_of_lines; /* height is line-height times the number of lines */
-    transition: color 0.25s;
+    flex: 0 1 30%;
+    padding: 0 0.5rem;
+    p {
+      @include truncate_lines_after(2);
+    }
   }
 
-  transition: transform 0.3s, box-shadow 0.25s;
+  transition: box-shadow 0.25s;
   &:hover {
-    transform: scale(1.1, 1.1);
     z-index: 99;
     box-shadow: 0 0 0 0.2em white, 0 0 0.3em 0.2em rgba($color-daslgrey, 1);
 
-    .name {
+    p {
       text-decoration: underline;
     }
   }

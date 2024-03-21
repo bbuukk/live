@@ -1,24 +1,50 @@
 @use "./styles/variables" as *;
 @import "node_modules/rfs/sass.sass";
 
-.subcategories_gallery {
-  padding: 0 3rem;
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
+
+  padding: 0 6rem;
+  margin-bottom: 6rem;
+
+  list-style: none;
 
   .col {
-    flex: 0 0 11%;
-    max-width: 11%;
+    height: 10rem;
   }
 
-  // @media screen and (width < 1400px) {
-  //   .col {
-  //     flex: 0 0 12%;
-  //     max-width: 12%;
-  //   }
-  // }
-  // @media screen and (width < 1200px) {
-  //   .col {
-  //     flex: 0 0 14%;
-  //     max-width: 14%;
-  //   }
-  // }
+  @media screen and (width < 992px) {
+    display: flex;
+    flex-flow: row nowrap;
+    overflow: auto;
+
+    padding: 1rem 0;
+
+    margin: 0 3rem;
+    margin-bottom: 3rem;
+
+    .col {
+      flex: 1 1 18%;
+      min-width: 18%;
+    }
+  }
+
+  @media screen and (width < 768px) {
+    margin: 0 1rem;
+    margin-bottom: 3rem;
+
+    .col {
+      min-width: 27%;
+    }
+  }
+
+  @media screen and (width < 576px) {
+    padding-bottom: 1rem;
+    margin: 0 1rem;
+    margin-bottom: 3rem;
+    .col {
+      min-width: 35%;
+    }
+  }
 }
