@@ -90,13 +90,17 @@ function getItemObjects(objectArr, documentIndexes, allSimiliarities) {
   combined.sort(function (a, b) {
     return b[0] - a[0];
   });
+
   let top = combined.slice(1, 11);
+
   let top_ids = top.map((elem) => elem[1]);
+
   let res = top_ids.map((id1) =>
     objectArr.find(function (element) {
-      return element.id == id1;
+      return element._id == id1;
     })
   );
+
   return res;
 }
 
@@ -105,17 +109,16 @@ function similarities(documents, product) {
     .slice(0, 250)
     .map((doc) => processString(doc));
 
-  let documentIndexes = documents.map((doc) => doc.id);
+  let documentIndexes = documents.map((doc) => doc._id);
 
   let currDoc = processString(product);
 
-  console.time("recommendation system time:");
   let similarityList = processedDocuments.map((doc) =>
     calculateCosineSimilarity(currDoc, doc, processedDocuments)
   );
-  console.timeEnd("recommendation system time:");
 
   let res = getItemObjects(documents, documentIndexes, similarityList);
+
   return res;
 }
 
@@ -127,18 +130,15 @@ self.onmessage = async (event) => {
     `http://localhost:4000/products/product/${id}`
   );
   const product = await productQuery.json();
-  console.log("🚀 ~ product:", product);
 
   const allProductQuery = await fetch(`http://localhost:4000/products`);
   const products = await allProductQuery.json();
-  console.log("🚀 ~ products:", products);
 
   const similaritiesRes = similarities(
     // products.filter((p) => p._id != "65b2606f213addb487b8aaac"),
     products,
     product
   );
-  console.log("🚀 ~ similaritiesRes:", similaritiesRes);
 
   self.postMessage(similaritiesRes);
   // } catch (error) {

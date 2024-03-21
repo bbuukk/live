@@ -31,8 +31,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { getProductsInfo } from "store/productsSlice";
 import { getCategoriesInfo } from "store/categoriesSlice";
 
-import { toggleSignInModal, toggleSignUpModal } from "store/modalSlice";
-
 import { Balsamiq_Sans } from "next/font/google";
 import { Caveat } from "next/font/google";
 import { Overpass } from "next/font/google";

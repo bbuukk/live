@@ -34,9 +34,9 @@ const About = ({ product }) => {
     <div>
       <ProductCard product={product} />
       <div className="d-flex">
-        <div className="w-50">
+        <div className="w-50" ref={ref}>
           <Description product={product} />
-          <div ref={ref}>
+          <div>
             <Characteristics title={"Характеристики:"} product={product} />
           </div>
         </div>

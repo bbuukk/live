@@ -6,7 +6,7 @@
   grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
   grid-auto-rows: 25rem;
 
-  grid-gap: 0.5rem;
+  // grid-gap : 0.5rem;
 
   .col {
     min-width: 0 !important;

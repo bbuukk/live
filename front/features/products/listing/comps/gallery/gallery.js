@@ -9,7 +9,7 @@ const ProductGallery = ({
     <section className={`${s.gallery}`}>
       {products.map((product) => {
         return (
-          <div key={product._id} className={`${s.col} w-100 h-100 bg-dark`}>
+          <div key={product._id} className={`${s.col}`}>
             <ListingProductCard
               product={product}
               category={category}
