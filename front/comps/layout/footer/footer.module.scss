@@ -31,7 +31,7 @@
       &:first-child {
         h2 {
           padding: 0 15px;
-          text-align: start;
+          text-align: flex-start;
         }
 
         @media screen and (width < 768px) {

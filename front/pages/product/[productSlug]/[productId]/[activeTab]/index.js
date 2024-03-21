@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import Head from "next/head";
 import { stripHtmlTags } from "utils/stripHtmlTags";
 import axios from "axios";
-import { Suspense, lazy, use } from "react";
+import { Suspense, lazy, use, useEffect } from "react";
 
 const About = lazy(() => import("features/products/landing/comps/about/index"));
 const Characteristics = lazy(() =>
@@ -30,10 +30,10 @@ const Landing = ({ product }) => {
         />
       </Head>
 
-      {/* padding: 0.5rem 0 1.5rem 0; */}
       <div className="mx-5 pt-3">
         <Breadcrumbs category={product.category[0]} />
       </div>
+      <Navigation activeTab={activeTab} />
 
       <Suspense fallback={<div>Loading...</div>}>
         {activeTab == "about" && <About product={product} />}

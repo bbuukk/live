@@ -20,7 +20,7 @@ const Navigation = ({ activeTab }) => {
 
     return (
       <Link
-        href={productUrl(tabName)}
+        href={""}
         className={`nav-link ${s.link}  ${
           activeTab === tabName ? s.active : ""
         }`}

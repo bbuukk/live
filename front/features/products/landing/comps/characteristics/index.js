@@ -8,7 +8,6 @@ import { transliterate } from "@bbuukk/slugtrans/transliterate";
 import DecorLine from "comps/decor/decor_line";
 import Breadcrumbs from "comps/navigation/breadcrumbs";
 import { useRouter } from "next/router";
-import LandingProuductLayout from "features/products/landing/comps/layout/layout";
 
 //todo add Head like in about page
 const ProductCharacteristics = ({ product }) => {

@@ -1,5 +1,4 @@
 import Image from "next/image";
-import StarRating from "comps/star-rating";
 import s from "./product-card.module.scss";
 import { useState } from "react";
 
