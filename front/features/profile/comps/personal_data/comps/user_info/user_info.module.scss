@@ -3,16 +3,17 @@
 
 .body {
   display: flex;
+  margin-bottom: 30px;
 
   .profile_image {
     flex: 0 1 30%;
   }
 
   .user_info_form {
-    flex: 0 1 80%;
+    flex: 0 1 70%;
   }
 
   @media screen and (width < 576px) {
-    flex-flow: column wrap;
+    flex-flow: column nowrap;
   }
 }

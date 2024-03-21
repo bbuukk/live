@@ -1,7 +1,3 @@
-// export { default } from "next-auth/middleware";
-
-// export const config = { matcher: ["/profile/:path*"] };
-
 import { getToken } from "next-auth/jwt";
 import { withAuth } from "next-auth/middleware";
 import { NextRequest, NextResponse } from "next/server";
