@@ -9,7 +9,7 @@ const ProfileImage = () => {
   return (
     <div className={`${s.profile_image} ${ps.profile_image}`}>
       {user && user.image && (
-        <Image src={user.image} width={0} height={0} sizes="100vw" />
+        <Image src={user.image} width={300} height={300} sizes="100vw" />
       )}
     </div>
   );

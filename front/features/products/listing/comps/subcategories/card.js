@@ -12,7 +12,6 @@ const SubcategoryCard = ({ category }) => {
   const { name, imagePath } = category;
 
   function saveActiveCategory() {
-    // console.log(category);
     if (typeof window !== "undefineid") {
       localStorage.setItem("activeCategory", JSON.stringify(category));
     }
@@ -31,10 +30,11 @@ const SubcategoryCard = ({ category }) => {
     >
       <Image
         src={imagePath}
-        width={100}
-        height={100}
+        width={150}
+        height={150}
         alt="subcategory image"
         className={`${s.image}`}
+        priority
       />
       <p className={`${s.name}`}> {name}</p>
     </Link>

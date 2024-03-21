@@ -13,8 +13,9 @@ const ProductFigure = ({ product, productUrl }) => {
             product.images && product.images[0]
           }
           alt="product image"
-          width={0}
-          height={0}
+          width={250}
+          height={250}
+          quality={100}
           priority
         />
         <figcaption>{product.name}</figcaption>

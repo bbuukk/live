@@ -19,8 +19,8 @@ const Card = ({ category, subcategories }) => {
           className={``}
           src={category.imagePath}
           alt="Category image"
-          width={100}
-          height={100}
+          width={300}
+          height={150}
           priority
         />
         <h2 className={`${s.naming} `}>{category.name}</h2>

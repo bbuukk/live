@@ -23,8 +23,8 @@ const ButtonGroup = () => {
               <Image
                 src={session.user.image}
                 alt="Profile picture"
-                width="0"
-                height="0"
+                width={50}
+                height={50}
               />
             </IconButton>
           )
