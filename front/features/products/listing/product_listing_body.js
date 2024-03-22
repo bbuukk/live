@@ -1,4 +1,4 @@
-import FiltersAccordion from "./comps/filter/filters_accordion";
+import FiltersAccordion from "features/products/listing/comps/filter/filters_accordion/filters_accordion";
 import ProductGallery from "./comps/gallery/gallery";
 import ProductsPagination from "./comps/gallery/pagination";
 

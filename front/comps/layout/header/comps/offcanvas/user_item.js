@@ -20,7 +20,13 @@ const UserItem = () => {
           href={"/profile/personal_data"}
         >
           {user && user.image && (
-            <Image src={user.image} width={50} height={50} sizes="100vw" />
+            <Image
+              src={user.image}
+              width={50}
+              height={50}
+              sizes="100vw"
+              alt="User profile picture"
+            />
           )}
           <div>
             <p>{`${user?.firstName}  ${user?.secondName}`}</p>

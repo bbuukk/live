@@ -10,7 +10,7 @@ const DeleteAccount = () => {
   return (
     <Card className={`${card_s.card}`}>
       <Card.Header className={`${card_s.header} ${s.header}`}>
-        <i class="bi bi-trash3-fill" />
+        <i className="bi bi-trash3-fill" />
         <h5>Видалити акаунт</h5>
       </Card.Header>
       <Card.Body className={`${card_s.body} ${s.body}`}>

@@ -28,10 +28,10 @@ const RecsCarousel = () => {
     <section className={`${s.recs}`}>
       <h3>Також вас можуть зацікавити</h3>
       <div
-        class={`row flex-row flex-nowrap overflow-auto ${s.scroll_container}`}
+        className={`row flex-row flex-nowrap overflow-auto ${s.scroll_container}`}
       >
         {recs.map((product) => (
-          <div class={`${s.col}`}>
+          <div className={`${s.col}`}>
             <ListingProductCard product={product} />
           </div>
         ))}

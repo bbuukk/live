@@ -28,7 +28,6 @@ const ChangePasswordModal = () => {
 
   useEffect(() => {
     return () => {
-      console.log("run");
       setPasswordInfo({
         oldPassword: "",
         newPassword: "",

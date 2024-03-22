@@ -3,7 +3,7 @@ import axios from "axios";
 
 import ProductGallery from "features/products/listing/comps/gallery/gallery";
 import ProductHeader from "features/products/listing/comps/product-header";
-import FiltersAccordion from "features/products/listing/comps/filter/filters_accordion";
+
 import SortGroup from "features/products/listing/comps/filter/sort-group";
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";

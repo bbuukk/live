@@ -86,3 +86,12 @@ input[disabled] {
   background-color: rgba($color-daslgrey, 0.1);
   font-weight: bold;
 }
+
+.accordion-item {
+  h2 {
+    button {
+      background-color: transparent !important;
+      box-shadow: none !important;
+    }
+  }
+}

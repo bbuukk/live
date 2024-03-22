@@ -1,0 +1,12 @@
+@use "./styles/variables" as *;
+@use "./styles/mixins" as *;
+
+@use "styles/variables" as *;
+@use "styles/mixins" as *;
+
+.filter_accordion {
+  padding: 1rem;
+  padding-left: 2.5rem;
+
+  box-shadow: 0 0 0 0.05rem $color-lightsilv;
+}

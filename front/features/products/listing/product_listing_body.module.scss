@@ -6,7 +6,7 @@
   flex-flow: row nowrap;
 
   .filters {
-    flex: 1 1 20%;
+    flex: 1 1 22%;
 
     @media screen and (width < 992px) {
       display: none;
@@ -14,7 +14,7 @@
   }
 
   .gallery {
-    flex: 1 1 80%;
+    flex: 1 1 78%;
     margin: 0 1rem;
     margin-left: 0;
 
