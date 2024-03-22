@@ -1,14 +1,15 @@
 import { signOut, useSession } from "next-auth/react";
 
-import s from "./offcanvas_body.module.scss";
-import NavItem from "./nav_item";
-import NavLink from "./nav_link";
-import UserItem from "./user_item";
+import s from "./main_offcanvas_body.module.scss";
+import NavItem from "./comps/nav_item";
+import NavLink from "./comps/nav_link";
+import UserItem from "./comps/user_item";
+import OffcanvasBody from "comps/offcanvas/offcanvas_body";
 
-const OffcanvasBody = () => {
+const MainOffcanvasBody = () => {
   const { data: session } = useSession();
   return (
-    <div className={`offcanvas-body ${s.body}`}>
+    <div className={`${s.body}`}>
       <UserItem />
       <ul className="navbar-nav justify-content-end flex-grow-1">
         {session ? (
@@ -59,4 +60,4 @@ const OffcanvasBody = () => {
   );
 };
 
-export default OffcanvasBody;
+export default MainOffcanvasBody;

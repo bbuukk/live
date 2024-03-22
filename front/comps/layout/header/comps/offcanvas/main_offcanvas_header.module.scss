@@ -2,23 +2,7 @@
 @use "./styles/mixins" as *;
 
 .header {
-  display: flex;
-
-  border-bottom: 2px solid rgba($color-daslgrey, 0.1);
-  background-color: $color-medbud;
-
-  border-radius: 0 1rem 0 0;
-
-  button {
-    padding: 1rem !important;
-    border-radius: 0.5rem;
-
-    font-size: 1rem;
-
-    &:hover {
-      @include icon_on_hover;
-    }
-  }
+  padding: 1rem;
 
   .logo {
     display: flex;

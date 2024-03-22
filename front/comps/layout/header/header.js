@@ -1,7 +1,10 @@
 import SearchBar from "./comps/search-bar";
 import ButtonGroup from "./comps/button_group/button_group";
 import Logo from "./comps/logo";
-import { Offcanvas, OffcanvasToggler } from "./comps/offcanvas/offcanvas";
+import {
+  MainOffcanvas,
+  OffcanvasToggler,
+} from "./comps/offcanvas/main_offcanvas";
 import s from "./header.module.scss";
 
 //todo add shopping cart, when user is not auth
@@ -10,8 +13,8 @@ const Header = () => {
   return (
     <header>
       <nav className={`navbar ${s.header}`}>
-        <OffcanvasToggler />
-        <Offcanvas />
+        <OffcanvasToggler id="mainOffcanvas" />
+        <MainOffcanvas id="mainOffcanvas" />
         <Logo />
         <SearchBar />
         <ButtonGroup />
