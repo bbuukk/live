@@ -44,11 +44,12 @@ const FilterChecks = ({ filterLabel, options, idx }) => {
   }
 
   return (
-    <section>
+    <section className={`${s.filter_item}`}>
       {Array.from(options).map((option) => {
         const isChecked = filters[slugFilterLabel]?.includes(
           slugify(transliterate(option))
         );
+
         return (
           <CheckBox
             key={option}

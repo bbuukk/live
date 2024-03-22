@@ -1,0 +1,9 @@
+@use "styles/variables" as *;
+@use "styles/mixins" as *;
+
+.filter_item {
+  &:has(:nth-child(8)) {
+    max-height: 20rem;
+    overflow: auto;
+  }
+}
