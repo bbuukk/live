@@ -85,8 +85,6 @@ const Listing = ({
             <ProductHeader category={category} />
             <SubcategoriesGallery subcategories={subcategories} />
           </>
-
-          {/* <SortGroup /> */}
         </div>
         <ProductListingBody
           filtersMap={filtersMap}
