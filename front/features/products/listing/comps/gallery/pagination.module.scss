@@ -2,37 +2,46 @@
 @use "./styles/variables" as *;
 @import "node_modules/rfs/sass.sass";
 
+//todo make it responsive
 .pagination {
+  // @media screen and (max-width: 768px) {
+  //   width: ;
+  // }
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  overflow: hidden;
+
+  .controls {
     display: flex;
-    justify-content: space-around;
+  }
+
+  .pages_group {
+    display: flex;
+    gap: 0.5em;
+  }
+
+  .item {
+  }
+
+  .itemActive {
+    background-color: $color-nyanza;
+  }
+
+  .item,
+  .itemActive {
+    display: block;
     align-items: center;
+    justify-content: center;
 
-    .controls {
-        display: flex;
-    }
-
-    .pages_group{
-        display: flex;
-        gap: 0.5em;
-    }
-
-    .item {}
-      
-      .itemActive {
-        background-color: $color-nyanza;
-      }
-
-      .item, .itemActive {
-        display: block;
-        align-items: center;
-        justify-content: center;
-
-        // border: 1px solid $color-daslgrey;
-        // padding:  0.3em 1em;
-            // height: 100%;
-            // width: 100%;
-        font-size: 1.2em;
-        // min-height: 0.1em;
-        border-radius: 0.5em;
-      }
+    // border: 1px solid $color-daslgrey;
+    // padding:  0.3em 1em;
+    // height: 100%;
+    // width: 100%;
+    font-size: 1.2em;
+    // min-height: 0.1em;
+    border-radius: 0.5em;
+  }
 }

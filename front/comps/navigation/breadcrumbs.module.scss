@@ -2,15 +2,21 @@
 @use "./styles/mixins" as *;
 
 @media screen and (max-width: 768px) {
-  .breadcrumbs ol li:not(:nth-last-child(2)) {
-    display: none;
-  }
-  .breadcrumbs ol li::before {
-    font-family: "bootstrap-icons";
-    color: $color-daslgrey !important;
-    content: "\F22D" !important;
-  }
   .breadcrumbs ol li {
-    padding: 0 !important;
+    &::before {
+      font-family: "bootstrap-icons";
+      color: $color-daslgrey !important;
+      content: "\F22D" !important;
+      display: inline-block;
+      vertical-align: text-top;
+    }
+
+    &:not(:nth-last-child(2)) {
+      display: none;
+    }
+
+    display: inline-block;
+    line-height: normal;
+    padding: 0;
   }
 }
