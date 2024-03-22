@@ -15,9 +15,11 @@
 
   .gallery {
     flex: 1 1 80%;
+    margin: 0 1rem;
 
-    @media screen and (width < 992px) {
+    @media screen and (width < 620px) {
       width: 100vw;
+      margin: 0;
     }
   }
 }

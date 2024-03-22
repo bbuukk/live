@@ -3,12 +3,8 @@
 
 .gallery {
   display: grid;
-  margin: 0 1rem;
-
   grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
   grid-auto-rows: 25rem;
-
-  border: 0.5px solid rgba($color-daslgrey, 0.2);
 
   @media screen and (width < 1200px) {
     grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr));
@@ -23,7 +19,6 @@
     grid-template-columns: repeat(2, 1fr);
     grid-auto-rows: 20rem;
 
-    margin: 0;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
   }
 }

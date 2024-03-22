@@ -13,8 +13,8 @@
 
   overflow: hidden;
 
-  // box-shadow: 0 0 0.2rem 0.3rem rgba($color-daslgrey, 0.4);
-  border: 0.5px solid rgba($color-daslgrey, 0.2);
+  box-shadow: 0 0 0 0.1rem $color-lightsilv;
+
   background-color: white;
 
   color: $color-daslgrey;
