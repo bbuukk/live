@@ -4,7 +4,6 @@
 .body {
   display: flex;
   flex-flow: row nowrap;
-  // padding: 0 1rem;
 
   .filters {
     flex: 1 1 20%;
@@ -16,5 +15,9 @@
 
   .gallery {
     flex: 1 1 80%;
+
+    @media screen and (width < 992px) {
+      width: 100vw;
+    }
   }
 }

@@ -9,14 +9,13 @@ const ProductGallery = ({
     <section className={`${s.gallery}`}>
       {products.map((product) => {
         return (
-          <div key={product._id} className={`${s.col}`}>
-            <ListingProductCard
-              product={product}
-              category={category}
-              like={() => {}}
-              isLiked={false}
-            />
-          </div>
+          <ListingProductCard
+            key={product._id}
+            product={product}
+            category={category}
+            like={() => {}}
+            isLiked={false}
+          />
         );
       })}
     </section>
