@@ -1,36 +1,37 @@
 import s from "./sort-group.module.scss";
 
+//todo add funcitonality
 const SortGroup = () => {
   const handleChange = (event) => {};
 
+  const ascLabel = "Від дешевших до дорогих";
+  const dscLable = "Від дорогих до дешевих";
   return (
     <search className={`${s.filters}`}>
-      <p className="p-2">Сортування:</p>
       <div className={`${s.btn_group}`}>
-        {/* <label className="btn">
-          <input type="radio" name="options" id="option1" onChange={handleChange} /> За популярністю
-        </label> */}
-        {/* <hr /> */}
         <label className="btn">
           <input
             type="radio"
-            name="options"
+            name="sort_options"
             id="price_asc"
             onChange={handleChange}
-          />{" "}
-          Спочатку дешевші
+          />
+          {ascLabel}
         </label>
-        {/* <hr /> */}
         <label className="btn">
           <input
             type="radio"
-            name="options"
+            name="sort_options"
             id="price_dsc"
             onChange={handleChange}
           />{" "}
-          Спочатку дорожчі
+          {dscLable}
         </label>
       </div>
+      <select className={`form-select ${s.select}`} onChange={handleChange}>
+        <option value="price_asc">{ascLabel}</option>
+        <option value="price_dsc">{dscLable}</option>
+      </select>
     </search>
   );
 };

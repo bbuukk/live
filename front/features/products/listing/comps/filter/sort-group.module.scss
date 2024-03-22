@@ -7,27 +7,35 @@ $radius: 0.5rem;
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  input {
-    appearance: none;
-  }
 
   .btn_group {
     border: 1px solid $color-medbud;
     border-radius: $radius;
+
     label {
       border-radius: 0;
 
-      &:hover {
-        background-color: $color-alabaster;
-      }
       &:last-child {
-        border-left: 1px solid $color-medbud;
         border-radius: 0 $radius $radius 0;
       }
       &:first-child {
         border-right: 1px solid $color-medbud;
         border-radius: $radius 0 0 $radius;
       }
+    }
+  }
+
+  .select {
+    display: none;
+    width: fit-content;
+  }
+
+  @media screen and (max-width: 992px) {
+    .btn_group {
+      display: none;
+    }
+    .select {
+      display: block;
     }
   }
 }
