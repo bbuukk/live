@@ -9,8 +9,6 @@ import { categoryRoutes } from "./routes/category.js";
 import { userRoutes } from "./routes/user.js";
 
 const app = express();
-//console.log(process.env.SECRET_KEY)
-//const stripe = new Stripe('sk_test_51OnkJxEqQtvOv6oJro8bYLwL51ZaItuVC22X3tUEQrTHjOSFisdfkhdQZ5oh6rLW1co6m8gFcBXW4ysrwA1ObQOg00NKLesaU0')
 const stripe = new Stripe(process.env.SECRET_KEY)
 
 app.use(cors({
