@@ -1,0 +1,17 @@
+@use "./styles/variables" as *;
+@use "./styles/mixins" as *;
+
+.offcanvas_filter_header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+
+  padding: 1rem;
+
+  color: $color-daslgrey;
+
+  i {
+    font-size: 1.3em;
+  }
+}

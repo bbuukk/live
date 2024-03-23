@@ -7,12 +7,21 @@ $radius: 0.5rem;
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  height: 100%;
 
   .btn_group {
+    height: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+
     border: 1px solid $color-medbud;
     border-radius: $radius;
 
     label {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
       border-radius: 0;
 
       &:last-child {
@@ -27,7 +36,7 @@ $radius: 0.5rem;
 
   .select {
     display: none;
-    width: fit-content;
+    height: 100%;
   }
 
   @media screen and (max-width: 992px) {
@@ -37,5 +46,7 @@ $radius: 0.5rem;
     .select {
       display: block;
     }
+  }
+  @media screen and (width < 420px) {
   }
 }

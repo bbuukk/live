@@ -1,0 +1,15 @@
+@use "./styles/variables" as *;
+@use "./styles/mixins" as *;
+@use "./styles/mixins/buttons" as *;
+
+.filters_offcanvas_toggler {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  //   @include save_button;
+  //   border: 2px solid red;
+  background-color: greenyellow;
+  padding: 0 10%;
+  width: 100%;
+}

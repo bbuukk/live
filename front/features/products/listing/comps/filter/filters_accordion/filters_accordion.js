@@ -1,5 +1,5 @@
-import PriceSlider from "./price-slider";
-import FilterChecks from "./filter_item";
+import PriceSlider from "../filter_items/price-slider";
+import FilterChecks from "../filter_items/filter_item";
 import s from "./filters_accordion.module.scss";
 import Accordion from "comps/accordion/accordion";
 import AccordionItem from "comps/accordion/accordion_item";
@@ -12,25 +12,27 @@ const FiltersAccordion = ({
   return (
     <search>
       <Accordion id={"filtersAccordion"}>
-        <AccordionItem id={"priceSlicerAccItem"} label="Ціна" show={true}>
-          <PriceSlider minMax={minMax} currentMinMax={currentMinMax} />
-        </AccordionItem>
-        {filters.map(([filterLabel, options], idx) => {
-          return (
-            <AccordionItem
-              key={filterLabel}
-              id={filterLabel}
-              label={filterLabel}
-              show={true}
-            >
-              <FilterChecks
-                filterLabel={filterLabel}
-                options={options}
-                idx={idx + 1}
-              />
-            </AccordionItem>
-          );
-        })}
+        <div className={`${s.filter_accordion}`}>
+          <AccordionItem id={"priceSlicerAccItem"} label="Ціна" show={true}>
+            <PriceSlider minMax={minMax} currentMinMax={currentMinMax} />
+          </AccordionItem>
+          {filters.map(([filterLabel, options], idx) => {
+            return (
+              <AccordionItem
+                key={filterLabel}
+                id={filterLabel}
+                label={filterLabel}
+                show={true}
+              >
+                <FilterChecks
+                  filterLabel={filterLabel}
+                  options={options}
+                  idx={idx + 1}
+                />
+              </AccordionItem>
+            );
+          })}
+        </div>
       </Accordion>
     </search>
   );
