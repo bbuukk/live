@@ -2,6 +2,31 @@ import Image from "next/image";
 import s from "./product-card.module.scss";
 import { useState } from "react";
 
+
+function myFunction() {
+  fetch('http://localhost:4000/create-checkout-session', {
+  //fetch('/create-checkout-session', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      items: [
+        { id: 1, quantity: 3 },
+        { id: 2, quantity: 1 }
+      ]
+    })
+  }).then(res => {
+    if (res.ok) return res.json()
+    return res.json().then(json => Promise.reject(json))
+  }).then(({ url }) => {
+    //console.log(url)
+    window.location = url
+  }).catch(e => {
+    console.error(e.error)
+  })
+}
+
 const ProductCard = ({
   product: {
     code,
@@ -69,7 +94,7 @@ const ProductCard = ({
                   {left > 0 ? "Є в наявності" : "Немає в наявності"}{" "}
                 </span>
               </p>
-              <button className={` btn ${s.buy_button} icon-link `}>
+              <button className={` btn ${s.buy_button} icon-link `} onClick={() => myFunction()}>
                 <i className="bi bi-cart4"></i>
                 <p>Купити</p>
               </button>
